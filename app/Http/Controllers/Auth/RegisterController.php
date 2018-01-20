@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Http\Requests\RegisterUserRequest;
 class RegisterController extends Controller
 {
     /*
@@ -20,14 +19,11 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -43,33 +39,17 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    protected function create(RegisterUserRequest $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+        $user = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->username   = $request->username;
+        $user->password   = bcrypt($request->password);
+        $user->photo      = 'img/default-user.png';
+        $user->save();
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return redirect()->route('app.login');
     }
 }

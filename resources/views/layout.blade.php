@@ -79,14 +79,11 @@
                                     height: 90px;width: 90px;
                                     border: 2px solid;border-radius: 50%;">
                                     <p style="font-size: 17px;">
-                                        {{--Auth::user()->nombres }} {{ Auth::user()->apellidos--}}
-                                        <small style="display: block;">{{--Auth::user()->cargo--}}
-                                        </small>
-                                        <small>Member since: {{--Auth::user()->created_at->format('d-m-Y')--}}
+                                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                                        <br>
+                                        <small>Member since: {{ Auth::user()->created_at->format('d-m-Y') }}
                                         </small>
                                     </p>
-                                    <!-- item-->
-                                    <br>
                                      <a href="#"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" class="dropdown-item notify-item btn btn-default"
@@ -94,7 +91,7 @@
                                         <i class="zmdi zmdi-power"></i> <span>Logout</span>
                                     </a>
                                     <form id="logout-form"
-                                    action="#"
+                                    action="{{ route('app.logout') }}"
                                     method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                     </form>

@@ -30,24 +30,37 @@
 
 
                 <div class="p-20">
-                    <form class="form-horizontal m-t-20" action="#">
+                    <form class="form-horizontal m-t-20" method="POST" 
+                    action="{{ route('app.login.submit') }}">
 
-                        <div class="form-group ">
+                    {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <div class="col-12">
-                                <input class="form-control" type="text" required="" placeholder="Username">
+                                <input class="form-control" type="text" required="" placeholder="Email" name="email" value="{{ old('email') }}">
+                                 @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col-12">
-                                <input class="form-control" type="password" required="" placeholder="Password">
+                                <input class="form-control" type="password" required="" placeholder="Password" name="password">
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group ">
                             <div class="col-12">
                                 <div class="checkbox checkbox-primary">
-                                    <input id="checkbox-signup" type="checkbox">
+                                    <input id="checkbox-signup" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label for="checkbox-signup">
                                         Remember me
                                     </label>

@@ -29,44 +29,63 @@
 				</div>
 
 				<div class="p-20">
-					<form class="form-horizontal m-t-20" action="#">
+					<form class="form-horizontal m-t-20"  method="POST" 
+					action="{{ route('app.register.submit') }}">
+					
+					 {{  csrf_field() }}
 
-						<div class="form-group ">
+						<div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
 							<div class="col-12">
-								<input class="form-control" type="text" required="" placeholder="First Name">
+								<input class="form-control" type="text" name="first_name" placeholder="First Name" value="{{ old('first_name') }}" required autofocus>
+								@if ($errors->has('first_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
 							<div class="col-12">
-								<input class="form-control" type="text" required="" placeholder="Last Name">
+								<input class="form-control" type="text" required="" placeholder="Last Name" name="last_name" value="{{ old('last_name') }}">
+								@if ($errors->has('last_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 							<div class="col-12">
-								<input class="form-control" type="email" required="" placeholder="Email">
+								<input class="form-control" type="email" required="" placeholder="Email" name="email" value="{{ old('email') }}">
+								@if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 							<div class="col-12">
-								<input class="form-control" type="text" required="" placeholder="Username">
+								<input class="form-control" type="text" required="" placeholder="Username" name="username" value="{{ old('username') }}">
+								@if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 							<div class="col-12">
-								<input class="form-control" type="password" required="" placeholder="Password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-12">
-								<div class="checkbox checkbox-primary">
-									<input id="checkbox-signup" type="checkbox" checked="checked">
-									<!--<label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>-->
-								</div>
+								<input class="form-control" type="password" required="" placeholder="Password" name="password">
+								@if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 						</div>
 
@@ -77,16 +96,14 @@
 								</button>
 							</div>
 						</div>
-
 					</form>
-
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-12 text-center">
 					<p>
-						Already have account?<a href="{{ route('app.login') }}" class="text-primary m-l-5"><b>Sign In</b></a>
+						Already have account?<a href="{{ route('app.login.form') }}" class="text-primary m-l-5"><b>Sign In</b></a>
 					</p>
 				</div>
 			</div>
