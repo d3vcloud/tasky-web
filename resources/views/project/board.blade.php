@@ -73,4 +73,9 @@
 @stop
 
 @section('scripts')
+    <script src="{{ asset('js/assets/project.js') }}"></script>
+    <script>
+        save();
+        list();
+    </script>  
 @stop

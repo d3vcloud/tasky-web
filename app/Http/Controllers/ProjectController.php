@@ -4,60 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
-
+use Auth;
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function list()
     {
-        //
+        # code...
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        if($request->ajax()){
+            if($request->Action == "Register"){
+                $project = new Project;
+                $project->name = $request->name;
+                $project->description = $request->description;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Project $project)
-    {
-        //
-    }
+                $user = \App\User::find(Auth::user()->id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Project $project)
-    {
-        //
+                if($user->projects()->save($project))
+                    return "Save";
+                else
+                    return "Error";
+            }
+            
+        }
+        return "Error";
+
     }
 
     /**
@@ -82,4 +56,5 @@ class ProjectController extends Controller
     {
         //
     }
+        
 }

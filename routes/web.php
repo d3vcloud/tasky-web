@@ -23,4 +23,7 @@ Route::get('/register','Auth\RegisterController@registerForm')->name('app.regist
 Route::post('/register','Auth\RegisterController@create')->name('app.register.submit');
 Route::get('/forgotpwd','Auth\ForgotPasswordController@forgotForm')->name('app.forgotpwd');
 
+Route::post('/task/save','ProjectController@store')->name('app.store.project');
+Route::get('/task/list','ProjectController@list')->name('app.list.project');
+
 //Route::get('/home', 'HomeController@index')->name('home');

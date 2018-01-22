@@ -16,7 +16,7 @@ function dateFormat(param) {
 	return date[2] + "/" + date[1] + "/" + date[0];
 }
 
-function deleteComa(string){
+function deleteComma(string){
 	return string.replace(/,(\s+)?$/, '');
 }
 
