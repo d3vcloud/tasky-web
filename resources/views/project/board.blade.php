@@ -37,15 +37,16 @@
             </div>
             <div id="bg-inverse" class="panel-collapse collapse show">
                 <div class="portlet-body">
-                    <div class="row">
+                    <div class="row list-projects">
                     	@if(count($myprojects))
                     		@foreach($myprojects as $project)
                     			<div class="col-md-3 my-project grow">
 			                        <div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">
 			                            <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>
-			                            <span class="text-dark" style="font-size: 15px;">
+			                            <a class="text-dark" 
+                                        href="{{ route('app.project.detail',$project->id) }}" style="font-size: 15px;">
 			                            	{{ $project->name }}
-			                            </span>
+			                            </a>
 			                        </div>
                     			</div>
                     		@endforeach

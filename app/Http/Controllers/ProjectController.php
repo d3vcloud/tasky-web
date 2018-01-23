@@ -10,7 +10,11 @@ class ProjectController extends Controller
     
     public function list()
     {
-        # code...
+        $projects = Project::select('id','name','description')
+                ->where('user_id',Auth::user()->id)
+                ->get();
+                
+        return $projects;
     }
 
     public function store(Request $request)

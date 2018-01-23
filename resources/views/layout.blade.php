@@ -41,7 +41,7 @@
                         <!--UBold-->
                         <!--</a>-->
                         <!-- Image Logo -->
-                        <a href="index-2.html" class="logo">
+                        <a href="{{ route('app.board') }}" class="logo">
                             <img src="{{ asset('img/logo_dark.png') }}" alt="" height="20" class="logo-lg">
                             {{--<img src="{{ asset('img/logo_sm.png') }}" alt="" height="24" class="logo-sm">--}}
                         </a>
@@ -69,12 +69,12 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="img/default-user.png"
+                                    <img src="{{ Auth::user()->photo }}"
                                     alt="user" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview" style="width:280px;text-align: center;">
 
-                                    <img src="img/default-user.png"
+                                    <img src="{{ Auth::user()->photo }}"
                                     style="z-index:5;
                                     height: 90px;width: 90px;
                                     border: 2px solid;border-radius: 50%;">

@@ -47,7 +47,7 @@ class RegisterController extends Controller
         $user->email      = $request->email;
         $user->username   = $request->username;
         $user->password   = bcrypt($request->password);
-        $user->photo      = 'img/default-user.png';
+        $user->photo      = '/img/default-user.png';
         $user->save();
 
         return redirect()->route('app.login');
