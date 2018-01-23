@@ -2,6 +2,53 @@
 
 @section('css')
 	<link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
+    <style>
+        .task-main{
+            border-radius: 9px !important;
+        }
+        .card-tag{
+            margin: 2px 0;
+            overflow: auto;
+            position: relative;
+        }
+        .card-label{
+            height: 16px;
+            line-height: 16px;
+            padding: 0 8px;
+            max-width: 198px;
+            float: left;
+            font-size: 11px !important;
+            font-weight: 600;
+            margin: 0 3px 3px 0;
+            width: auto;
+            border-radius: 3px;
+            color: #fff;
+            display: block;
+        }
+        .task-detail{
+            cursor: pointer;
+        }
+        .card-label-red{
+            background-color: #eb5a46;
+        }
+        .card-label-blue{
+            background-color: #055a8c;
+        }
+        .card-label-green{
+            background-color: #81c868;
+        }
+        .card-label-orange{
+            background-color: #FFA500;
+        }
+        .card-label-yellow{
+            background-color: #d9b51c;
+        }
+        .img-task{
+            height: 30px !important;
+            width: 30px !important;
+            border-radius: 60% !important;
+        }
+    </style>
 @stop
 
 @section('container')
@@ -12,26 +59,25 @@
                             <br>
 
                             <ul class="sortable-list taskList list-unstyled" id="upcoming">
-                                <li class="task-warning" id="task1">
-                                    <div class="checkbox checkbox-custom checkbox-single pull-right">
-                                        <input type="checkbox" aria-label="Single checkbox Two">
+                                <li class="task-detail task-main" id="task2">
+                                    <div class="pull-right">
+                                        <i class="fa fa-trash" style="color: red;
+                                        cursor: pointer;"></i>
                                         <label></label>
                                     </div>
-                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    <div class="m-t-20">
-                                        <p class="pull-right m-b-0"><i class="fa fa-clock-o"></i> <span title="15/06/2016 12:56">15/06/2016</span></p>
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="assets/images/users/avatar-1.jpg" alt="task-user" class="thumb-sm rounded-circle m-r-10"> <span class="font-bold">Petey Cruiser</span></a> </p>
+                                    <div class="card-tag">
+                                        <span class="card-label card-label-red" title="Test">Test</span>
+                                        <span class="card-label card-label-blue" title="Diseño">Diseño</span>
+                                        <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
                                     </div>
-                                </li>
-                                <li class="task-success" id="task2">
-                                    <div class="checkbox checkbox-custom checkbox-single pull-right">
-                                        <input type="checkbox" aria-label="Single checkbox Two">
-                                        <label></label>
-                                    </div>
-                                    Many desktop publishing packages and web page editors now use Lorem.
+                                    <span class="task-title">Mejoras en la aplicacion</span>
                                     <div class="m-t-20">
-                                        <p class="pull-right m-b-0"><i class="fa fa-clock-o"></i> <span title="15/06/2016 12:56">15/06/2016</span></p>
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="assets/images/users/avatar-2.jpg" alt="task-user" class="thumb-sm rounded-circle m-r-10"> <span class="font-bold">Anna Sthesia</span></a> </p>
+                                        <p class="pull-right m-b-0">
+                                            <i class="fa fa-comment-o"></i> 
+                                                <span title="0">0</span>
+                                        </p>
+                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10 img-task"></a>  
+                                        </p>
                                     </div>
                                 </li>
  
@@ -47,19 +93,12 @@
 
                             <ul class="sortable-list taskList list-unstyled" id="inprogress">
                                 <li id="task9">
-                                    <div class="checkbox checkbox-custom checkbox-single pull-right">
-                                        <input type="checkbox" aria-label="Single checkbox Two">
-                                        <label></label>
-                                    </div>
                                     If you are going to use a passage of Lorem Ipsum..
                                     <div class="m-t-20">
-                                        <p class="pull-right m-b-0"><i class="fa fa-clock-o"></i> <span title="15/06/2016 12:56">15/06/2016</span></p>
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="assets/images/users/avatar-3.jpg" alt="task-user" class="thumb-sm rounded-circle m-r-10"> <span class="font-bold">Gail Forcewind</span></a> </p>
+                                        
+                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10"> </a> </p>
                                     </div>
                                 </li>
-                                
-                                
-                               
                             </ul>
                         </div>
                     </div>
@@ -69,29 +108,10 @@
                            <br>
 
                             <ul class="sortable-list taskList list-unstyled" id="completed">
-                                <li class="task-warning" id="task14">
-                                    <div class="checkbox checkbox-custom checkbox-single pull-right">
-                                        <input type="checkbox" aria-label="Single checkbox Two">
-                                        <label></label>
-                                    </div>
-                                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                <li id="task14">
+                                    When an unknown printer took 
                                     <div class="m-t-20">
-                                        <p class="pull-right m-b-0"><i class="fa fa-clock-o"></i> <span title="15/06/2016 12:56">15/06/2016</span></p>
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="assets/images/users/avatar-1.jpg" alt="task-user" class="thumb-sm rounded-circle m-r-10"> <span class="font-bold">Petey Cruiser</span></a> </p>
-                                    </div>
-                                </li>
-                               
-                                
-                                
-                                <li class="task-danger" id="task18">
-                                    <div class="checkbox checkbox-custom checkbox-single pull-right">
-                                        <input type="checkbox" aria-label="Single checkbox Two">
-                                        <label></label>
-                                    </div>
-                                    There are many variations of passages of Lorem Ipsum available.
-                                    <div class="m-t-20">
-                                        <p class="pull-right m-b-0"><i class="fa fa-clock-o"></i> <span title="15/06/2016 12:56">15/06/2016</span></p>
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="assets/images/users/avatar-5.jpg" alt="task-user" class="thumb-sm rounded-circle m-r-10"> <span class="font-bold">Rick O'Shea</span></a> </p>
+                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10"></a> </p>
                                     </div>
                                 </li>
                             </ul>
