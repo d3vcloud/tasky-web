@@ -54,7 +54,8 @@
 @section('container')
                   <div class="col-lg-4">
                         <div class="card-box">
-                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light">Add New</a>
+                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" 
+                            data-target="#modalAdd">Add New</a>
                             <h4 class="text-dark header-title m-t-0">Upcoming</h4>
                             <br>
 
@@ -117,6 +118,13 @@
                             </ul>
                         </div>
                     </div>
+    <div id="modalAdd" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                @include('partials.new-task')
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('scripts')

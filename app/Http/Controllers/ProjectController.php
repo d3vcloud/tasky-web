@@ -21,8 +21,8 @@ class ProjectController extends Controller
     {
         if($request->ajax()){
             if($request->Action == "Register"){
-                $project = new Project;
-                $project->name = $request->name;
+                $project              = new Project;
+                $project->name        = $request->name;
                 $project->description = $request->description;
 
                 $user = \App\User::find(Auth::user()->id);
@@ -38,27 +38,20 @@ class ProjectController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Project $project)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Project $project)
     {
-        //
+        $selected = Project::find($project->id);
+        if(!is_null($selected)){
+            $selected->delete();
+            return "Removed";
+        }
+
+        return "Error";
     }
         
 }

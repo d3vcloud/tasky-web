@@ -7,7 +7,7 @@
 			border-radius: .25rem;
 			border: 1px solid;
 			cursor:pointer;
-			margin: 6px 10px 7px 2px;
+			margin: 6px 10px 7px 30px;
 			/*padding-right: 15px !important;*/
 		}
 		.grow{
@@ -19,6 +19,9 @@
 			transform: scale(0.9);
 			transition: 1s ease;
 		}
+        .list-projects{
+            margin-left:55px !important;
+        }
 	</style>
 @stop
 
@@ -28,7 +31,7 @@
             <div class="portlet-heading bg-inverse">
                 <h3 class="portlet-title">My Projects</h3>
                     <div class="portlet-widgets">
-                       <a href="javascript:;" data-toggle="reload" class="btn-refresh"><i class="ion-refresh"></i></a>
+                       <a href="javascript:void(0)" data-toggle="reload" class="btn-refresh"><i class="ion-refresh"></i></a>
                         <span class="divider"></span>
                         <a href="#" class="btn-new" data-toggle="modal" 
                         data-target="#modalAdd"><i class="ion-plus-round"></i></a>
@@ -42,7 +45,11 @@
                     		@foreach($myprojects as $project)
                     			<div class="col-md-3 my-project grow">
 			                        <div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">
-			                            <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>
+			                            <a onclick="remove({{ $project->id }});">
+                                            <i class="fa fa-trash pull-right inform" 
+                                            style="color: red;"></i>         
+                                        </a>
+                                        <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>
 			                            <a class="text-dark" 
                                         href="{{ route('app.project.detail',$project->id) }}" style="font-size: 15px;">
 			                            	{{ $project->name }}
