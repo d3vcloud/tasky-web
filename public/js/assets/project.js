@@ -16,7 +16,7 @@ function save(){
 }
 
 function list(){
-	$(".btn-refresh").click(function(){
+	$("#layoutProjects").click('.btn-refresh',function(){
 		$.get('/project/list',function(projects){
 			if(projects.length > 0)
 			{
@@ -34,8 +34,8 @@ function addviewproject(title,description) {
 	$html  = '<div class="col-md-3 my-project grow">'; 
 	$html += '<div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">';
 	$html += '<i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="'+description+'"></i>';
-	$html += '<span class="text-dark" style="font-size: 15px;">' + title;
-	$html += '</span></div></div>';
+	$html += '<a  href="/project/detail/7" class="text-dark" style="font-size: 15px;">' + title;
+	$html += '</a></div></div>';
 
 	$(".list-projects").append($html);
 }

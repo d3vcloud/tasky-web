@@ -24,7 +24,7 @@
 
 @section('container')
 	<div class="col-md-12">
-        <div class="portlet">
+        <div class="portlet" id="layoutProjects">
             <div class="portlet-heading bg-inverse">
                 <h3 class="portlet-title">My Projects</h3>
                     <div class="portlet-widgets">
