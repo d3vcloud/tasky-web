@@ -2,6 +2,8 @@
 
 @section('css')
 	<link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
+    <!-- X-editable css -->
+    <link type="text/css" href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
     <style>
         .task-main{
             border-radius: 9px !important;
@@ -89,7 +91,7 @@
                                         <span class="card-label card-label-blue" title="Diseño">Diseño</span>
                                         <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
                                     </div>-->
-                                        <span class="task-title">{{ $task->name }}</span>
+                                        <span class="task-title" data-toggle="modal" data-target="#modalDetail">{{ $task->name }}</span>
                                         <!--<div class="m-t-20">
                                             <p class="pull-right m-b-0">
                                                 <i class="fa fa-comment-o"></i> 
@@ -124,7 +126,7 @@
                                                 </a>
                                                 <label></label>
                                             </div>
-                                            <span class="task-title">
+                                            <span class="task-title" data-toggle="modal" data-target="#modalDetail">
                                                 {{ $task->name }}
                                             </span>
                                         </li>
@@ -151,7 +153,7 @@
                                                 </a>
                                                 <label></label>
                                             </div>
-                                            <span class="task-title">
+                                            <span class="task-title" data-toggle="modal" data-target="#modalDetail">
                                                 {{ $task->name }}
                                             </span>
                                         </li>
@@ -161,7 +163,7 @@
                             </ul>
                         </div>
                     </div>
-    <div id="modalAdd" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div id="modalDetail" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 @include('partials.detail-task')
@@ -172,6 +174,7 @@
 
 @section('scripts')
 	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/assets/task.js') }}"></script>
 	<script>
 		$("#upcoming, #inprogress, #completed").sortable({

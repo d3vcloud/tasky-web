@@ -18,7 +18,10 @@ class TaskController extends Controller
 
             $project = Project::find(\Session::get('idProject'));
             if($project->tasks()->save($task))    
-                return "Saved";
+                return response()->json([
+                    "status" => "Saved",
+                    "id" => $task->id
+                ]);
         }
         return "Error";
         

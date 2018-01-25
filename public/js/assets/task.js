@@ -30,7 +30,7 @@ function save (form) {
     var html = "";
 
     $.post('/task/save',$("#FormTask").serializeObject(),function(data){
-        if(data == "Saved"){
+        if(data.status == "Saved"){
             var nameTask = $("#task-field").val();
 
             //Delete current container task "li"
@@ -41,13 +41,14 @@ function save (form) {
             //Add task with trash icon
             html += '<li class="task-detail task-main">';
             html += '<div class="pull-right">';
+            html += '<a onclick="remove('+data.id+',this)">';
             html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
+            html += '</a>';
             html += '</div>';
-            html += '<span class="task-title">' +nameTask+ '</span></li>';
+            html += '<span class="task-title" data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</span></li>';
                                 
             $("#upcoming").append(html);
 
-            //console.log(data);    
         }
 
         
@@ -79,9 +80,7 @@ function remove(id,cont) {
                         //Delete current container task "li"
                         const first = cont.parentElement;
                         const second = first.parentElement;
-                        //upcoming.removeChild(second);
-
-                        console.log(second);
+                        second.parentElement.removeChild(second);
                     }else
                         notification('Error','An error occurred, try again','error',3000);
                 });
