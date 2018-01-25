@@ -30,8 +30,9 @@ Route::get('/forgotpwd','Auth\ForgotPasswordController@forgotForm')->name('app.f
 Route::post('/project/save','ProjectController@store')->name('app.store.project');
 Route::get('/project/list','ProjectController@list')->name('app.list.project');
 Route::get('/project/delete/{project}','ProjectController@destroy')
-        ->name('app.delete.project');
-
+    ->name('app.delete.project');
 Route::get('/project/detail/{project}','ProjectDetailController@index')
     ->name('app.project.detail');
+
+Route::post('/task/save','TaskController@store')->name('app.store.task');
 //Route::get('/home', 'HomeController@index')->name('home');

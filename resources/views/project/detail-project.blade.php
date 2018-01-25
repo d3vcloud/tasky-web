@@ -48,18 +48,53 @@
             width: 30px !important;
             border-radius: 60% !important;
         }
+        .input-cus{
+            height: 30px;
+            padding: 5px 10px;
+            font-size: 13px;
+            /*line-height: 1.5;*/
+            /*border-radius: 6px;*/
+            border:none;
+            width:90%;
+        }
     </style>
 @stop
 
 @section('container')
                   <div class="col-lg-4">
                         <div class="card-box">
-                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light" data-toggle="modal" 
-                            data-target="#modalAdd">Add New</a>
+                            <!--data-toggle="modal" 
+                            data-target="#modalAdd"-->
+                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light btn-add-task">
+                                <i class="fa fa-plus"></i>
+                            </a>
                             <h4 class="text-dark header-title m-t-0">Upcoming</h4>
                             <br>
 
                             <ul class="sortable-list taskList list-unstyled" id="upcoming">
+                                
+ 
+                               
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-box">
+                            <h4 class="text-dark header-title m-t-0">In Progress</h4>
+                            <br>
+
+                            <ul class="sortable-list taskList list-unstyled" id="inprogress">
+                                <!--TASKS-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-box">
+                            <h4 class="text-dark header-title m-t-0">Completed</h4>
+                           <br>
+
+                            <ul class="sortable-list taskList list-unstyled" id="completed">
                                 <li class="task-detail task-main" id="task2">
                                     <div class="pull-right">
                                         <i class="fa fa-trash" style="color: red;
@@ -81,40 +116,6 @@
                                         </p>
                                     </div>
                                 </li>
- 
-                               
-                               
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="text-dark header-title m-t-0">In Progress</h4>
-                            <br>
-
-                            <ul class="sortable-list taskList list-unstyled" id="inprogress">
-                                <li id="task9">
-                                    If you are going to use a passage of Lorem Ipsum..
-                                    <div class="m-t-20">
-                                        
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10"> </a> </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <h4 class="text-dark header-title m-t-0">Completed</h4>
-                           <br>
-
-                            <ul class="sortable-list taskList list-unstyled" id="completed">
-                                <li id="task14">
-                                    When an unknown printer took 
-                                    <div class="m-t-20">
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10"></a> </p>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -129,18 +130,22 @@
 
 @section('scripts')
 	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
+    <script src="{{ asset('js/assets/task.js') }}"></script>
 	<script>
 		$("#upcoming, #inprogress, #completed").sortable({
                     connectWith: ".taskList",
                     placeholder: 'task-placeholder',
                     forcePlaceholderSize: true,
                     update: function (event, ui) {
-
                         var todo = $("#todo").sortable("toArray");
                         var inprogress = $("#inprogress").sortable("toArray");
                         var completed = $("#completed").sortable("toArray");
                     }
         }).disableSelection();
+
+        newTask();
+
 	</script>
 @stop
+
+
