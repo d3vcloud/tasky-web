@@ -73,8 +73,36 @@
 
                             <ul class="sortable-list taskList list-unstyled" id="upcoming">
                                 
- 
-                               
+                                <!--TASKS-->
+                                @if(count($tupcoming))
+                                    @foreach($tupcoming as $task)
+                                        <li class="task-detail task-main">
+                                            <div class="pull-right">
+                                                <a onclick="remove({{ $task->id }},this);">
+                                                    <i class="fa fa-trash" style="color: red;
+                                                cursor: pointer;"></i>
+                                                </a>
+                                                <label></label>
+                                            </div>
+                                    <!--<div class="card-tag">
+                                        <span class="card-label card-label-red" title="Test">Test</span>
+                                        <span class="card-label card-label-blue" title="Diseño">Diseño</span>
+                                        <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
+                                    </div>-->
+                                        <span class="task-title">{{ $task->name }}</span>
+                                        <!--<div class="m-t-20">
+                                            <p class="pull-right m-b-0">
+                                                <i class="fa fa-comment-o"></i> 
+                                                    <span title="0">0</span>
+                                            </p>
+                                            <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10 img-task"></a>  
+                                            </p>
+                                        </div>-->
+                                        </li>
+                                    @endforeach
+                                @endif
+                                
+                               <!--END TASKS-->
                                
                             </ul>
                         </div>
@@ -86,6 +114,23 @@
 
                             <ul class="sortable-list taskList list-unstyled" id="inprogress">
                                 <!--TASKS-->
+                                @if(count($tprogress))
+                                    @foreach($tprogress as $task)
+                                        <li class="task-detail task-main">
+                                            <div class="pull-right">
+                                                <a onclick="remove({{ $task->id }},this);">
+                                                    <i class="fa fa-trash" style="color: red;
+                                                cursor: pointer;"></i>
+                                                </a>
+                                                <label></label>
+                                            </div>
+                                            <span class="task-title">
+                                                {{ $task->name }}
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                @endif
+                                <!--END TASKS-->
                             </ul>
                         </div>
                     </div>
@@ -95,34 +140,31 @@
                            <br>
 
                             <ul class="sortable-list taskList list-unstyled" id="completed">
-                                <li class="task-detail task-main" id="task2">
-                                    <div class="pull-right">
-                                        <i class="fa fa-trash" style="color: red;
-                                        cursor: pointer;"></i>
-                                        <label></label>
-                                    </div>
-                                    <div class="card-tag">
-                                        <span class="card-label card-label-red" title="Test">Test</span>
-                                        <span class="card-label card-label-blue" title="Diseño">Diseño</span>
-                                        <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
-                                    </div>
-                                    <span class="task-title">Mejoras en la aplicacion</span>
-                                    <div class="m-t-20">
-                                        <p class="pull-right m-b-0">
-                                            <i class="fa fa-comment-o"></i> 
-                                                <span title="0">0</span>
-                                        </p>
-                                        <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10 img-task"></a>  
-                                        </p>
-                                    </div>
-                                </li>
+                                <!--TASKS-->
+                                @if(count($tcompleted))
+                                    @foreach($tcompleted as $task)
+                                        <li class="task-detail task-main">
+                                            <div class="pull-right">
+                                               <a onclick="remove({{ $task->id }},this);">
+                                                    <i class="fa fa-trash" style="color: red;
+                                                cursor: pointer;"></i>
+                                                </a>
+                                                <label></label>
+                                            </div>
+                                            <span class="task-title">
+                                                {{ $task->name }}
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                @endif
+                                <!--END TASKS-->
                             </ul>
                         </div>
                     </div>
     <div id="modalAdd" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                @include('partials.new-task')
+                @include('partials.detail-task')
             </div>
         </div>
     </div>

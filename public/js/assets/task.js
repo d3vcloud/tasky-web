@@ -1,29 +1,92 @@
+const upcoming = document.querySelector('#upcoming');
+
 function newTask() {
     $(".btn-add-task").click(function() {
         var html = '<li class="task-detail task-main">';
         html += '<div class="pull-right">';
-        html += '<a href="#" onclick="save();" class="btn-check"><i class="fa fa-check" style="color: green;cursor: pointer;"></i></a>  ';
+        html += '<a href="#" onclick="save(this);" class="btn-check"><i class="fa fa-check" style="color: green;cursor: pointer;"></i></a>  ';
         html += '<a href="#" onclick="cancel(this);" class="btn-cancel"><i class="fa fa-times" style="color: red;cursor: pointer;"></i></a>';
         html += '</div>';
         html += '<form action="" method="POST" id="FormTask">';
         html += '<span class="task-title">';
-        html += '<input type="text" name="task" class="input-cus" required autofocus/>';
+        html += '<input type="text" name="task" id="task-field" class="input-cus" required autofocus/>';
         html += '</span>';
         html += '</form>';
         html += '</li>';
 
         $("#upcoming").append(html);
+
+        $('#task-field').focus();
     });
 }
 
 function cancel (container) {
-    console.log(container);
+    const first = container.parentElement;
+    const second = first.parentElement;
+    upcoming.removeChild(second);
 }
 
-function save () {
+function save (form) {
+    var html = "";
+
     $.post('/task/save',$("#FormTask").serializeObject(),function(data){
-        console.log(data);
+        if(data == "Saved"){
+            var nameTask = $("#task-field").val();
+
+            //Delete current container task "li"
+            const first = form.parentElement;
+            const second = first.parentElement;
+            upcoming.removeChild(second);
+
+            //Add task with trash icon
+            html += '<li class="task-detail task-main">';
+            html += '<div class="pull-right">';
+            html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
+            html += '</div>';
+            html += '<span class="task-title">' +nameTask+ '</span></li>';
+                                
+            $("#upcoming").append(html);
+
+            //console.log(data);    
+        }
+
+        
     });
+}
+
+function remove(id,cont) {
+    if(id > 0 ){
+        (new PNotify({
+            title: 'Confirmation',
+            text: '¿Are you sure?',
+            icon: 'glyphicon glyphicon-question-sign',
+            hide: false,
+            confirm: {
+                confirm: true
+            },
+            buttons: {
+                closer: false,
+                sticker: false
+            },
+            history: {
+                history: false
+            }
+            })).get().on('pnotify.confirm', function(){
+                $.get('/task/delete/'+id,function(rpta){
+                    if (rpta == "Removed"){
+                        notification('Remove Task','Task Removed Successfully','success',3000);
+                        
+                        //Delete current container task "li"
+                        const first = cont.parentElement;
+                        const second = first.parentElement;
+                        //upcoming.removeChild(second);
+
+                        console.log(second);
+                    }else
+                        notification('Error','An error occurred, try again','error',3000);
+                });
+        });
+    }
 }
 
                                 

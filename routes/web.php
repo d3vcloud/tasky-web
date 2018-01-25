@@ -15,6 +15,11 @@ Route::bind('project',function($id){
 	return App\Project::where('id',$id)->first();
 });
 
+Route::bind('task',function($id){
+	return App\Task::where('id',$id)->first();
+});
+
+
 Route::get('/','BoardController@index')->name('app.board');
 
 Route::get('login','Auth\AutenticacionController@showLoginForm')->name('app.login.form');
@@ -35,4 +40,5 @@ Route::get('/project/detail/{project}','ProjectDetailController@index')
     ->name('app.project.detail');
 
 Route::post('/task/save','TaskController@store')->name('app.store.task');
+Route::get('/task/delete/{task}','TaskController@destroy')->name('app.delete.task');
 //Route::get('/home', 'HomeController@index')->name('home');
