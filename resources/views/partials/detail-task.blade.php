@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <h5 class="modal-title mt-0 title-task">
-    	<a href="#" class="control-label">Edit title
+    <h5 class="modal-title mt-0">
+    	<a href="#" class="control-label" id="titleTask" data-type="text" data-placement="right">Edit title
 	    </a>
     </h5>
         <button type="button" class="close" data-dismiss="modal" 
@@ -15,6 +15,11 @@
 	                <label class="control-label">
 	                	Members
 	                </label>
+	                <div class="add-members">
+	                	<button class="btn btn-inverse waves-effect waves-light">
+	                		<i class="fa fa-plus"></i>
+	                	</button>
+	                </div>
 	           	</div>
 	        </div>
 	        <div class="col-md-4">
@@ -22,22 +27,38 @@
 	                <label class="control-label">
 	                	Labels
 	                </label>
+	                <div class="add-labels">
+	                	<button class="btn btn-inverse waves-effect waves-light">
+	                		<i class="fa fa-plus"></i>
+	                	</button>
+	                </div>
 	           	</div>
 	        </div>
 	        <div class="col-md-4">
 	            <div class="form-group">
-	                <label class="control-label">
-	                	Due date
-	                </label>
+	               
+	                <div class="form-group">
+	               	 	<label class="control-label">
+		                	Due date
+		                </label>
+		                <div class="input-append date form_datetime" 
+		                data-date="1979-09-16T05:25:07Z">
+		                    <input class="form-control" size="16" type="text" value="" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+		                </div>
+            		</div>
 	           	</div>
 	        </div>
 	    </div>
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="form-group">
-	                <label class="control-label">
-	                	<a href="#" >Edit the description</a>
+	            	<label class="control-label">
+	                	Description
 	                </label>
+	                <div class="control-label">
+	                	<a href="#" id="descriptionTask" data-type="textarea">Edit the description</a>
+	                </div>
 	                
 	           	</div>
 	        </div>

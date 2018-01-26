@@ -1,3 +1,8 @@
+//modify buttons style
+$.fn.editableform.buttons =
+        '<button type="submit" class="btn btn-primary editable-submit btn-sm waves-effect waves-light"><i class="md md-check"></i></button>' +
+        '<button type="button" class="btn btn-danger editable-cancel btn-sm waves-effect"><i class="md md-close"></i></button>';
+
 const upcoming = document.querySelector('#upcoming');
 
 function newTask() {

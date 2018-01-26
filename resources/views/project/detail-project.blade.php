@@ -5,96 +5,8 @@
     <!-- X-editable css -->
     <link type="text/css" href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
-    <style>
-        .task-main{
-            border-radius: 9px !important;
-        }
-        .card-tag{
-            margin: 2px 0;
-            overflow: auto;
-            position: relative;
-        }
-        .card-label{
-            height: 16px;
-            line-height: 16px;
-            padding: 0 8px;
-            max-width: 198px;
-            float: left;
-            font-size: 11px !important;
-            font-weight: 600;
-            margin: 0 3px 3px 0;
-            width: auto;
-            border-radius: 3px;
-            color: #fff;
-            display: block;
-        }
-        .task-detail{
-            cursor: pointer;
-        }
-        .card-label-red{
-            background-color: #eb5a46;
-        }
-        .card-label-blue{
-            background-color: #055a8c;
-        }
-        .card-label-green{
-            background-color: #81c868;
-        }
-        .card-label-orange{
-            background-color: #FFA500;
-        }
-        .card-label-yellow{
-            background-color: #d9b51c;
-        }
-        .img-task{
-            height: 30px !important;
-            width: 30px !important;
-            border-radius: 60% !important;
-        }
-        .input-cus{
-            height: 30px;
-            padding: 5px 10px;
-            font-size: 13px;
-            /*line-height: 1.5;*/
-            /*border-radius: 6px;*/
-            border:none;
-            width:90%;
-        }
-        /*overwrite jquery-ui.css*/
-        .ui-corner-all{
-            border-bottom-right-radius:inherit;
-            border-top-left-radius:inherit;
-            border-top-right-radius:inherit;
-            border-bottom-left-radius:inherit;
-        }
-        .ui-widget-content {
-            border: inherit;
-            background: inherit;
-            color: inherit;
-        }
-        .ui-widget{
-            font-size: inherit;
-            font-family: inherit;
-        }
-        /*overwrite background modal*/
-        .modal-content { 
-            background-color: #f7f7f7 !important;
-        }
-        /*overwrite css dropzone*/
-        .dropzone {
-            border: 2px dashed #0087F7;
-            border-radius: 5px;
-            background: white;
-        }
-        .dropzone .dz-message {
-            font-weight: 400;
-            font-size: 25px;
-        }
-        .dropzone .dz-message {
-            text-align: center;
-            margin: 2em 0;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
 @stop
 
 @section('container')
@@ -212,6 +124,7 @@
     <script src="{{ asset('plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/assets/task.js') }}"></script>
     <script src="{{ asset('js/dropzone.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 	<script>
 		$("#upcoming, #inprogress, #completed").sortable({
                     connectWith: ".taskList",
@@ -242,6 +155,28 @@
 
               Dropzone.forElement("#mydropzone").removeAllFiles(true);*/
             }
+        });
+
+        //editable
+        $('#titleTask').editable({
+            validate: function(value) {
+                if($.trim(value) == '') return 'This field is required';
+            },
+            mode: 'inline',
+            inputclass: 'input-sm-overwrite'
+        });
+
+        $('#descriptionTask').editable({
+            showbuttons: 'bottom',
+            mode: 'inline',
+            inputclass: 'input-large-overwrite'
+        });
+
+        $('.form_datetime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true,
+            pickerPosition: "bottom-left"
         });
 
 	</script>
