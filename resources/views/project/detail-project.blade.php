@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
     <!-- X-editable css -->
     <link type="text/css" href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
     <style>
         .task-main{
             border-radius: 9px !important;
@@ -58,6 +59,40 @@
             /*border-radius: 6px;*/
             border:none;
             width:90%;
+        }
+        /*overwrite jquery-ui.css*/
+        .ui-corner-all{
+            border-bottom-right-radius:inherit;
+            border-top-left-radius:inherit;
+            border-top-right-radius:inherit;
+            border-bottom-left-radius:inherit;
+        }
+        .ui-widget-content {
+            border: inherit;
+            background: inherit;
+            color: inherit;
+        }
+        .ui-widget{
+            font-size: inherit;
+            font-family: inherit;
+        }
+        /*overwrite background modal*/
+        .modal-content { 
+            background-color: #f7f7f7 !important;
+        }
+        /*overwrite css dropzone*/
+        .dropzone {
+            border: 2px dashed #0087F7;
+            border-radius: 5px;
+            background: white;
+        }
+        .dropzone .dz-message {
+            font-weight: 400;
+            font-size: 25px;
+        }
+        .dropzone .dz-message {
+            text-align: center;
+            margin: 2em 0;
         }
     </style>
 @stop
@@ -176,6 +211,7 @@
 	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/assets/task.js') }}"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
 	<script>
 		$("#upcoming, #inprogress, #completed").sortable({
                     connectWith: ".taskList",
@@ -189,6 +225,24 @@
         }).disableSelection();
 
         newTask();
+
+        //Dropzone configuration
+        Dropzone.autoDiscover = false;
+        $("#mydropzone").dropzone({
+            //paramName: "file",
+            url: "usuario/foto",
+            addRemoveLinks : true,
+            acceptedFiles: 'image/*',
+            maxFilesize: 4.5,
+            maxFiles:1,
+            dictResponseError: 'Error al subir foto!',
+            success:function(file,data){
+              /*if(data == "Subido") mensajePersonalizado('Subir Foto','Imagen Subida Correctamente','success',3000);
+              else mensajePersonalizado('Error','Ha Ocurrido un error','error',3000);
+
+              Dropzone.forElement("#mydropzone").removeAllFiles(true);*/
+            }
+        });
 
 	</script>
 @stop
