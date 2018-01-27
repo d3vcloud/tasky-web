@@ -92,8 +92,8 @@
                             </div>
                             <div id="bg-purple" class="panel-collapse collapse show">
                                 <div class="portlet-body">
-                                    <form id="todo-list">
-										  <span class="todo-wrap">
+                                    <form id="">
+										  <!--<span class="todo-wrap">
 										    <input type="checkbox" id="1" checked/>
 										    <label for="1" class="todo">
 										      <i class="fa fa-check"></i>
@@ -102,12 +102,12 @@
 										    <span class="delete-item" title="remove">
 										      <i class="fa fa-times-circle"></i>
 										    </span>
-										  </span>
+										  </span>-->
 										  <div id="add-todo">
 										    <i class="fa fa-plus"></i>
 										    Add an Item
 										  </div>
-										</form>
+									</form>
                                 </div>
                             </div>
                         </div>
