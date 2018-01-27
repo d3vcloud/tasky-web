@@ -92,7 +92,22 @@
                             </div>
                             <div id="bg-purple" class="panel-collapse collapse show">
                                 <div class="portlet-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu, ac tincidunt mauris lacus sed leo. vamus suscipit molestie vestibulum.
+                                    <form id="todo-list">
+										  <span class="todo-wrap">
+										    <input type="checkbox" id="1" checked/>
+										    <label for="1" class="todo">
+										      <i class="fa fa-check"></i>
+										      Have a good idea
+										    </label>
+										    <span class="delete-item" title="remove">
+										      <i class="fa fa-times-circle"></i>
+										    </span>
+										  </span>
+										  <div id="add-todo">
+										    <i class="fa fa-plus"></i>
+										    Add an Item
+										  </div>
+										</form>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +124,45 @@
                             </div>
                             <div id="bg-purple" class="panel-collapse collapse show">
                                 <div class="portlet-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu, ac tincidunt mauris lacus sed leo. vamus suscipit molestie vestibulum.
+                                   <div class="media">
+                                    <img class="align-self-start rounded mr-3 img-fluid thumb-sm" 
+                                    src="/img/default-user.png" alt="Name User" 
+                                     />
+	                                    <div class="media-body">
+	                                        <textarea class="form-control" 
+	                                        placeholder="Write a comment..." 
+	                                        style="min-height: 60px !important;" required></textarea>
+	                                    </div>
+                                	</div>
+                                	<hr />
+			                            <div id="containerActivities" 
+			                            style="height: auto;">
+			                                <div class="timeline-2">
+			                                    <div class="time-item">
+			                                        <div class="item-info">
+			                                            <div class="text-muted"><small>5 minutes ago</small></div>
+			                                            <p>
+			                                            	<strong>
+				                                            	<img class="align-self-start rounded mr-3 img-fluid thumb-sm" 
+	                                    						src="/img/default-user.png" alt="Name User" />
+                                    							<a href="#" class="text-info">John Doe </a>
+                                    						</strong>
+                                    						Uploaded 2 new photos
+                                    					</p>
+			                                        </div>
+			                                    </div>
+			                                    <div class="time-item">
+			                                        <div class="item-info">
+			                                            <div class="text-muted"><small>30 minutes ago</small></div>
+			                                            <p>
+			                                            	<img class="align-self-start rounded mr-3 img-fluid thumb-sm" 
+	                                    						src="/img/default-user.png" alt="Name User" />
+			                                            	<a href="#" class="text-info">Lorem</a> commented your post.</p>
+			                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
                                 </div>
                             </div>
                         </div>

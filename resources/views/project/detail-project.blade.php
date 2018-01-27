@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
 @stop
 
 @section('container')
@@ -125,6 +126,7 @@
     <script src="{{ asset('js/assets/task.js') }}"></script>
     <script src="{{ asset('js/dropzone.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/checklist.js') }}"></script>
 	<script>
 		$("#upcoming, #inprogress, #completed").sortable({
                     connectWith: ".taskList",
@@ -172,12 +174,12 @@
             inputclass: 'input-large-overwrite'
         });
 
-        $('.form_datetime').datetimepicker({
+        /*$('.form_datetime').datetimepicker({
             format: 'yyyy-mm-dd hh:ii',
             autoclose: true,
             todayBtn: true,
             pickerPosition: "bottom-left"
-        });
+        });*/
 
 	</script>
 @stop
