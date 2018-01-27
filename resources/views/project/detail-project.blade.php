@@ -2,12 +2,13 @@
 
 @section('css')
 	<link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
-    <!-- X-editable css -->
     <link type="text/css" href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
+
+    
 @stop
 
 @section('container')
@@ -174,12 +175,14 @@
             inputclass: 'input-large-overwrite'
         });
 
-        /*$('.form_datetime').datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
+        $('.form_datetime').datetimepicker({
+            format: "dd MM yyyy - hh:ii",
             autoclose: true,
             todayBtn: true,
+            startDate: "2018-01-27 10:00",
             pickerPosition: "bottom-left"
-        });*/
+
+        });
 
 	</script>
 @stop

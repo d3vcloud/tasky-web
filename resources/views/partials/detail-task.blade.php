@@ -16,7 +16,8 @@
 	                	Members
 	                </label>
 	                <div class="add-members">
-	                	<button class="btn btn-inverse waves-effect waves-light">
+	                	<button class="btn btn-inverse waves-effect waves-light" 
+	                	style="font-size: 10px !important;">
 	                		<i class="fa fa-plus"></i>
 	                	</button>
 	                </div>
@@ -28,7 +29,8 @@
 	                	Labels
 	                </label>
 	                <div class="add-labels">
-	                	<button class="btn btn-inverse waves-effect waves-light">
+	                	<button class="btn btn-inverse waves-effect waves-light" 
+	                	style="font-size: 10px !important;">
 	                		<i class="fa fa-plus"></i>
 	                	</button>
 	                </div>
@@ -41,11 +43,17 @@
 	               	 	<label class="control-label">
 		                	Due date
 		                </label>
-		                <div class="input-append date form_datetime" 
-		                data-date="1979-09-16T05:25:07Z">
-		                    <input class="form-control" size="16" type="text" value="" readonly>
-							<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-		                </div>
+		                <div class="form-group">
+			                <div class="input-group date form_datetime" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+			                    <input class="form-control" name="dueDate" id="dueDate" 
+			                    size="16" type="text" value="" readonly 
+			                    style="cursor: not-allowed !important;">
+			                    <span class="input-group-addon">
+			                    	<a href="#"><i class="fa fa-calendar"></i></a>
+			                    </span>
+			                </div>
+							<input type="hidden" id="dtp_input2" value="" /><br/>
+            			</div>
             		</div>
 	           	</div>
 	        </div>
@@ -85,6 +93,7 @@
                                     <i class="fa fa-list-ul"></i>  
                                     Checklist
                                 </h3>
+                                
                                 <div class="portlet-widgets">
                                     <a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple"><i class="ion-minus-round"></i></a>
                                 </div>
@@ -92,8 +101,14 @@
                             </div>
                             <div id="bg-purple" class="panel-collapse collapse show">
                                 <div class="portlet-body">
-                                    <form id="">
-										  <!--<span class="todo-wrap">
+                                	<div class="progress progress-md">
+                                        <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" 
+                                        style="width: 20%;font-size:12.8px;">
+                                            20%
+                                        </div>
+                                    </div>
+                                    <form id="formCheckList">
+										 <!-- <span class="todo-wrap">
 										    <input type="checkbox" id="1" checked/>
 										    <label for="1" class="todo">
 										      <i class="fa fa-check"></i>
@@ -131,7 +146,7 @@
 	                                    <div class="media-body">
 	                                        <textarea class="form-control" 
 	                                        placeholder="Write a comment..." 
-	                                        style="min-height: 60px !important;" required></textarea>
+	                                        style="min-height: 50px !important;" required></textarea>
 	                                    </div>
                                 	</div>
                                 	<hr />
