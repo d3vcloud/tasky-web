@@ -126,6 +126,7 @@
     <script src="{{ asset('plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/assets/task.js') }}"></script>
     <script src="{{ asset('js/dropzone.js') }}"></script>
+    <script src="{{ asset('js/moment.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/checklist.js') }}"></script>
 	<script>
@@ -166,20 +167,30 @@
                 if($.trim(value) == '') return 'This field is required';
             },
             mode: 'inline',
-            inputclass: 'input-sm-overwrite'
+            inputclass: 'input-sm-overwrite',
+            url:'/task/update',
+            success:function(response, newValue){
+                if(response != "Updated") return response;
+            }
         });
 
         $('#descriptionTask').editable({
             showbuttons: 'bottom',
             mode: 'inline',
-            inputclass: 'input-large-overwrite'
+            inputclass: 'input-large-overwrite',
+            url:'/task/update',
+            success:function(response, newValue){
+                if(response != "Updated") return response;
+            }
         });
 
+        //var date = new Date();
+
         $('.form_datetime').datetimepicker({
-            format: "dd MM yyyy - hh:ii",
+            format: "dd-M - hh:ii",
             autoclose: true,
             todayBtn: true,
-            startDate: "2018-01-27 10:00",
+            startDate: moment().format('YYYY-MM-D'),
             pickerPosition: "bottom-left"
 
         });

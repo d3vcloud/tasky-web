@@ -40,5 +40,6 @@ Route::get('/project/detail/{project}','ProjectDetailController@index')
     ->name('app.project.detail');
 
 Route::post('/task/save','TaskController@store')->name('app.store.task');
+Route::post('/task/update','TaskController@update')->name('app.update.task');
 Route::get('/task/delete/{task}','TaskController@destroy')->name('app.delete.task');
 //Route::get('/home', 'HomeController@index')->name('home');
