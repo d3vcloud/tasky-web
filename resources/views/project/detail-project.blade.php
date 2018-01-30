@@ -2,7 +2,7 @@
 
 @section('css')
 	<link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
-    <link type="text/css" href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
+    <link type="text/css"  href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
@@ -160,7 +160,7 @@
               Dropzone.forElement("#mydropzone").removeAllFiles(true);*/
             }
         });
-
+        
         //editable
         $('#titleTask').editable({
             validate: function(value) {
@@ -184,8 +184,6 @@
             }
         });
 
-        //var date = new Date();
-
         $('.form_datetime').datetimepicker({
             format: "dd-M - hh:ii",
             autoclose: true,
@@ -193,6 +191,9 @@
             startDate: moment().format('YYYY-MM-D'),
             pickerPosition: "bottom-left"
 
+        }).on('changeDate',function(ev){
+            var dateParse = moment(ev.date).format('YYYY-MM-DD HH:mm:ss'); 
+            updateDate(dateParse);
         });
 
 	</script>

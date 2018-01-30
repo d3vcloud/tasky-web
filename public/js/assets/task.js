@@ -93,4 +93,11 @@ function remove(id,cont) {
     }
 }
 
+function updateDate(datep) {
+    const pk = 13; 
+    $.post('/task/update',{value:datep,pk:pk,name:"dueDateTask"},function(rpta){
+        console.log(rpta);
+    });
+}
+
                                 

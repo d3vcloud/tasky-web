@@ -36,7 +36,7 @@ class TaskController extends Controller
         else if($request->name == "descriptionTask")
             $task->description = $request->value;
         else
-            $task->due_date = "2019";
+            $task->due_date = $request->value;
 
         if($task->save())
             return "Updated";
