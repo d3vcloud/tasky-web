@@ -50,7 +50,7 @@ function save (form) {
             html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
             html += '</a>';
             html += '</div>';
-            html += '<a class="task-title" data-url="/task/detail/'+data.id+'" data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a></li>';
+            html += '<a class="task-title btn-task-detail" data-url="/task/detail/'+data.id+'" data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a></li>';
                                 
             $("#upcoming").append(html);
 
