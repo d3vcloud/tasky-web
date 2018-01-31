@@ -40,7 +40,10 @@
                                         <span class="card-label card-label-blue" title="Diseño">Diseño</span>
                                         <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
                                     </div>-->
-                                        <span class="task-title" data-toggle="modal" data-target="#modalDetail">{{ $task->name }}</span>
+                                        <a class="task-title btn-task-detail" data-toggle="modal" data-target="#modalDetail" 
+                                        data-url="{{ route('app.details.task', $task->id ) }}">
+                                            {{ $task->name }}
+                                        </a>
                                         <!--<div class="m-t-20">
                                             <p class="pull-right m-b-0">
                                                 <i class="fa fa-comment-o"></i> 
@@ -195,6 +198,8 @@
             var dateParse = moment(ev.date).format('YYYY-MM-DD HH:mm:ss'); 
             updateDate(dateParse);
         });
+
+        showInformation();
 
 	</script>
 @stop

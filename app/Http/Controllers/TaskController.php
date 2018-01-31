@@ -30,7 +30,7 @@ class TaskController extends Controller
     
     public function update(Request $request)
     {
-        $task = Task::find($request->pk);
+        $task = Task::find(\Session::get('idCurrentTask'));
         if($request->name == "titleTask")
             $task->name = $request->value;
         else if($request->name == "descriptionTask")
@@ -54,5 +54,11 @@ class TaskController extends Controller
         }
 
         return "Error";
+    }
+
+    public function getDetails(Task $task)
+    {
+        \Session::put('idCurrentTask',$task->id);
+        return $task;
     }
 }

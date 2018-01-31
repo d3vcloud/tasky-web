@@ -94,10 +94,23 @@ function remove(id,cont) {
 }
 
 function updateDate(datep) {
-    const pk = 13; 
-    $.post('/task/update',{value:datep,pk:pk,name:"dueDateTask"},function(rpta){
+    $.post('/task/update',{value:datep,name:"dueDateTask"},function(rpta){
         console.log(rpta);
     });
+}
+
+function showInformation() {
+   $('.btn-task-detail').on('click',function(){
+    $("#titleTask").html('');
+    $("#descriptionTask").html('');
+        var url = $(this).data('url');
+        $.get(url,function(data){
+            $("#titleTask").html(data.name);
+            $("#descriptionTask").html(data.description);
+            $("#dueDate").val(moment(data.due_date).format('D-MM-YYYY'));
+            //console.log(data);
+        });
+   });
 }
 
                                 

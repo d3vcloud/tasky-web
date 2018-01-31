@@ -1,7 +1,6 @@
 <div class="modal-header">
     <h5 class="modal-title mt-0">
-    	<a href="#" class="control-label" id="titleTask" data-pk="13" data-type="text" data-placement="right">Edit title
-	    </a>
+    	<a href="#" class="control-label" id="titleTask" data-pk="0" data-type="text" data-placement="right">New Title</a>
     </h5>
         <button type="button" class="close" data-dismiss="modal" 
         aria-hidden="true">×</button>
@@ -26,7 +25,7 @@
 	        <div class="col-md-4">
 	            <div class="form-group">
 	                <label class="control-label">
-	                	Labels
+						Labels
 	                </label>
 	                <div class="add-labels">
 	                	<button class="btn btn-inverse waves-effect waves-light" 
@@ -63,9 +62,9 @@
 	            <div class="form-group">
 	            	<label class="control-label">
 	                	Description
-	                </label>
+					</label>
 	                <div class="control-label">
-	                	<a href="#" id="descriptionTask" data-type="textarea" data-pk="13">Edit the description</a>
+	                	<a href="#" id="descriptionTask" data-pk="0" data-type="textarea">New Description</a>
 	                </div>
 	                
 	           	</div>
