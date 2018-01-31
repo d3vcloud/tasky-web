@@ -50,7 +50,7 @@ function save (form) {
             html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
             html += '</a>';
             html += '</div>';
-            html += '<span class="task-title" data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</span></li>';
+            html += '<a class="task-title" data-url="/task/detail/'+data.id+'" data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a></li>';
                                 
             $("#upcoming").append(html);
 
@@ -100,14 +100,24 @@ function updateDate(datep) {
 }
 
 function showInformation() {
+    var description = "";
+    var due_date = "";
+
    $('.btn-task-detail').on('click',function(){
     $("#titleTask").html('');
     $("#descriptionTask").html('');
         var url = $(this).data('url');
         $.get(url,function(data){
-            $("#titleTask").html(data.name);
-            $("#descriptionTask").html(data.description);
-            $("#dueDate").val(moment(data.due_date).format('D-MM-YYYY'));
+            $('#titleTask').editable('setValue', data.name);
+            if(data.description == null || data.description == "") 
+                description = 'Edit description';
+            else description = data.description;
+
+            $("#descriptionTask").editable('setValue',description);
+
+            if(data.due_date != null) 
+                due_date = moment(data.due_date).format('DD-MMM - HH:mm');
+            $("#dueDate").val(due_date);
             //console.log(data);
         });
    });

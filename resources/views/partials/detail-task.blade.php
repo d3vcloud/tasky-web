@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h5 class="modal-title mt-0">
-    	<a href="#" class="control-label" id="titleTask" data-pk="0" data-type="text" data-placement="right">New Title</a>
+    	<a href="#" class="control-label" id="titleTask" data-pk="0" data-type="text" data-placement="right">Edit Title</a>
     </h5>
         <button type="button" class="close" data-dismiss="modal" 
         aria-hidden="true">×</button>
@@ -64,7 +64,7 @@
 	                	Description
 					</label>
 	                <div class="control-label">
-	                	<a href="#" id="descriptionTask" data-pk="0" data-type="textarea">New Description</a>
+	                	<a href="#" id="descriptionTask" data-pk="0" data-type="textarea">Edit Description</a>
 	                </div>
 	                
 	           	</div>
