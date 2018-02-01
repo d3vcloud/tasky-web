@@ -131,6 +131,7 @@
     <script src="{{ asset('js/dropzone.js') }}"></script>
     <script src="{{ asset('js/moment.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/assets/subtask.js') }}"></script>
     <script src="{{ asset('js/checklist.js') }}"></script>
 	<script>
 		$("#upcoming, #inprogress, #completed").sortable({
@@ -150,17 +151,18 @@
         Dropzone.autoDiscover = false;
         $("#mydropzone").dropzone({
             //paramName: "file",
-            url: "usuario/foto",
+            url: "/task/attachment",
             addRemoveLinks : true,
-            acceptedFiles: 'image/*',
-            maxFilesize: 4.5,
+            //acceptedFiles: 'image/*',
+            maxFilesize: 5.5,
             maxFiles:1,
             dictResponseError: 'Error al subir foto!',
             success:function(file,data){
-              /*if(data == "Subido") mensajePersonalizado('Subir Foto','Imagen Subida Correctamente','success',3000);
-              else mensajePersonalizado('Error','Ha Ocurrido un error','error',3000);
+              if(data == "Uploaded") 
+                notification('Attachment','File Uploaded Successfully','success',3000);
+              else notification('Error','An error occurred, try again','error',3000);
 
-              Dropzone.forElement("#mydropzone").removeAllFiles(true);*/
+              Dropzone.forElement("#mydropzone").removeAllFiles(true);
             }
         });
         

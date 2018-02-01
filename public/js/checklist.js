@@ -14,17 +14,22 @@ $('#add-todo').click(function(){
   
 	$('#input-todo'+newId+'').enterKey(function(){
     $(this).trigger('enterEvent');
+    //console.log('OK');
   })
   
   $('#input-todo'+newId+'').on('blur enterEvent',function(){
     var todoTitle = $('#input-todo'+newId+'').val();
     var todoTitleLength = todoTitle.length;
     if (todoTitleLength > 0) {
+
+      newSubTask(todoTitle);//add new subtask to database
+
       $(this).before(todoTitle);
       $(this).parent().parent().removeClass('editing');
-      $(this).parent().after('<span class="delete-item" title="remove"><i class="fa fa-times-circle"></i></span>');
+      $(this).parent().after('<span class="delete-item" title="remove"><i class="fa fa-trash"></i></span>');
       $(this).remove();
       $('.delete-item').click(function(){
+        console.log('eliminando el ' + idSubTaskGlobal);
         var parentItem = $(this).parent();
         parentItem.animate({
           left:"-30%",
@@ -49,6 +54,7 @@ $('#add-todo').click(function(){
 // remove items 
 
 $('.delete-item').click(function(){
+ 
   var parentItem = $(this).parent();
   parentItem.animate({
     left:"-30%",

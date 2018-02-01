@@ -8,7 +8,7 @@ use Auth;
 class ProjectController extends Controller
 {
     
-    public function list()
+    public function getAll()
     {
         $projects = Project::select('id','name','description')
                 ->where('user_id',Auth::user()->id)

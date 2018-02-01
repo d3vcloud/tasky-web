@@ -79,6 +79,11 @@
                         </a>
                     </li>
                     <li class="tab">
+                        <a href="#upload" data-toggle="tab" aria-expanded="false">
+                            Upload
+                        </a>
+					</li>
+					<li class="tab">
                         <a href="#attachments" data-toggle="tab" aria-expanded="false">
                             Attachments
                         </a>
@@ -181,13 +186,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="attachments">
+                    <div class="tab-pane" id="upload">
                         <div class="row">
 					 		<div class="col-md-12">
 					 			<form method="POST" class="dropzone" id="mydropzone">
 					 				{{ csrf_field() }}
-					 				<!--<input type="hidden" name="IdUser" id="IdUser" value>-->
 					 			</form>
+					 		</div>
+ 						</div>
+					</div>
+					<div class="tab-pane" id="attachments">
+                        <div class="row">
+					 		<div class="col-md-12">
+					 			
 					 		</div>
  						</div>
                     </div>

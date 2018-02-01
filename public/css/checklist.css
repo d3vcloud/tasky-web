@@ -71,7 +71,7 @@ position:relative;
 content:'';
 display:block;
 position:absolute;
-top:calc(50% + 2px);
+top:calc(50% + 0px);
 left:0;
 width:0%;
 height:1px;
@@ -152,8 +152,9 @@ line-height:36px;
 right:0;
 top:0;
 text-align:center;
-color:#d8d8d8;
+color:red;
 opacity:0;
+cursor: pointer;
 }
 .todo-wrap:hover .delete-item{
 opacity:1;

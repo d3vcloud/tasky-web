@@ -33,7 +33,7 @@ Route::post('/register','Auth\RegisterController@create')->name('app.register.su
 Route::get('/forgotpwd','Auth\ForgotPasswordController@forgotForm')->name('app.forgotpwd');
 
 Route::post('/project/save','ProjectController@store')->name('app.store.project');
-Route::get('/project/list','ProjectController@list')->name('app.list.project');
+Route::get('/project/list','ProjectController@getAll')->name('app.list.project');
 Route::get('/project/delete/{project}','ProjectController@destroy')
     ->name('app.delete.project');
 Route::get('/project/detail/{project}','ProjectDetailController@index')
@@ -43,4 +43,8 @@ Route::post('/task/save','TaskController@store')->name('app.store.task');
 Route::post('/task/update','TaskController@update')->name('app.update.task');
 Route::get('/task/delete/{task}','TaskController@destroy')->name('app.delete.task');
 Route::get('/task/detail/{task}','TaskController@getDetails')->name('app.details.task');
+Route::post('/task/attachment','TaskAttachmentController@upload')
+    ->name('app.upload.attachments.task');
+
+Route::post('/subtask/save','TaskSubTaskController@store')->name('app.store.subtask');
 //Route::get('/home', 'HomeController@index')->name('home');

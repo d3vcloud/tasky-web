@@ -61,4 +61,6 @@ class TaskController extends Controller
         \Session::put('idCurrentTask',$task->id);
         return $task;
     }
+
+    
 }

@@ -44,7 +44,7 @@ function save (form) {
             upcoming.removeChild(second);
 
             //Add task with trash icon
-            html += '<li class="task-detail task-main">';
+            html += '<li class="task-detail task-main ui-sortable-handle">';
             html += '<div class="pull-right">';
             html += '<a onclick="remove('+data.id+',this)">';
             html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
@@ -103,20 +103,21 @@ function showInformation() {
     var description = "";
     var due_date = "";
 
-   $('.btn-task-detail').on('click',function(){
-    $("#titleTask").html('');
-    $("#descriptionTask").html('');
+   $('#upcoming').on('click','.btn-task-detail',function(){
+
         var url = $(this).data('url');
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.name);
+            
             if(data.description == null || data.description == "") 
                 description = 'Edit description';
             else description = data.description;
 
             $("#descriptionTask").editable('setValue',description);
 
-            if(data.due_date != null) 
-                due_date = moment(data.due_date).format('DD-MMM - HH:mm');
+            if(data.due_date == null || data.due_date == "") due_date = "";
+            else  due_date = moment(data.due_date).format('DD-MMM - HH:mm');
+
             $("#dueDate").val(due_date);
             //console.log(data);
         });

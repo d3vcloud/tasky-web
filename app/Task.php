@@ -12,4 +12,14 @@ class Task extends Model
     {
     	return $this->belongsTo('App\Project');
     }
+
+    public function task_attachments()
+    {
+        return $this->hasMany('App\TaskAttachment');
+    }
+
+    public function task_subtasks()
+    {
+        return $this->hasMany('App\TaskSubtask');
+    }
 }
