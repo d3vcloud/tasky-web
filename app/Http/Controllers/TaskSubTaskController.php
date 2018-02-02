@@ -29,14 +29,19 @@ class TaskSubTaskController extends Controller
     }
 
     
-    public function update(Request $request, TaskSubtask $taskSubtask)
+    public function update(Request $request)
     {
         //
     }
 
    
-    public function destroy(TaskSubtask $taskSubtask)
+    public function destroy($id)
     {
-        //
+        $subtask = TaskSubtask::find($id);
+        if(!is_null($subtask))
+            if($subtask->delete())
+                return "Removed";
+
+        return "Error";
     }
 }

@@ -1,3 +1,4 @@
+
 // add items
 $('#add-todo').click(function(){
   var lastSibling = $('#formCheckList > .todo-wrap:last-of-type > input').attr('id');
@@ -6,7 +7,8 @@ $('#add-todo').click(function(){
 
   var newId = Number(lastSibling) + 1;
       
-  $(this).before('<span class="editing todo-wrap"><input type="checkbox" id="'+newId+'"/><label for="'+newId+'" class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" placeholder="Enter subtask..." id="input-todo'+newId+'"/></label></div>');
+  $(this).before('<span class="editing todo-wrap"><input type="checkbox" onchange="updateSubTask(3,0,this);" id="'+newId+'"/><label for="'+newId+'" class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" placeholder="Enter subtask..." id="input-todo'+newId+'"/></label></div>');
+  
   $('#input-todo'+newId+'').parent().parent().animate({
     height:"36px"
   },200)
@@ -14,22 +16,24 @@ $('#add-todo').click(function(){
   
 	$('#input-todo'+newId+'').enterKey(function(){
     $(this).trigger('enterEvent');
-    //console.log('OK');
-  })
+  });
   
   $('#input-todo'+newId+'').on('blur enterEvent',function(){
+    var data = $(this);
+    event.preventDefault();
     var todoTitle = $('#input-todo'+newId+'').val();
     var todoTitleLength = todoTitle.length;
     if (todoTitleLength > 0) {
 
-      newSubTask(todoTitle);//add new subtask to database
+      newSubTask(todoTitle,data);//add new subtask to database
 
-      $(this).before(todoTitle);
-      $(this).parent().parent().removeClass('editing');
-      $(this).parent().after('<span class="delete-item" title="remove"><i class="fa fa-trash"></i></span>');
-      $(this).remove();
-      $('.delete-item').click(function(){
-        console.log('eliminando el ' + idSubTaskGlobal);
+      /*data.before(todoTitle);
+      data.parent().parent().removeClass('editing');
+      data.parent().after('<span class="delete-item" onclick="removeSubTask(5)" title="remove"><i class="fa fa-trash"></i></span>');
+      data.remove();*/
+
+
+      /*$('.delete-item').click(function(){
         var parentItem = $(this).parent();
         parentItem.animate({
           left:"-30%",
@@ -37,7 +41,7 @@ $('#add-todo').click(function(){
           opacity:0
         },200);
         setTimeout(function(){ $(parentItem).remove(); }, 1000);
-      });
+      });*/
     }
     else {
       $('.editing').animate({
@@ -53,7 +57,7 @@ $('#add-todo').click(function(){
 
 // remove items 
 
-$('.delete-item').click(function(){
+/*$('.delete-item').click(function(){
  
   var parentItem = $(this).parent();
   parentItem.animate({
@@ -62,7 +66,7 @@ $('.delete-item').click(function(){
     opacity:0
   },200);
   setTimeout(function(){ $(parentItem).remove(); }, 1000);
-});
+});*/
 
 // Enter Key detect
 
@@ -76,3 +80,5 @@ $.fn.enterKey = function (fnc) {
         })
     })
 }
+
+

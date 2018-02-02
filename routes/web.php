@@ -47,4 +47,8 @@ Route::post('/task/attachment','TaskAttachmentController@upload')
     ->name('app.upload.attachments.task');
 
 Route::post('/subtask/save','TaskSubTaskController@store')->name('app.store.subtask');
+Route::get('/subtask/delete/{id}','TaskSubTaskController@destroy')
+    ->name('app.delete.subtask');
+Route::post('/subtask/update','TaskSubTaskController@update')
+    ->name('app.update.subtask');
 //Route::get('/home', 'HomeController@index')->name('home');

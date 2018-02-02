@@ -125,6 +125,7 @@
 @stop
 
 @section('scripts')
+
 	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/assets/task.js') }}"></script>
@@ -134,6 +135,7 @@
     <script src="{{ asset('js/assets/subtask.js') }}"></script>
     <script src="{{ asset('js/checklist.js') }}"></script>
 	<script>
+
 		$("#upcoming, #inprogress, #completed").sortable({
                     connectWith: ".taskList",
                     placeholder: 'task-placeholder',
