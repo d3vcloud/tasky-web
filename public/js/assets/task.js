@@ -9,12 +9,15 @@ function newTask() {
     $(".btn-add-task").click(function() {
         var html = '<li class="task-detail task-main">';
         html += '<div class="pull-right">';
-        html += '<a href="#" onclick="save(this);" class="btn-check"><i class="fa fa-check" style="color: green;cursor: pointer;"></i></a>  ';
-        html += '<a href="#" onclick="cancel(this);" class="btn-cancel"><i class="fa fa-times" style="color: red;cursor: pointer;"></i></a>';
+        html += '<a href="#" onclick="save(this);" class="btn-check"><i class="fa fa-check"' +
+            'style="color: green;cursor: pointer;"></i></a>  ';
+        html += '<a href="#" onclick="cancel(this);" class="btn-cancel"><i class="fa fa-times"' +
+            'style="color: red;cursor: pointer;"></i></a>';
         html += '</div>';
         html += '<form action="" method="POST" id="FormTask">';
         html += '<span class="task-title">';
-        html += '<input type="text" name="task" id="task-field" class="input-cus" required autofocus/>';
+        html += '<input type="text" name="task" id="task-field" class="input-cus" required' +
+            'autofocus/>';
         html += '</span>';
         html += '</form>';
         html += '</li>';
@@ -50,13 +53,12 @@ function save (form) {
             html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
             html += '</a>';
             html += '</div>';
-            html += '<a class="task-title btn-task-detail" data-url="/task/detail/'+data.id+'" data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a></li>';
+            html += '<a class="task-title btn-task-detail" data-url="/task/detail/'+data.id+'"' +
+                'data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a></li>';
                                 
             $("#upcoming").append(html);
-
         }
 
-        
     });
 }
 
@@ -102,24 +104,50 @@ function updateDate(datep) {
 function showInformation() {
     var description = "";
     var due_date = "";
-
+    var html,status;
    $('#upcoming').on('click','.btn-task-detail',function(){
-
         var url = $(this).data('url');
+        html = "";
         $.get(url,function(data){
-            $('#titleTask').editable('setValue', data.name);
+            $('#titleTask').editable('setValue', data.task.name);
             
-            if(data.description == null || data.description == "") 
+            if(data.task.description == null || data.task.description == "")
                 description = 'Edit description';
-            else description = data.description;
+            else description = data.task.description;
 
             $("#descriptionTask").editable('setValue',description);
 
-            if(data.due_date == null || data.due_date == "") due_date = "";
-            else  due_date = moment(data.due_date).format('DD-MMM - HH:mm');
+            if(data.task.due_date == null || data.task.due_date == "") due_date = "";
+            else  due_date = moment(data.task.due_date).format('DD-MMM - HH:mm');
 
             $("#dueDate").val(due_date);
-            //console.log(data);
+
+            $("#containerST").html("");
+
+            if(data.subtasks.length){
+
+                for(var i=0; i<data.subtasks.length; i++){
+                    if(data.subtasks[i].isComplete) status = "checked";
+                    else status = "";
+
+                    html += '<span class="todo-wrap" style="height: 36px;">';
+                    html += '<input type="checkbox" ' +
+                        'onchange="updateSubTask('+ data.subtasks[i].id +',this);" ' +
+                        'id="C'+ data.subtasks[i].id +'" '+status+'>';
+                    html += '<label for="C'+ data.subtasks[i].id +'" ' +
+                        'class="todo"><i class="fa ' +
+                        'fa-check"></i>'+ data.subtasks[i].name +'</label>';
+                    html += '<span class="delete-item" ' +
+                        'onclick="removeSubTask('+ data.subtasks[i].id +',this)"' +
+                        ' title="remove"><i class="fa fa-trash"></i></span>';
+                    html += '</span>';
+
+                }
+                $("#containerST").html(html);
+            }
+
+            //if(data.attachments.length)
+            console.log(data.attachments);
         });
    });
 }

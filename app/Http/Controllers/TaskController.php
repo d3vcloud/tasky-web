@@ -59,7 +59,11 @@ class TaskController extends Controller
     public function getDetails(Task $task)
     {
         \Session::put('idCurrentTask',$task->id);
-        return $task;
+        return response()->json([
+                "task" => $task,
+                "subtasks" => $task->task_subtasks()->get(),
+                "attachments" => $task->task_attachments()->get()
+            ]);
     }
 
     

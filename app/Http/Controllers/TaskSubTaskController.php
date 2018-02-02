@@ -31,7 +31,22 @@ class TaskSubTaskController extends Controller
     
     public function update(Request $request)
     {
-        //
+        $status = 0;
+        if($request->ajax()) {
+            $subtask = TaskSubtask::find($request->id);
+                if (!is_null($subtask)){
+                    if($request->field == 'status'){
+                        if($request->status == "true") $status = 1;
+
+                        $subtask->isComplete = $status;
+                    }
+
+                    if($subtask->save())
+                        return "Updated";
+                }
+            return $request->all();
+        }
+        return "Error";
     }
 
    

@@ -40,7 +40,8 @@
                                         <span class="card-label card-label-blue" title="Diseño">Diseño</span>
                                         <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
                                     </div>-->
-                                        <a class="task-title btn-task-detail" data-toggle="modal" data-target="#modalDetail" 
+                                        <a class="task-title btn-task-detail"
+                                           data-toggle="modal" data-target="#modalDetail"
                                         data-url="{{ route('app.details.task', $task->id ) }}">
                                             {{ $task->name }}
                                         </a>

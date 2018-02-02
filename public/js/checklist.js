@@ -1,21 +1,24 @@
 
 // add items
 $('#add-todo').click(function(){
-  var lastSibling = $('#formCheckList > .todo-wrap:last-of-type > input').attr('id');
+  var lastSibling = $('#containerST > .todo-wrap:last-of-type > input').attr('id');
 
   if(lastSibling == undefined) lastSibling = 0;
 
   var newId = Number(lastSibling) + 1;
       
-  $(this).before('<span class="editing todo-wrap"><input type="checkbox" onchange="updateSubTask(3,0,this);" id="'+newId+'"/><label for="'+newId+'" class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" placeholder="Enter subtask..." id="input-todo'+newId+'"/></label></div>');
+  $(this).before('<span class="editing todo-wrap"><input type="checkbox" ' +
+      'id="C'+newId+'"/><label for="C'+newId+'" ' +
+      'class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" ' +
+      'placeholder="Enter subtask..." id="input-todo'+newId+'"/></label></div>');
   
   $('#input-todo'+newId+'').parent().parent().animate({
     height:"36px"
   },200)
   $('#input-todo'+newId+'').focus();
   
-	$('#input-todo'+newId+'').enterKey(function(){
-    $(this).trigger('enterEvent');
+  $('#input-todo'+newId+'').enterKey(function(){
+        $(this).trigger('enterEvent');
   });
   
   $('#input-todo'+newId+'').on('blur enterEvent',function(){
@@ -25,13 +28,7 @@ $('#add-todo').click(function(){
     var todoTitleLength = todoTitle.length;
     if (todoTitleLength > 0) {
 
-      newSubTask(todoTitle,data);//add new subtask to database
-
-      /*data.before(todoTitle);
-      data.parent().parent().removeClass('editing');
-      data.parent().after('<span class="delete-item" onclick="removeSubTask(5)" title="remove"><i class="fa fa-trash"></i></span>');
-      data.remove();*/
-
+      newSubTask(todoTitle,data,newId);//add new subtask to database
 
       /*$('.delete-item').click(function(){
         var parentItem = $(this).parent();
