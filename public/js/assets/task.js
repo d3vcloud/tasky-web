@@ -173,12 +173,12 @@ function showInformation() {
                     tbody += "<tr>";
                     tbody += "<td style='text-align:center;'>"+getPreview(data.attachments[j].ext,data.attachments[j].url)+"</td>";
                     tbody += "<td>";
-                    tbody += "<a href='#'>"+data.attachments[j].name+"</a>";
+                    tbody += "<a href='/attachment/download/"+data.attachments[j].url+"'>"+data.attachments[j].name+"</a>";
                     tbody += "</td>";
                     tbody += "<td>"+data.attachments[j].size+"</td>";
                     tbody += "<td>"+date+"</td>";
                     tbody += "<td>";
-                    tbody += "<button class='btn btn-danger' style='font-size:10px;cursor:pointer;'><i class='fa fa-trash'></i></button>";
+                    tbody += "<button class='btn btn-danger' onclick='removeAttachment("+data.attachments[j].id+",this)' style='font-size:10px;cursor:pointer;'><i class='fa fa-trash'></i></button>";
                     tbody += "</td>";
                     tbody += "</tr>";
                 }

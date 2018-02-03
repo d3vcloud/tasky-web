@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\TaskAttachment;
+use App\Functions;
 use Illuminate\Support\Facades\Storage;
 
 class TaskAttachmentController extends Controller
@@ -28,11 +29,45 @@ class TaskAttachmentController extends Controller
 
     public function getAll()
     {
-        # code...
+        $task = Task::find(\Session::get('idCurrentTask'));
+        $attachments = array();
+        $fun = new Functions;
+
+        foreach ($task->task_attachments()->get() as $key => $value) {
+            $end = explode('.', $value->url);
+            $attachments[] = array(
+                "id" => $value->id,
+                "ext" => end($end),
+                "url" => $value->url,
+                "name" => $value->name,
+                "size" => $fun->byteConvert(filesize($value->url)),
+                "date" => $value->created_at
+            );
+        }
+        return $attachments;
     }
 
-    public function delete()
+    public function removeAll()
     {
-        # code...
+        $task = Task::find(\Session::get('idCurrentTask'));
+        if($task->task_attachments()->delete())
+            return "Removed";
+        
+        return "Error";
+    }
+
+    public function remove($id)
+    {
+        $attachment = TaskAttachment::find($id);
+        if(!is_null($attachment)){
+            $attachment->delete();
+            return "Removed";
+        }
+        return "Error";
+    }
+
+    public function download($file)
+    {
+        return response()->download(storage_path("app/public/{$file}"));
     }
 }

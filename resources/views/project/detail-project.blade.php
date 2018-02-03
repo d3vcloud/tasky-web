@@ -138,6 +138,7 @@
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/assets/subtask.js') }}"></script>
     <script src="{{ asset('js/checklist.js') }}"></script>
+    <script src="{{ asset('js/assets/attachment.js') }}"></script>
      <!--FooTable
      <script src="../plugins/footable/js/footable.all.min.js"></script>
 
@@ -165,15 +166,19 @@
         Dropzone.autoDiscover = false;
         $("#mydropzone").dropzone({
             //paramName: "file",
-            url: "/task/attachment",
+            url: "/attachment/upload",
             addRemoveLinks : true,
             //acceptedFiles: 'image/*',
             maxFilesize: 5.5,
             maxFiles:1,
             dictResponseError: 'Error al subir foto!',
             success:function(file,data){
-              if(data == "Uploaded") 
-                notification('Attachment','File Uploaded Successfully','success',3000);
+                if(data == "Uploaded") 
+                {
+                    notification('Attachment','File Uploaded Successfully',
+                    'success',3000);
+                    getAll();
+                }
               else notification('Error','An error occurred, try again','error',3000);
 
               Dropzone.forElement("#mydropzone").removeAllFiles(true);
@@ -216,7 +221,7 @@
         });
 
         showInformation();
-
+        removeAll();
 	</script>
 @stop
 

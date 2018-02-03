@@ -188,18 +188,18 @@
 					<div class="tab-pane" id="attachments">
                         <div class="row">
 					 		<div class="col-md-12">
-								<button class="btn btn-danger" style="margin-bottom: 15px;cursor:pointer;">
+								<button class="btn btn-danger btn-deleteAll" style="margin-bottom: 15px;cursor:pointer;">
 									<i class="fa fa-trash"></i> Delete All
 								</button>
 								<div class="table-responsive">
 									<table id="ListAttachments" class="table">
 											<thead>
 												<tr>
-													<th>Preview</th>
-													<th>File Name</th>
-													<th style="width:90px;">Size</th>
-													<th style="width:120px;">Date</th>
-													<th>Actions</th>
+													<th style="width:10%;">Preview</th>
+													<th style="width:50%;">File Name</th>
+													<th style="width:15%;">Size</th>
+													<th style="width:20%;">Date</th>
+													<th style="width:5%;">Actions</th>
 												</tr>
 											</thead>
 											<tbody>

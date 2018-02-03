@@ -43,12 +43,22 @@ Route::post('/task/save','TaskController@store')->name('app.store.task');
 Route::post('/task/update','TaskController@update')->name('app.update.task');
 Route::get('/task/delete/{task}','TaskController@destroy')->name('app.delete.task');
 Route::get('/task/detail/{task}','TaskController@getDetails')->name('app.details.task');
-Route::post('/task/attachment','TaskAttachmentController@upload')
-    ->name('app.upload.attachments.task');
 
 Route::post('/subtask/save','TaskSubTaskController@store')->name('app.store.subtask');
 Route::get('/subtask/delete/{id}','TaskSubTaskController@destroy')
     ->name('app.delete.subtask');
 Route::post('/subtask/update','TaskSubTaskController@update')
     ->name('app.update.subtask');
+
+Route::get('/attachment/getall','TaskAttachmentController@getAll')
+    ->name('app.getall.attachments');
+Route::post('/attachment/upload','TaskAttachmentController@upload')
+    ->name('app.upload.attachments');
+Route::get('/attachment/removeall','TaskAttachmentController@removeAll')
+    ->name('app.removeall.attachments');
+Route::get('/attachment/remove/{id}','TaskAttachmentController@remove')
+    ->name('app.remove.attachments');
+Route::get('/attachment/download/{file}','TaskAttachmentController@download')
+    ->name('app.download.attachments');
+
 //Route::get('/home', 'HomeController@index')->name('home');
