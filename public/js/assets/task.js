@@ -165,17 +165,21 @@ function showInformation() {
                     ''+ result.toFixed(0) +'%</div>');
             }
 
-            console.log(data.attachments);
+            //console.log(data.attachments);
 
             if(data.attachments.length){
                 for (var j = 0; j < data.attachments.length; j++) {
                     date = moment(data.attachments[j].date.date).format('YYYY-MM-DD - HH:mm');
                     tbody += "<tr>";
-                    tbody += "<td>"+getPreview(data.attachments[j].ext,data.attachments[j].url)+"<td>";
-                    tbody += "<td><a href='#'>"+data.attachments[j].name+"</a></td>";
+                    tbody += "<td style='text-align:center;'>"+getPreview(data.attachments[j].ext,data.attachments[j].url)+"</td>";
+                    tbody += "<td>";
+                    tbody += "<a href='#'>"+data.attachments[j].name+"</a>";
+                    tbody += "</td>";
                     tbody += "<td>"+data.attachments[j].size+"</td>";
                     tbody += "<td>"+date+"</td>";
-                    tbody += "<td><button class='btn btn-danger'><i class='fa fa-trash'></i></button></td>";
+                    tbody += "<td>";
+                    tbody += "<button class='btn btn-danger' style='font-size:10px;cursor:pointer;'><i class='fa fa-trash'></i></button>";
+                    tbody += "</td>";
                     tbody += "</tr>";
                 }
                 table.html(tbody);
