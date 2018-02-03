@@ -15,7 +15,10 @@ class TaskAttachmentController extends Controller
         $request->file('file')->store('public/tasks/'.\Session::get('idCurrentTask'));
         $url = $request->file('file')
             ->store('storage/tasks/'.\Session::get('idCurrentTask'));
+        
+        $attachment->name = $request->file('file')->getClientOriginalName();
         $attachment->url = $url;
+        
         $task = Task::find(\Session::get('idCurrentTask'));
             if ($task->task_attachments()->save($attachment)){
                 return "Uploaded";

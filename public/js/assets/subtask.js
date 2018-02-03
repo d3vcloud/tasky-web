@@ -15,10 +15,6 @@ function newSubTask(name,data,newId){
     });
 }
 
-function getAll(){
-
-}
-
 function removeSubTask(id,cont){
     $.get('/subtask/delete/'+id,function(rpta){
         if(rpta == "Removed")
@@ -27,7 +23,6 @@ function removeSubTask(id,cont){
 }
 
 function updateSubTask(id,check){
-
     $.post('/subtask/update',{id:id,status:check.checked,field:'status'},function(rpta){
         console.log(rpta);
     });

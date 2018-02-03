@@ -44,7 +44,7 @@ class TaskController extends Controller
             return "Error";
     }
 
- 
+
     public function destroy(Task $task)
     {
         $selected = Task::find($task->id);
@@ -56,13 +56,38 @@ class TaskController extends Controller
         return "Error";
     }
 
+    private function byteConvert($bytes)
+    {
+        if ($bytes == 0)
+            return "0.00 B";
+    
+        $s = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
+        $e = floor(log($bytes, 1024));
+    
+        return round($bytes/pow(1024, $e), 2).' '.$s[$e];
+    }
+
+
     public function getDetails(Task $task)
     {
         \Session::put('idCurrentTask',$task->id);
+        $attachments = array();
+        foreach ($task->task_attachments()->get() as $key => $value) {
+            $end = explode('.', $value->url);
+            $attachments[] = array(
+                "id" => $value->id,
+                "ext" => end($end),
+                "url" => $value->url,
+                "name" => $value->name,
+                "size" => $this->byteConvert(filesize($value->url)),
+                "date" => $value->created_at
+            );
+        }
+
         return response()->json([
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
-                "attachments" => $task->task_attachments()->get()
+                "attachments" => $attachments
             ]);
     }
 

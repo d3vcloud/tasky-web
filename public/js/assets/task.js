@@ -104,10 +104,17 @@ function updateDate(datep) {
 function showInformation() {
     var description = "";
     var due_date = "";
-    var html,status;
+    var html,status,can,result,url,tbody,date;
+    var table = $("#ListAttachments tbody");
+
    $('#upcoming').on('click','.btn-task-detail',function(){
-        var url = $(this).data('url');
+
+        url = $(this).data('url');
         html = "";
+        can = 0;
+        table.html('');
+        tbody = "";
+
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);
             
@@ -123,11 +130,15 @@ function showInformation() {
             $("#dueDate").val(due_date);
 
             $("#containerST").html("");
+            $(".progress-md").html("");
 
             if(data.subtasks.length){
 
                 for(var i=0; i<data.subtasks.length; i++){
-                    if(data.subtasks[i].isComplete) status = "checked";
+                    if(data.subtasks[i].isComplete) {
+                        status = "checked";
+                        ++can;
+                    }
                     else status = "";
 
                     html += '<span class="todo-wrap" style="height: 36px;">';
@@ -144,12 +155,64 @@ function showInformation() {
 
                 }
                 $("#containerST").html(html);
+
+                result = (can / data.subtasks.length) * 100;
+
+                $(".progress-md").html('<div class="progress-bar progress-bar-inverse" ' +
+                    'role="progressbar" aria-valuenow="'+ result.toFixed(0) +'"' +
+                    'aria-valuemin="0" aria-valuemax="100" ' +
+                    'style="width:'+result.toFixed(0)+'%;font-size:12.8px;">' +
+                    ''+ result.toFixed(0) +'%</div>');
             }
 
-            //if(data.attachments.length)
             console.log(data.attachments);
+
+            if(data.attachments.length){
+                for (var j = 0; j < data.attachments.length; j++) {
+                    date = moment(data.attachments[j].date.date).format('YYYY-MM-DD - HH:mm');
+                    tbody += "<tr>";
+                    tbody += "<td>"+getPreview(data.attachments[j].ext,data.attachments[j].url)+"<td>";
+                    tbody += "<td><a href='#'>"+data.attachments[j].name+"</a></td>";
+                    tbody += "<td>"+data.attachments[j].size+"</td>";
+                    tbody += "<td>"+date+"</td>";
+                    tbody += "<td><button class='btn btn-danger'><i class='fa fa-trash'></i></button></td>";
+                    tbody += "</tr>";
+                }
+                table.html(tbody);
+            }
         });
    });
+}
+
+function getPreview(ext,url){
+    var icon;
+
+    if (ext == "xlsx" || ext == "xls" || ext == "xlsm") {
+		icon = "<i class='fa fa-file-excel-o fa-3x'></i>";
+    }else if (ext == "tiff" || ext == "png" || ext == "jpg" || ext == "jpeg" 
+        || ext == "tif" || ext == "bmp" || ext == "gif") {
+		icon = "<img width='80px' alt='Image' src='/"+url+"'/>";
+	}else if (ext == "doc" || ext == "docx") {
+		icon = "<i class='fa fa-file-word-o fa-3x'></i>";
+	}else if (ext == "pptx" || ext == "ppt" || ext == "pptm") {
+		icon = "<i class='fa fa-file-powerpoint-o fa-3x'></i>";
+    }else if (ext == "mp4" || ext == "avi" || ext == "mov" || ext == "wmv" 
+        || ext == "mkv" || ext == "3gp") {
+		icon = "<i class='fa fa-file-video-o fa-3x'></i>";
+	}else if (ext == "pdf") {
+		icon = "<i class='fa fa-file-pdf-o fa-3x'></i>";
+	}else if (ext == "html" || ext == "css" || ext == "js") {
+		icon = "<i class='fa fa-file-code-o fa-3x'></i>";
+	}else if (ext == "mp3" || ext == "wma" || ext == "wav") {
+		icon = "<i class='fa fa-file-sound-o fa-3x'></i>";
+	}else if (ext == "zip" || ext == "rar") {
+		icon = "<i class='fa fa-file-zip-o fa-3x'></i>";
+	}else if (ext == "txt") {
+		icon = "<i class='fa fa-file-text-o fa-3x'></i>";
+	}else {
+		icon = "<i class='fa fa-file-o fa-3x'></i>";
+    }
+    return icon;
 }
 
                                 

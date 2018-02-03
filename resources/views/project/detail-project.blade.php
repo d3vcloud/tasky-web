@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
-
+    
+    <!--Footable
+    <link href="../plugins/footable/css/footable.core.css" rel="stylesheet">
+    <link href="../plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />-->
     
 @stop
 
@@ -135,6 +138,14 @@
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/assets/subtask.js') }}"></script>
     <script src="{{ asset('js/checklist.js') }}"></script>
+     <!--FooTable
+     <script src="../plugins/footable/js/footable.all.min.js"></script>
+
+     <script src="../plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>-->
+
+     <!--FooTable Example
+     <script src="assets/pages/jquery.footable.js"></script>-->
+
 	<script>
 
 		$("#upcoming, #inprogress, #completed").sortable({
