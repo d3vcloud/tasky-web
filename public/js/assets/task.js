@@ -173,7 +173,7 @@ function showInformation() {
                     tbody += "<tr>";
                     tbody += "<td style='text-align:center;'>"+getPreview(data.attachments[j].ext,data.attachments[j].url)+"</td>";
                     tbody += "<td>";
-                    tbody += "<a href='/attachment/download/"+data.attachments[j].url+"'>"+data.attachments[j].name+"</a>";
+                    tbody += "<a href='/attachment/download/"+data.attachments[j].id+"'>"+data.attachments[j].name+"</a>";
                     tbody += "</td>";
                     tbody += "<td>"+data.attachments[j].size+"</td>";
                     tbody += "<td>"+date+"</td>";

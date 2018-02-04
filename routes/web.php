@@ -58,7 +58,7 @@ Route::get('/attachment/removeall','TaskAttachmentController@removeAll')
     ->name('app.removeall.attachments');
 Route::get('/attachment/remove/{id}','TaskAttachmentController@remove')
     ->name('app.remove.attachments');
-Route::get('/attachment/download/{file}','TaskAttachmentController@download')
+Route::get('/attachment/download/{id}','TaskAttachmentController@download')
     ->name('app.download.attachments');
 
 //Route::get('/home', 'HomeController@index')->name('home');

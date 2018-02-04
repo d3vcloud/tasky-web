@@ -12,7 +12,7 @@ function getAll(){
                 tbody += "<tr>";
                 tbody += "<td style='text-align:center;'>"+getPreview(data[j].ext,data[j].url)+"</td>";
                 tbody += "<td>";
-                tbody += "<a href='#'>"+data[j].name+"</a>";
+                tbody += "<a href='/attachment/download/"+data[j].id+"'>"+data[j].name+"</a>";
                 tbody += "</td>";
                 tbody += "<td>"+data[j].size+"</td>";
                 tbody += "<td>"+date+"</td>";

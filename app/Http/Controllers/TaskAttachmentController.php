@@ -66,8 +66,13 @@ class TaskAttachmentController extends Controller
         return "Error";
     }
 
-    public function download($file)
+    public function download($id)
     {
-        return response()->download(storage_path("app/public/{$file}"));
+        $attachment = TaskAttachment::find($id);
+        if(!is_null($attachment)){
+            return response()->download(storage_path("app/".$attachment->url),$attachment->name);
+        }
+        return "Error";
+        
     }
 }
