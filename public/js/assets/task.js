@@ -129,7 +129,7 @@ function showInformation() {
 
             $("#dueDate").val(due_date);
 
-            $("#containerST").html("");
+            $(".remove-this").remove();
             $(".progress-md").html("");
 
             if(data.subtasks.length){
@@ -141,11 +141,11 @@ function showInformation() {
                     }
                     else status = "";
 
-                    html += '<span class="todo-wrap" style="height: 36px;">';
+                    html += '<span class="todo-wrap remove-this" style="height: 36px;">';
                     html += '<input type="checkbox" ' +
                         'onchange="updateSubTask('+ data.subtasks[i].id +',this);" ' +
-                        'id="C'+ data.subtasks[i].id +'" '+status+'>';
-                    html += '<label for="C'+ data.subtasks[i].id +'" ' +
+                        'id="'+ data.subtasks[i].id +'" '+status+'>';
+                    html += '<label for="'+ data.subtasks[i].id +'" ' +
                         'class="todo"><i class="fa ' +
                         'fa-check"></i>'+ data.subtasks[i].name +'</label>';
                     html += '<span class="delete-item" ' +
@@ -154,7 +154,7 @@ function showInformation() {
                     html += '</span>';
 
                 }
-                $("#containerST").html(html);
+                $("#formCheckList").prepend(html);
 
                 result = (can / data.subtasks.length) * 100;
 

@@ -1,14 +1,14 @@
 
 // add items
 $('#add-todo').click(function(){
-  var lastSibling = $('#containerST > .todo-wrap:last-of-type > input').attr('id');
+  var lastSibling = $('#formCheckList > .todo-wrap:last-of-type > input').attr('id');
 
   if(lastSibling == undefined) lastSibling = 0;
 
   var newId = Number(lastSibling) + 1;
       
-  $(this).before('<span class="editing todo-wrap"><input type="checkbox" ' +
-      'id="C'+newId+'"/><label for="C'+newId+'" ' +
+  $(this).before('<span class="editing todo-wrap remove-this"><input type="checkbox" ' +
+      'id="'+newId+'"/><label for="'+newId+'" ' +
       'class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" ' +
       'placeholder="Enter subtask..." id="input-todo'+newId+'"/></label></div>');
   

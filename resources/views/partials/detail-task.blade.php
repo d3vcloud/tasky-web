@@ -108,15 +108,12 @@
                                 	<div class="progress progress-md">
 
                                     </div>
-                                    <form id="formCheckList">
-										<div id="containerST">
-
-										</div>
+                                    <div id="formCheckList">
 										  <div id="add-todo">
 										    <i class="fa fa-plus"></i>
 										    Add an Item
 										  </div>
-									</form>
+									</div>
                                 </div>
                             </div>
                         </div>

@@ -8,7 +8,7 @@ function newSubTask(name,data,newId){
         data.remove();
 
         //assign event to new checbox of input
-        var checkbox = document.getElementById('C'+newId);
+        var checkbox = document.getElementById(newId);
         checkbox.addEventListener('change',function(){
             updateSubTask(rpta,checkbox);
         });
