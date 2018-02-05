@@ -22,4 +22,9 @@ class Task extends Model
     {
         return $this->hasMany('App\TaskSubtask');
     }
+
+    public function task_activities()
+    {
+        return $this->hasMany('App\TaskActivity');
+    }
 }

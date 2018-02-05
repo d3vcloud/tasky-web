@@ -23,7 +23,22 @@ function removeSubTask(id,cont){
 }
 
 function updateSubTask(id,check){
+    var value = parseFloat($("#progressbar").data("value"));
+    var res;
     $.post('/subtask/update',{id:id,status:check.checked,field:'status'},function(rpta){
-        console.log(rpta);
+        if(rpta == "Updated")
+        {
+            if(check.checked) value += parseFloat(check.value);
+            else value -= parseFloat(check.value);
+
+            $("#progressbar").data("value",value);
+
+            if(value < 0) res = 0;
+            else if(value > 99.99) res = 100;
+            else res = value.toFixed(0);
+
+            $("#progressbar").width(res+"%");
+            $("#progressbar").text(res+"%");
+        }
     });
 }
