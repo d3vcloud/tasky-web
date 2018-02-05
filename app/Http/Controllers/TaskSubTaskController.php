@@ -8,13 +8,7 @@ use Illuminate\Http\Request;
 
 class TaskSubTaskController extends Controller
 {
-    
-    public function getll()
-    {
-        //
-    }
 
-    
     public function store(Request $request)
     {
         if($request->ajax()){
@@ -23,7 +17,19 @@ class TaskSubTaskController extends Controller
 
             $task = Task::find(\Session::get('idCurrentTask'));
             if($task->task_subtasks()->save($subtask))
-                return $subtask->id;
+            {
+                return response()->json(
+                    [
+                        "status" => "Saved",
+                        "id" => $subtask->id,
+                        "total" => $task->task_subtasks()->count(),
+                        "completed" => TaskSubtask::where('isComplete',1)
+                            ->where('task_id',\Session::get('idCurrentTask'))
+                            ->count()
+                    ]
+                );
+            }
+
         }
         return "Error";
     }
@@ -53,9 +59,22 @@ class TaskSubTaskController extends Controller
     public function destroy($id)
     {
         $subtask = TaskSubtask::find($id);
+        $task = Task::find(\Session::get('idCurrentTask'));
         if(!is_null($subtask))
             if($subtask->delete())
-                return "Removed";
+            {
+                return response()->json(
+                    [
+                        "status" => "Removed",
+                        "id" => $subtask->id,
+                        "total" => $task->task_subtasks()->count(),
+                        "completed" => TaskSubtask::where('isComplete',1)
+                            ->where('task_id',\Session::get('idCurrentTask'))
+                            ->count()
+                    ]
+                );
+            }
+
 
         return "Error";
     }
