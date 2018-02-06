@@ -21,7 +21,13 @@ class TaskActivityController extends Controller
 
         if($activity->save())
         {
-            return "Saved";
+            return response()->json([
+                "status" => "Saved",
+                "activity" => $activity,
+                "username" => Auth::user()->username,
+                "photo" => Auth::user()->photo,
+                "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+            ]);
         }
     }
 

@@ -62,6 +62,7 @@ class TaskController extends Controller
     {
         \Session::put('idCurrentTask',$task->id);
         $attachments = array();
+        $activities = array();
         $fun = new Functions;
         foreach ($task->task_attachments()->get() as $key => $value) {
             $end = explode('.', $value->url);
@@ -75,10 +76,25 @@ class TaskController extends Controller
             );
         }
 
+        foreach ($task->task_activities()->orderBy('date_time','DESC')->get()
+                 as $key => $value) {
+            $user = \App\User::find($value->user_id);
+            $activities[] = array(
+                "id" => $value->id,
+                "type" => $value->type,
+                "message" => $value->message,
+                "date_time" => $value->date_time,
+                "nameuser" => $user->first_name.' '.$user->last_name,
+                "username" => $user->username,
+                "photouser" => $user->photo
+            );
+        }
+
         return response()->json([
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
-                "attachments" => $attachments
+                "attachments" => $attachments,
+                "activities" => $activities
             ]);
     }
 

@@ -104,7 +104,7 @@ function updateDate(datep) {
 function showInformation() {
     var description = "";
     var due_date = "";
-    var html,status,can,result,url,tbody,date;
+    var html,status,can,result,url,tbody,date,activity,message,content;
     var table = $("#ListAttachments tbody");
 
    $('#upcoming').on('click','.btn-task-detail',function(){
@@ -114,6 +114,7 @@ function showInformation() {
         can = 0;
         table.html('');
         tbody = "";
+        activity = "";
 
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);
@@ -183,6 +184,38 @@ function showInformation() {
                 }
                 table.html(tbody);
             }
+
+            $(".timeline-2").html("");
+            if(data.activities.length){
+                for (var i = 0; i < data.activities.length; i++) {
+                    if(data.activities[i].type == "message")
+                    {
+                        message = "commented this task";
+                        content = "<p><em>"+data.activities[i].message+"</em></p>";
+                    }/*else if(data.activities[i].type == "attachment")
+                    {
+                        message = "commented this task";
+                    }*/
+                    activity += '<div class="time-item">';
+                    activity += '<div class="item-info">';
+                    activity += '<div class="text-muted"><small>'+data.activities[i].date_time+'</small></div>';
+                    activity += '<p>';
+                    activity += '<img class="align-self-start rounded mr-3 img-fluid thumb-sm" ' +
+                        'src="'+data.activities[i].photouser+'" alt="'+data.activities[i].username+'" />';
+                    activity += '<a href="#" ' +
+                        'class="text-info">'+data.activities[i].nameuser+'</a> '+message+'';
+                    activity += '</p>';
+                    activity += content;
+                    activity += '</div>';
+                    activity += '</div>';
+
+                    message = "";
+                    content = "";
+                }
+                $(".timeline-2").html(activity);
+
+            }
+
         });
    });
 }

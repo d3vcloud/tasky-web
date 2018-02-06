@@ -124,7 +124,9 @@
                                     Activity
                                 </h3>
                                 <div class="portlet-widgets">
-                                    <a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple"><i class="ion-minus-round"></i></a>
+                                    <a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple">
+										<i class="ion-minus-round"></i>
+									</a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -132,8 +134,7 @@
                                 <div class="portlet-body">
                                    <div class="media">
                                     <img class="align-self-start rounded mr-3 img-fluid thumb-sm" 
-                                    src="/img/default-user.png" alt="Name User" 
-                                     />
+                                    src="/img/default-user.png" alt="Name User"/>
 	                                    <div class="media-body">
 	                                        <textarea class="form-control" 
 	                                        placeholder="Write a comment..." 
@@ -141,10 +142,9 @@
 	                                    </div>
                                 	</div>
                                 	<hr />
-			                            <div id="containerActivities" 
-			                            style="height: auto;">
+			                            <div id="containerActivities" style="height: auto;">
 			                                <div class="timeline-2">
-			                                    <div class="time-item">
+			                                    <!--<div class="time-item">
 			                                        <div class="item-info">
 			                                            <div class="text-muted"><small>5 minutes ago</small></div>
 			                                            <p>
@@ -156,17 +156,8 @@
                                     						Uploaded 2 new photos
                                     					</p>
 			                                        </div>
-			                                    </div>
-			                                    <div class="time-item">
-			                                        <div class="item-info">
-			                                            <div class="text-muted"><small>30 minutes ago</small></div>
-			                                            <p>
-			                                            	<img class="align-self-start rounded mr-3 img-fluid thumb-sm" 
-	                                    						src="/img/default-user.png" alt="Name User" />
-			                                            	<a href="#" class="text-info">Lorem</a> commented your post.</p>
-			                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-			                                        </div>
-			                                    </div>
+			                                    </div>-->
+
 			                                </div>
 			                            </div>
                                 </div>

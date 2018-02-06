@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\TaskAttachment;
 use App\Functions;
+use App\TaskActivity;
+use Auth;
 use Illuminate\Support\Facades\Storage;
 
 class TaskAttachmentController extends Controller
@@ -22,6 +24,15 @@ class TaskAttachmentController extends Controller
         
         $task = Task::find(\Session::get('idCurrentTask'));
             if ($task->task_attachments()->save($attachment)){
+
+                $activity = new TaskActivity;
+                $activity->type = "attachment";
+                $activity->message = 'uploaded '.$request->file('file')->getClientOriginalName();
+                $activity->date_time = date('Y-m-d H:i:s');
+                $activity->task_id = \Session::get('idCurrentTask');
+                $activity->user_id = Auth::user()->id;
+                $activity->save();
+
                 return "Uploaded";
             }
         return "Error";
