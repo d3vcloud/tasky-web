@@ -139,6 +139,7 @@
     <script src="{{ asset('js/assets/subtask.js') }}"></script>
     <script src="{{ asset('js/checklist.js') }}"></script>
     <script src="{{ asset('js/assets/attachment.js') }}"></script>
+    <script src="{{ asset('js/assets/activity.js') }}"></script>
      <!--FooTable
      <script src="../plugins/footable/js/footable.all.min.js"></script>
 
@@ -222,6 +223,7 @@
 
         showInformation();
         removeAll();
+        saveComment();
 	</script>
 @stop
 

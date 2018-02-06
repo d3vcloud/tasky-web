@@ -20,6 +20,16 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->hasMany('App\Project');
+        return $this->belongsToMany('App\Project','project_users')
+            ->withTimestamps();
     }
+
+    public function activities()
+    {
+        return $this->hasMany('App\Activity');
+    }
+
+
+
+
 }

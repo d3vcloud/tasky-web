@@ -8,9 +8,10 @@ class Project extends Model
 {
     protected $fillable = ['name','description'];
 
-    public function user()
+    public function users()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsToMany('App\User','project_users')
+            ->withTimestamps();
     }
 
     public function tasks()

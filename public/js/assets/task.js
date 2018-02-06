@@ -160,16 +160,12 @@ function showInformation() {
 
                 result = (can / data.subtasks.length) * 100;
 
-                //console.log(100 / data.subtasks.length);
-
                 $(".progress-md").html('<div class="progress-bar progress-bar-inverse" ' +
                     'role="progressbar" data-value="'+result.toFixed(0)+'" id="progressbar" aria-valuenow="'+ result.toFixed(0) +'aria-valuemin="0" aria-valuemax="100" ' +
                     'style="width:'+result.toFixed(0)+'%;font-size:12.8px;">' +
                     ''+ result.toFixed(0) +'%</div>');
             }
-
-            //console.log(data.attachments);
-
+            
             if(data.attachments.length){
                 for (var j = 0; j < data.attachments.length; j++) {
                     date = moment(data.attachments[j].date.date).format('YYYY-MM-DD - HH:mm');

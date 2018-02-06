@@ -14,7 +14,8 @@ class BoardController extends Controller
 
     public function index()
     {
-    	$myprojects = Project::where('user_id',Auth::user()->id)->get();
+    	$myprojects = Project::join('project_users as pu','projects.id','=','pu.project_id')
+            ->where('user_id',Auth::user()->id)->get();
     	return view('project.board',compact('myprojects'));
     }
 }

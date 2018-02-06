@@ -10,9 +10,8 @@ class ProjectController extends Controller
     
     public function getAll()
     {
-        $projects = Project::select('id','name','description')
-                ->where('user_id',Auth::user()->id)
-                ->get();
+        $projects = Project::join('project_users as pu','projects.id','=','pu.project_id')
+            ->where('user_id',Auth::user()->id)->get();
                 
         return $projects;
     }
@@ -25,10 +24,12 @@ class ProjectController extends Controller
                 $project->name        = $request->name;
                 $project->description = $request->description;
 
-                $user = \App\User::find(Auth::user()->id);
+                //$user = \App\User::find(Auth::user()->id);
 
-                if($user->projects()->save($project))
+                if($project->save()){
+                    $project->users()->attach(Auth::user()->id);
                     return "Save";
+                }
                 else
                     return "Error";
             }
@@ -36,11 +37,6 @@ class ProjectController extends Controller
         }
         return "Error";
 
-    }
-
-    public function update(Request $request, Project $project)
-    {
-        //
     }
 
     public function destroy(Project $project)

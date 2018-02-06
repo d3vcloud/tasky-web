@@ -137,7 +137,7 @@
 	                                    <div class="media-body">
 	                                        <textarea class="form-control" 
 	                                        placeholder="Write a comment..." 
-	                                        style="min-height: 50px !important;" required></textarea>
+	                                        style="min-height: 50px !important;" id="comment" required></textarea>
 	                                    </div>
                                 	</div>
                                 	<hr />
