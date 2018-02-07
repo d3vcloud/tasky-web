@@ -96,8 +96,12 @@ function remove(id,cont) {
 }
 
 function updateDate(datep) {
-    $.post('/task/update',{value:datep,name:"dueDateTask"},function(rpta){
-        console.log(rpta);
+    $.post('/task/update',{value:datep,name:"dueDateTask"},function(response){
+        if(response.status == "Updated")
+        {
+            concatActivity(response.activity.date_time, response.photo, response.username,
+                response.user, response.activity.message);
+        }
     });
 }
 
@@ -117,6 +121,7 @@ function showInformation() {
         activity = "";
 
         $.get(url,function(data){
+            console.log(data.timezone);
             $('#titleTask').editable('setValue', data.task.name);
             
             if(data.task.description == null || data.task.description == "")
@@ -188,19 +193,21 @@ function showInformation() {
             $(".timeline-2").html("");
             if(data.activities.length){
                 for (var i = 0; i < data.activities.length; i++) {
+                    date = moment(data.activities[i].date_time).fromNow();
                     if(data.activities[i].type == "message")
                     {
                         message = "commented this task";
-                        content = "<p><em>"+data.activities[i].message+"</em></p>";
-                    }/*else if(data.activities[i].type == "attachment")
-                    {
-                        message = "commented this task";
-                    }*/
+                        content = "<p style='margin-bottom:6px !important;'><em>"+data.activities[i].message+"</em></p>";
+                    }else{
+                        message = data.activities[i].message;
+                        content = "<span></span>";
+                    }
+
                     activity += '<div class="time-item">';
-                    activity += '<div class="item-info">';
-                    activity += '<div class="text-muted"><small>'+data.activities[i].date_time+'</small></div>';
+                    activity += '<div class="item-info item-info-customize">';
+                    activity += '<div class="text-muted"><small>'+date+'</small></div>';
                     activity += '<p>';
-                    activity += '<img class="align-self-start rounded mr-3 img-fluid thumb-sm" ' +
+                    activity += '<img class="align-self-start rounded mr-3 img-fluid img-customize thumb-sm" ' +
                         'src="'+data.activities[i].photouser+'" alt="'+data.activities[i].username+'" />';
                     activity += '<a href="#" ' +
                         'class="text-info">'+data.activities[i].nameuser+'</a> '+message+'';

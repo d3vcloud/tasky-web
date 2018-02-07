@@ -31,14 +31,4 @@ class TaskActivityController extends Controller
         }
     }
 
-    public function update(Request $request, TaskActivity $taskActivity)
-    {
-        //
-    }
-
-
-    public function destroy(TaskActivity $taskActivity)
-    {
-        //
-    }
 }

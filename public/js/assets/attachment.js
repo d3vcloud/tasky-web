@@ -38,8 +38,12 @@ function removeAll(){
 }
 
 function removeAttachment(id,button){
-    $.get('/attachment/remove/'+id,function(rpta){
-        if(rpta == "Removed")
+    $.get('/attachment/remove/'+id,function(data){
+        if(data.status == "Removed"){
             $(button).closest("tr").remove();
+            concatActivity(data.activity.date_time, data.photo, data.username,data.user,
+                data.activity.message);
+        }
+
     });
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\Project;
 use App\Functions;
+use Auth;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -32,15 +33,33 @@ class TaskController extends Controller
     public function update(Request $request)
     {
         $task = Task::find(\Session::get('idCurrentTask'));
-        if($request->name == "titleTask")
+        $fun = new Functions;
+        $type = "";
+        if($request->name == "titleTask") {
             $task->name = $request->value;
-        else if($request->name == "descriptionTask")
+            $type = "title";
+        }
+        else if($request->name == "descriptionTask") {
             $task->description = $request->value;
-        else
+            $type = "description";
+        }
+        else {
             $task->due_date = $request->value;
-
+            $type = "due date";
+        }
         if($task->save())
-            return "Updated";
+        {
+            $activity = $fun->saveActivity("edited",
+                'changed the '.$type.' of this task');
+
+            return response()->json([
+                "status" => "Updated",
+                "activity" => $activity,
+                "username" => Auth::user()->username,
+                "photo" => Auth::user()->photo,
+                "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+            ]);
+        }
         else
             return "Error";
     }
@@ -94,7 +113,8 @@ class TaskController extends Controller
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
                 "attachments" => $attachments,
-                "activities" => $activities
+                "activities" => $activities,
+                "timezone" => date_default_timezone_get()
             ]);
     }
 

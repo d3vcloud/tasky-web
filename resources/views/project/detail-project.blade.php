@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
-    
+    <style>
+        .img-customize{
+            height: 23px !important;
+            width: 23px !important;
+        }
+        .item-info-customize{
+            margin-bottom: 2px !important;
+        }
+        /*.p-customize{
+            margin-bottom: 5px !important;
+        }*/
+    </style>
     <!--Footable
     <link href="../plugins/footable/css/footable.core.css" rel="stylesheet">
     <link href="../plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />-->
@@ -174,11 +185,12 @@
             maxFiles:1,
             dictResponseError: 'Error al subir foto!',
             success:function(file,data){
-                if(data == "Uploaded") 
+                if(data.status == "Uploaded")
                 {
-                    notification('Attachment','File Uploaded Successfully',
-                    'success',3000);
+                    notification('Attachment','File Uploaded Successfully', 'success',3000);
                     getAll();
+                    concatActivity(data.activity.date_time, data.photo, data.username,data.user,
+                        data.activity.message);
                 }
               else notification('Error','An error occurred, try again','error',3000);
 
@@ -195,7 +207,11 @@
             inputclass: 'input-sm-overwrite',
             url:'/task/update',
             success:function(response, newValue){
-                if(response != "Updated") return response;
+                if(response.status == "Updated"){
+                    concatActivity(response.activity.date_time, response.photo, response.username,
+                        response.user, response.activity.message);
+                }
+
             }
         });
 
@@ -205,7 +221,10 @@
             inputclass: 'input-large-overwrite',
             url:'/task/update',
             success:function(response, newValue){
-                if(response != "Updated") return response;
+                if(response.status == "Updated"){
+                    concatActivity(response.activity.date_time, response.photo, response.username,
+                        response.user, response.activity.message);
+                }
             }
         });
 

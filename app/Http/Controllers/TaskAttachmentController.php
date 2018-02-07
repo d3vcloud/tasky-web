@@ -15,6 +15,7 @@ class TaskAttachmentController extends Controller
     public function upload(Request $request)
     {
         $attachment = new TaskAttachment;
+        $fun = new Functions;
         $request->file('file')->store('public/tasks/'.\Session::get('idCurrentTask'));
         $url = $request->file('file')
             ->store('storage/tasks/'.\Session::get('idCurrentTask'));
@@ -24,16 +25,17 @@ class TaskAttachmentController extends Controller
         
         $task = Task::find(\Session::get('idCurrentTask'));
             if ($task->task_attachments()->save($attachment)){
+                $message = 'uploaded file: '.$request->file('file')->getClientOriginalName();
 
-                $activity = new TaskActivity;
-                $activity->type = "attachment";
-                $activity->message = 'uploaded '.$request->file('file')->getClientOriginalName();
-                $activity->date_time = date('Y-m-d H:i:s');
-                $activity->task_id = \Session::get('idCurrentTask');
-                $activity->user_id = Auth::user()->id;
-                $activity->save();
+                $activity = $fun->saveActivity("attachment",$message);
 
-                return "Uploaded";
+                return response()->json([
+                    "status" => "Uploaded",
+                    "activity" => $activity,
+                    "username" => Auth::user()->username,
+                    "photo" => Auth::user()->photo,
+                    "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+                ]);
             }
         return "Error";
     }
@@ -69,10 +71,24 @@ class TaskAttachmentController extends Controller
 
     public function remove($id)
     {
+        $fun = new Functions;
         $attachment = TaskAttachment::find($id);
         if(!is_null($attachment)){
-            $attachment->delete();
-            return "Removed";
+            if($attachment->delete())
+            {
+                $message = 'removed file: '.$attachment->name;
+
+                $activity = $fun->saveActivity("attachment",$message);
+
+                return response()->json([
+                    "status" => "Removed",
+                    "activity" => $activity,
+                    "username" => Auth::user()->username,
+                    "photo" => Auth::user()->photo,
+                    "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+                ]);
+            }
+            //return "Removed";
         }
         return "Error";
     }
