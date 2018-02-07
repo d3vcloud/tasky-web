@@ -194,14 +194,6 @@ function showInformation() {
             if(data.activities.length){
                 for (var i = 0; i < data.activities.length; i++) {
                     date = moment(data.activities[i].date_time).fromNow();
-                    if(data.activities[i].type == "message")
-                    {
-                        message = "commented this task";
-                        content = "<p style='margin-bottom:6px !important;'><em>"+data.activities[i].message+"</em></p>";
-                    }else{
-                        message = data.activities[i].message;
-                        content = "<span></span>";
-                    }
 
                     activity += '<div class="time-item">';
                     activity += '<div class="item-info item-info-customize">';
@@ -210,14 +202,11 @@ function showInformation() {
                     activity += '<img class="align-self-start rounded mr-3 img-fluid img-customize thumb-sm" ' +
                         'src="'+data.activities[i].photouser+'" alt="'+data.activities[i].username+'" />';
                     activity += '<a href="#" ' +
-                        'class="text-info">'+data.activities[i].nameuser+'</a> '+message+'';
+                        'class="text-info">'+data.activities[i].nameuser+'</a> '+data.activities[i].message+'';
                     activity += '</p>';
-                    activity += content;
-                    activity += '</div>';
-                    activity += '</div>';
 
-                    message = "";
-                    content = "";
+                    activity += '</div>';
+                    activity += '</div>';
                 }
                 $(".timeline-2").html(activity);
 

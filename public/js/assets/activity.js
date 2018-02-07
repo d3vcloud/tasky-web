@@ -5,11 +5,11 @@ function saveComment()
         if (code == 13) {
             $.post('/comment/save',{ comment:$(this).val() },function(rpta){
                 if(rpta.status == "Saved"){
-                    concatComment(rpta.activity.date_time,
+                    concatActivity(rpta.activity.date_time,
                         rpta.photo,
                         rpta.username,
                         rpta.user,
-                        $("#comment").val());
+                        rpta.activity.message);
                     $("#comment").val("");
                 }
             });
@@ -18,24 +18,7 @@ function saveComment()
     });
 }
 
-function concatComment(date,photo,username,user,message)
-{
-    var activity = "";
-    activity += '<div class="time-item">';
-    activity += '<div class="item-info item-info-customize">';
-    activity += '<div class="text-muted"><small>'+moment(date).fromNow()+'</small></div>';
-    activity += '<p>';
-    activity += '<img class="align-self-start rounded mr-3 img-fluid img-customize thumb-sm" ' +
-        'src="'+photo+'" alt="'+username+'" />';
-    activity += '<a href="#" class="text-info">'+user+'</a> commented this task';
-    activity += '</p>';
-    activity += '<p style="margin-bottom:6px !important;"><em>'+message+'</em></p>';
-    activity += '</div>';
-    activity += '</div>';
 
-    $(".timeline-2").prepend(activity);
-
-}
 
 function concatActivity(date,photo,username,user,message)
 {

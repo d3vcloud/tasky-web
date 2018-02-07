@@ -14,7 +14,7 @@ class TaskActivityController extends Controller
     {
         $activity = new TaskActivity;
         $activity->type = "message";
-        $activity->message = $request->comment;
+        $activity->message = 'commented: '.$request->comment;
         $activity->date_time = date('Y-m-d H:i:s');
         $activity->task_id = \Session::get('idCurrentTask');
         $activity->user_id = Auth::user()->id;
