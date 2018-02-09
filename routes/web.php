@@ -21,6 +21,7 @@ Route::bind('task',function($id){
 
 
 Route::get('/','BoardController@index')->name('app.board');
+Route::post('/timezone','BoardController@setTimeZone')->name('app.set.timezone');
 
 Route::get('login','Auth\AutenticacionController@showLoginForm')->name('app.login.form');
 Route::post('login','Auth\AutenticacionController@login')->name('app.login.submit');

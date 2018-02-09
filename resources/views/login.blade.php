@@ -71,7 +71,7 @@
 
                         <div class="form-group text-center m-t-40">
                             <div class="col-12">
-                                 <button class="btn btn-default btn-block text-uppercase waves-effect waves-light"
+                                 <button class="btn btn-default btn-block text-uppercase waves-effect waves-light btn-login"
                                         type="submit">Log In
                                 </button>
                             </div>
@@ -109,7 +109,9 @@
         <!-- App js -->
         <script src="{{ asset('js/jquery.core.js') }}"></script>
         <script src="{{ asset('js/jquery.app.js') }}"></script>
-	
+
+        <!--Index
+        <script src="{{ asset('js/index.js')}}"></script>-->
 	</body>
 
 </html>

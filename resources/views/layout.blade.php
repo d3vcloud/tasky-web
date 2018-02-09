@@ -86,7 +86,7 @@
                                     </p>
                                      <a href="#"
                                         onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();" class="dropdown-item notify-item btn btn-default"
+                                        document.getElementById('logout-form').submit();" class="btn-logout dropdown-item notify-item btn btn-default"
                                         style="width:267px;margin:0px 5px;">
                                         <i class="zmdi zmdi-power"></i> <span>Logout</span>
                                     </a>
@@ -164,7 +164,13 @@
             });
         </script>
         <script src="{{ asset('js/index.js') }}"></script>
-
+        <script>
+            setTimeZone();
+            $(".btn-logout").click(function(){
+                localStorage.removeItem('timezone');
+                //console.log("Deleted");
+            });
+        </script>
         @yield('scripts')
     </body>
 

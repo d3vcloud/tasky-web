@@ -20,7 +20,7 @@ class Functions
         $activity = new TaskActivity;
         $activity->type = $type;
         $activity->message = $message;
-        $activity->date_time = date('Y-m-d H:i:s');
+        $activity->date_time = \Carbon\Carbon::now(\Session::get('timezone'));
         $activity->task_id = \Session::get('idCurrentTask');
         $activity->user_id = Auth::user()->id;
         $activity->save();

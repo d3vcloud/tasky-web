@@ -63,6 +63,7 @@ function save (form) {
 }
 
 function remove(id,cont) {
+
     if(id > 0 ){
         (new PNotify({
             title: 'Confirmation',
@@ -121,7 +122,6 @@ function showInformation() {
         activity = "";
 
         $.get(url,function(data){
-            console.log(data.timezone);
             $('#titleTask').editable('setValue', data.task.name);
             
             if(data.task.description == null || data.task.description == "")
@@ -136,7 +136,9 @@ function showInformation() {
             $("#dueDate").val(due_date);
 
             $(".remove-this").remove();
-            $(".progress-md").html("");
+            $(".progress-md").html("<div class=\"progress-bar progress-bar-inverse\"\n" +
+                "\t\role=\"progressbar\" data-value=\"0\" id=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\"\n" +
+                "\taria-valuemax=\"100\" style=\"width:0%;font-size:12.8px;\">0%</div>");
 
             if(data.subtasks.length){
 

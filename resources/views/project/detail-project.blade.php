@@ -59,14 +59,33 @@
                                         data-url="{{ route('app.details.task', $task->id ) }}">
                                             {{ $task->name }}
                                         </a>
-                                        <!--<div class="m-t-20">
+                                        <div class="m-t-20" style="margin-top: 7px !important;">
                                             <p class="pull-right m-b-0">
                                                 <i class="fa fa-comment-o"></i> 
-                                                    <span title="0">0</span>
+                                                    <span title="{{ $task->task_activities()->where('type','message')->count() }}">
+                                                        {{ $task->task_activities()->where('type','message')->count() }}
+                                                    </span>
                                             </p>
-                                            <p class="m-b-0"><a href="#" class="text-muted"><img src="/img/default-user.png" alt="task-user" class="thumb-sm rounded-circle m-r-10 img-task"></a>  
+                                            <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                <i class="fa fa-paperclip"></i>
+                                                <span title="{{ $task->task_attachments()->count() }}">
+                                                   {{ $task->task_attachments()->count() }}
+                                                </span>
                                             </p>
-                                        </div>-->
+                                            <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                <span title="{{ $task->task_attachments()->count() }}">
+                                                   {{ $task->task_attachments()->count() }}
+                                                </span>
+                                                <i class="fa fa-percent"></i>
+
+                                            </p>
+                                            <p class="m-b-0">
+                                                <a href="#" class="text-muted">
+                                                    <img src="/img/default-user.png" alt="task-user"
+                                                         class="thumb-sm rounded-circle m-r-10 img-task">
+                                                </a>
+                                            </p>
+                                        </div>
                                         </li>
                                     @endforeach
                                 @endif

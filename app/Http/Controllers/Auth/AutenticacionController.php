@@ -41,4 +41,6 @@ class AutenticacionController extends Controller
         Auth::logout();
         return redirect()->route('app.login.form');
     }
+
+
 }

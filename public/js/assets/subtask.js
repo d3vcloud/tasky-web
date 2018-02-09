@@ -29,11 +29,15 @@ function removeSubTask(id,cont){
         if(rpta.status == "Removed"){
             form.removeChild(cont.parentElement);
 
-            res = calculateValueProgress(rpta.total,rpta.completed);
-
-            setValueProgress(res.toFixed(0));
+            if($('#formCheckList > span').length == 0) {
+                setValueProgress(0);
+                $("#progressbar").data("value", 0);
+            }
+            else{
+                res = calculateValueProgress(rpta.total,rpta.completed);
+                setValueProgress(res.toFixed(0));
+            }
         }
-
     });
 }
 

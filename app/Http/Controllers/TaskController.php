@@ -109,12 +109,12 @@ class TaskController extends Controller
             );
         }
 
+        //config(['app.timezone' => 'America/Lima']);
         return response()->json([
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
                 "attachments" => $attachments,
-                "activities" => $activities,
-                "timezone" => date_default_timezone_get()
+                "activities" => $activities
             ]);
     }
 
