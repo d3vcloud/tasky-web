@@ -12,7 +12,7 @@ function newSubTask(name,data,newId){
 
            res = calculateValueProgress(rpta.total,rpta.completed);
 
-           setValueProgress(res.toFixed(0));
+           setValueProgress(res.toFixed(0),rpta.task);
 
            //assign event to new checbox of input
            var checkbox = document.getElementById(newId);
@@ -35,7 +35,7 @@ function removeSubTask(id,cont){
             }
             else{
                 res = calculateValueProgress(rpta.total,rpta.completed);
-                setValueProgress(res.toFixed(0));
+                setValueProgress(res.toFixed(0),rpta.task);
             }
         }
     });
@@ -45,7 +45,7 @@ function updateSubTask(id,check){
     var value = parseFloat($("#progressbar").data("value"));
     var res;
     $.post('/subtask/update',{id:id,status:check.checked,field:'status'},function(rpta){
-        if(rpta == "Updated")
+        if(rpta.status == "Updated")
         {
             if(check.checked) value += parseFloat(check.value);
             else value -= parseFloat(check.value);
@@ -56,7 +56,7 @@ function updateSubTask(id,check){
             else if(value > 99.99) res = 100;
             else res = value.toFixed(0);
 
-            setValueProgress(res);
+            setValueProgress(res,rpta.task);
         }
     });
 }
@@ -76,7 +76,8 @@ function calculateValueProgress(total,completed)
     return res2;
 }
 
-function setValueProgress(val) {
+function setValueProgress(val,id) {
     $("#progressbar").width(val+"%");
     $("#progressbar").text(val+"%");
+    $("#percent"+id).text(val);
 }

@@ -57,7 +57,9 @@ class TaskController extends Controller
                 "activity" => $activity,
                 "username" => Auth::user()->username,
                 "photo" => Auth::user()->photo,
-                "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+                "user" => Auth::user()->first_name.' '.Auth::user()->last_name,
+                "taskid" => $task->id,
+                "taskname" => $task->name
             ]);
         }
         else

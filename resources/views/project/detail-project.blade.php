@@ -54,7 +54,7 @@
                                         <span class="card-label card-label-blue" title="Diseño">Diseño</span>
                                         <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
                                     </div>-->
-                                        <a class="task-title btn-task-detail"
+                                        <a class="task-title btn-task-detail" id="task{{ $task->id }}"
                                            data-toggle="modal" data-target="#modalDetail"
                                         data-url="{{ route('app.details.task', $task->id ) }}">
                                             {{ $task->name }}
@@ -73,8 +73,15 @@
                                                 </span>
                                             </p>
                                             <p class="pull-right m-b-0" style="margin:0px 25px;">
-                                                <span title="{{ $task->task_attachments()->count() }}">
-                                                   {{ $task->task_attachments()->count() }}
+                                                <?php
+                                                    $result = 0;
+                                                    if($task->task_subtasks()->count() != 0){
+                                                        $result =  ($task->task_subtasks()->where('isComplete',1)->count() /
+                                                                $task->task_subtasks()->count()) * 100;
+                                                    }
+                                                ?>
+                                                <span title="{{ round($result,2) }}" id="percent{{ $task->id }}">
+                                                   {{ round($result) }}
                                                 </span>
                                                 <i class="fa fa-percent"></i>
 
@@ -135,7 +142,7 @@
                                             <div class="pull-right">
                                                <a onclick="remove({{ $task->id }},this);">
                                                     <i class="fa fa-trash" style="color: red;
-                                                cursor: pointer;"></i>
+                                                    cursor: pointer;"></i>
                                                 </a>
                                                 <label></label>
                                             </div>
@@ -229,6 +236,7 @@
                 if(response.status == "Updated"){
                     concatActivity(response.activity.date_time, response.photo, response.username,
                         response.user, response.activity.message);
+                    $("#task"+response.taskid).text(response.taskname);
                 }
 
             }

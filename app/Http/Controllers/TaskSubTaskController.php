@@ -25,7 +25,8 @@ class TaskSubTaskController extends Controller
                         "total" => $task->task_subtasks()->count(),
                         "completed" => TaskSubtask::where('isComplete',1)
                             ->where('task_id',\Session::get('idCurrentTask'))
-                            ->count()
+                            ->count(),
+                        "task" => \Session::get('idCurrentTask')
                     ]
                 );
             }
@@ -47,8 +48,13 @@ class TaskSubTaskController extends Controller
                         $subtask->isComplete = $status;
                     }
 
-                    if($subtask->save())
-                        return "Updated";
+                    if($subtask->save()){
+                        return response()->json([
+                                "status" => "Updated",
+                                "task" => \Session::get('idCurrentTask')
+                        ]);
+                    }
+
                 }
             return $request->all();
         }
@@ -66,11 +72,11 @@ class TaskSubTaskController extends Controller
                 return response()->json(
                     [
                         "status" => "Removed",
-                        "id" => $subtask->id,
                         "total" => $task->task_subtasks()->count(),
                         "completed" => TaskSubtask::where('isComplete',1)
                             ->where('task_id',\Session::get('idCurrentTask'))
-                            ->count()
+                            ->count(),
+                        "task" => \Session::get('idCurrentTask')
                     ]
                 );
             }
