@@ -11,6 +11,7 @@ function saveComment()
                         rpta.user,
                         rpta.activity.message);
                     $("#comment").val("");
+                    $("#comment"+rpta.taskid).text(rpta.count);
                 }
             });
 

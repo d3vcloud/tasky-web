@@ -34,7 +34,11 @@ class TaskAttachmentController extends Controller
                     "activity" => $activity,
                     "username" => Auth::user()->username,
                     "photo" => Auth::user()->photo,
-                    "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+                    "user" => Auth::user()->first_name.' '.Auth::user()->last_name,
+                    "taskid" => \Session::get('idCurrentTask'),
+                    "count" => Task::find(\Session::get('idCurrentTask'))
+                        ->task_attachments()
+                        ->count()
                 ]);
             }
         return "Error";
@@ -64,7 +68,12 @@ class TaskAttachmentController extends Controller
     {
         $task = Task::find(\Session::get('idCurrentTask'));
         if($task->task_attachments()->delete())
-            return "Removed";
+        {
+            return response()->json([
+                "status" => "Removed",
+                "taskid" => \Session::get('idCurrentTask')
+            ]);
+        }
         
         return "Error";
     }
@@ -85,7 +94,11 @@ class TaskAttachmentController extends Controller
                     "activity" => $activity,
                     "username" => Auth::user()->username,
                     "photo" => Auth::user()->photo,
-                    "user" => Auth::user()->first_name.' '.Auth::user()->last_name
+                    "user" => Auth::user()->first_name.' '.Auth::user()->last_name,
+                    "taskid" => \Session::get('idCurrentTask'),
+                    "count" => Task::find(\Session::get('idCurrentTask'))
+                        ->task_attachments()
+                        ->count()
                 ]);
             }
             //return "Removed";

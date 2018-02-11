@@ -62,13 +62,13 @@
                                         <div class="m-t-20" style="margin-top: 7px !important;">
                                             <p class="pull-right m-b-0">
                                                 <i class="fa fa-comment-o"></i> 
-                                                    <span title="{{ $task->task_activities()->where('type','message')->count() }}">
+                                                    <span id="comment{{ $task->id }}">
                                                         {{ $task->task_activities()->where('type','message')->count() }}
                                                     </span>
                                             </p>
                                             <p class="pull-right m-b-0" style="margin:0px 25px;">
                                                 <i class="fa fa-paperclip"></i>
-                                                <span title="{{ $task->task_attachments()->count() }}">
+                                                <span id="attachment{{ $task->id }}">
                                                    {{ $task->task_attachments()->count() }}
                                                 </span>
                                             </p>
@@ -80,7 +80,7 @@
                                                                 $task->task_subtasks()->count()) * 100;
                                                     }
                                                 ?>
-                                                <span title="{{ round($result,2) }}" id="percent{{ $task->id }}">
+                                                <span id="percent{{ $task->id }}">
                                                    {{ round($result) }}
                                                 </span>
                                                 <i class="fa fa-percent"></i>
@@ -96,9 +96,7 @@
                                         </li>
                                     @endforeach
                                 @endif
-                                
                                <!--END TASKS-->
-                               
                             </ul>
                         </div>
                     </div>
@@ -119,9 +117,43 @@
                                                 </a>
                                                 <label></label>
                                             </div>
-                                            <span class="task-title" data-toggle="modal" data-target="#modalDetail">
+                                            <a class="task-title btn-task-detail" id="task{{ $task->id }}"
+                                               data-toggle="modal" data-target="#modalDetail"
+                                               data-url="{{ route('app.details.task', $task->id ) }}">
                                                 {{ $task->name }}
-                                            </span>
+                                            </a>
+                                            <div class="m-t-20" style="margin-top: 7px !important;">
+                                                <p class="pull-right m-b-0">
+                                                    <i class="fa fa-comment-o"></i>
+                                                    <span id="comment{{ $task->id }}">
+                                                        {{ $task->task_activities()->where('type','message')->count() }}
+                                                    </span>
+                                                </p>
+                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                    <i class="fa fa-paperclip"></i>
+                                                    <span id="attachment{{ $task->id }}">
+                                                   {{ $task->task_attachments()->count() }}
+                                                </span>
+                                                </p>
+                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                    <?php
+                                                    $result = 0;
+                                                    if($task->task_subtasks()->count() != 0){
+                                                        $result =  ($task->task_subtasks()->where('isComplete',1)->count() /
+                                                                $task->task_subtasks()->count()) * 100;
+                                                    }
+                                                    ?>
+                                                    <span id="percent{{ $task->id }}">{{ round($result) }}</span>
+                                                    <i class="fa fa-percent"></i>
+
+                                                </p>
+                                                <p class="m-b-0">
+                                                    <a href="#" class="text-muted">
+                                                        <img src="/img/default-user.png" alt="task-user"
+                                                             class="thumb-sm rounded-circle m-r-10 img-task">
+                                                    </a>
+                                                </p>
+                                            </div>
                                         </li>
                                     @endforeach
                                 @endif
@@ -146,9 +178,45 @@
                                                 </a>
                                                 <label></label>
                                             </div>
-                                            <span class="task-title" data-toggle="modal" data-target="#modalDetail">
+                                            <a class="task-title btn-task-detail" id="task{{ $task->id }}"
+                                               data-toggle="modal" data-target="#modalDetail"
+                                               data-url="{{ route('app.details.task', $task->id ) }}">
                                                 {{ $task->name }}
-                                            </span>
+                                            </a>
+                                            <div class="m-t-20" style="margin-top: 7px !important;">
+                                                <p class="pull-right m-b-0">
+                                                    <i class="fa fa-comment-o"></i>
+                                                    <span id="comment{{ $task->id }}">
+                                                        {{ $task->task_activities()->where('type','message')->count() }}
+                                                    </span>
+                                                </p>
+                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                    <i class="fa fa-paperclip"></i>
+                                                    <span id="attachment{{ $task->id }}">
+                                                   {{ $task->task_attachments()->count() }}
+                                                </span>
+                                                </p>
+                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                    <?php
+                                                    $result = 0;
+                                                    if($task->task_subtasks()->count() != 0){
+                                                        $result =  ($task->task_subtasks()->where('isComplete',1)->count() /
+                                                                $task->task_subtasks()->count()) * 100;
+                                                    }
+                                                    ?>
+                                                    <span id="percent{{ $task->id }}">
+                                                   {{ round($result) }}
+                                                </span>
+                                                    <i class="fa fa-percent"></i>
+
+                                                </p>
+                                                <p class="m-b-0">
+                                                    <a href="#" class="text-muted">
+                                                        <img src="/img/default-user.png" alt="task-user"
+                                                             class="thumb-sm rounded-circle m-r-10 img-task">
+                                                    </a>
+                                                </p>
+                                            </div>
                                         </li>
                                     @endforeach
                                 @endif
@@ -217,6 +285,7 @@
                     getAll();
                     concatActivity(data.activity.date_time, data.photo, data.username,data.user,
                         data.activity.message);
+                    $("#attachment"+data.taskid).text(data.count);
                 }
               else notification('Error','An error occurred, try again','error',3000);
 

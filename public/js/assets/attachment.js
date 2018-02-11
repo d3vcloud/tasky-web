@@ -31,8 +31,11 @@ function removeAll(){
 
     $(".btn-deleteAll").click(function(){
         $.get('/attachment/removeall',function(rpta){
-            if(rpta == "Removed")
+            if(rpta.status == "Removed"){
                 table.html('');
+                $("#attachment"+rpta.taskid).text(0);
+            }
+
         });
     });
 }
@@ -43,6 +46,7 @@ function removeAttachment(id,button){
             $(button).closest("tr").remove();
             concatActivity(data.activity.date_time, data.photo, data.username,data.user,
                 data.activity.message);
+            $("#attachment"+data.taskid).text(data.count);
         }
 
     });
