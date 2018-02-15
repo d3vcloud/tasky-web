@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}">
     <style>
         .img-customize{
             height: 23px !important;
@@ -339,6 +340,38 @@
         showInformation();
         removeAll();
         saveComment();
+
+        /*function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }*/
+        function deselect(e) {
+            $('.pop').slideFadeToggle(function() {
+                e.removeClass('selected');
+            });
+        }
+
+        $(function() {
+            $('#myPopup').on('click', function() {
+                if($(this).hasClass('selected')) {
+                    deselect($(this));
+                } else {
+                    $(this).addClass('selected');
+                    $('.pop').slideFadeToggle();
+                }
+                return false;
+            });
+
+            $('.close').on('click', function() {
+                deselect($('#contact'));
+                return false;
+            });
+        });
+
+        $.fn.slideFadeToggle = function(easing, callback) {
+            return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+        };
+
 	</script>
 @stop
 

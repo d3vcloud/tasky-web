@@ -15,23 +15,35 @@
 	                	Members
 	                </label>
 	                <div class="add-members">
-	                	<button class="btn btn-inverse waves-effect waves-light" 
+	                	<button class="btn btn-inverse waves-light"
 	                	style="font-size: 10px !important;">
 	                		<i class="fa fa-plus"></i>
 	                	</button>
 	                </div>
 	           	</div>
 	        </div>
+
 	        <div class="col-md-4">
 	            <div class="form-group">
 	                <label class="control-label">
 						Labels
 	                </label>
 	                <div class="add-labels">
-	                	<button class="btn btn-inverse waves-effect waves-light" 
-	                	style="font-size: 10px !important;">
+	                	<!--<button class="btn btn-inverse waves-effect waves-light"
+								style="font-size: 10px !important;"
+								data-content="<button>Hello</button>" data-placement="bottom"
+								data-toggle="popover" data-container="body" class="btn btn-default"
+								type="button" data-original-title="" title="">
 	                		<i class="fa fa-plus"></i>
-	                	</button>
+	                	</button>-->
+						<div class="messagepop pop">
+							<input type="text" autofocus class="form-control"
+								   style="height: 35px !important;width: 75% !important;margin-left:8px; "/>
+						</div>
+						<button class="popup btn btn-inverse waves-light"
+								style="font-size: 10px !important;" id="myPopup">
+							<i class="fa fa-plus"></i>
+						</button>
 	                </div>
 	           	</div>
 	        </div>
