@@ -9,22 +9,6 @@
     user-select: none;
 }*/
 
-/* The actual popup
-.popup .popuptext {
-    visibility: hidden;
-    width: 265px;
-    background-color: #FFF;
-    color: black;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-    border: 2px solid #4c5667;
-}*/
 
 /* Popup arrow
 .popup .popuptext::after {
@@ -63,7 +47,7 @@
     border: 2px solid #4c5667;
     cursor:default;
     display:none;
-    margin-top: 15px;
+    margin-top: 37px;
     position:absolute;
     /*width:384px;*/
     z-index:50;

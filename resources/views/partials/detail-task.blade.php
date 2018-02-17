@@ -29,19 +29,31 @@
 						Labels
 	                </label>
 	                <div class="add-labels">
-	                	<!--<button class="btn btn-inverse waves-effect waves-light"
-								style="font-size: 10px !important;"
-								data-content="<button>Hello</button>" data-placement="bottom"
-								data-toggle="popover" data-container="body" class="btn btn-default"
-								type="button" data-original-title="" title="">
-	                		<i class="fa fa-plus"></i>
-	                	</button>-->
+						<!--<div class="picker"></div>-->
 						<div class="messagepop pop">
-							<input type="text" autofocus class="form-control"
-								   style="height: 35px !important;width: 75% !important;margin-left:8px; "/>
+                            <h6>New Label</h6>
+                            <hr style="width:260px;margin-top: initial;margin-bottom: 3%;">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" autofocus class="form-control"
+                                       style="height: 35px !important;width: 98% !important;
+								   margin-left:3px; "/>
+                            </div>
+                            <div class="form-group">
+                                <label>Select Color</label>
+                                <div style="margin-left:28px;">
+                                    <span class="card-label-green label-detail"></span>
+                                    <span class="card-label-orange label-detail"></span>
+                                    <span class="card-label-yellow label-detail"></span>
+                                    <span class="card-label-blue label-detail"></span>
+                                    <span class="card-label-red label-detail"></span>
+                                    <span class="card-label-black label-detail"></span>
+                                </div>
+                            </div>
+
 						</div>
 						<button class="popup btn btn-inverse waves-light"
-								style="font-size: 10px !important;" id="myPopup">
+								style="font-size: 10px !important;cursor:pointer;" id="myPopup">
 							<i class="fa fa-plus"></i>
 						</button>
 	                </div>

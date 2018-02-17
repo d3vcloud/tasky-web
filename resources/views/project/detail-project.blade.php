@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
     <link rel="stylesheet" href="{{ asset('css/popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/colorPick.css') }}">
     <style>
         .img-customize{
             height: 23px !important;
@@ -15,6 +16,22 @@
         }
         .item-info-customize{
             margin-bottom: 2px !important;
+        }
+        /* Color Picker */
+        .picker {
+            border-radius: 5px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            -webkit-transition: all linear .2s;
+            -moz-transition: all linear .2s;
+            -ms-transition: all linear .2s;
+            -o-transition: all linear .2s;
+            transition: all linear .2s;
+            border: thin solid #eee;
+        }
+        .picker:hover {
+            transform: scale(1.1);
         }
         /*.p-customize{
             margin-bottom: 5px !important;
@@ -246,6 +263,7 @@
     <script src="{{ asset('js/checklist.js') }}"></script>
     <script src="{{ asset('js/assets/attachment.js') }}"></script>
     <script src="{{ asset('js/assets/activity.js') }}"></script>
+    <script src="{{ asset('js/colorPick.js') }}"></script>
      <!--FooTable
      <script src="../plugins/footable/js/footable.all.min.js"></script>
 
@@ -371,6 +389,15 @@
         $.fn.slideFadeToggle = function(easing, callback) {
             return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
         };
+
+        $(".picker").colorPick({
+            'initialColor' : '#8e44ad',
+            'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1"],
+            'onColorSelected': function() {
+                alert("The user has selected the color: " + this.color);
+                this.element.css({'backgroundColor': this.color, 'color': this.color});
+            }
+        });
 
 	</script>
 @stop

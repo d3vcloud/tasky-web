@@ -39,6 +39,10 @@
         .card-label-yellow{
             background-color: #d9b51c;
         }
+        .card-label-black{
+            background-color: #4d4d4d;
+        }
+
         .img-task{
             height: 25px !important;
             width: 25px !important;
@@ -94,5 +98,23 @@
         }
         .input-sm-overwrite{
             font-size:14px !important;
+        }
+
+        /*colors select*/
+        .label-detail{
+            float: left;
+            height: 35px !important;
+            margin: 0 10px 10px 0;
+            width: 45px !important;
+            border-radius: 3px !important;
+            color: #fff;
+            display: block;
+            max-width: 100%;
+            overflow: hidden;
+            padding: 3px 6px;
+            position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
         }
 
