@@ -33,24 +33,29 @@
 						<div class="messagepop pop">
                             <h6>New Label</h6>
                             <hr style="width:260px;margin-top: initial;margin-bottom: 3%;">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" autofocus class="form-control"
-                                       style="height: 35px !important;width: 98% !important;
-								   margin-left:3px; "/>
-                            </div>
-                            <div class="form-group">
-                                <label>Select Color</label>
-                                <div style="margin-left:28px;">
-                                    <span class="card-label-green label-detail"></span>
-                                    <span class="card-label-orange label-detail"></span>
-                                    <span class="card-label-yellow label-detail"></span>
-                                    <span class="card-label-blue label-detail"></span>
-                                    <span class="card-label-red label-detail"></span>
-                                    <span class="card-label-black label-detail"></span>
-                                </div>
-                            </div>
 
+								<div class="form-group">
+									<label for="name">Name</label>
+									<input type="text" id="nameLabel"  autofocus class="form-control"
+										   style="height: 35px !important;width: 240px !important;
+								   margin-left:18px; "/>
+								</div>
+								<div class="form-group">
+									<label>Select Color</label>
+									<div style="margin-left:28px;">
+										<span data-color="#1abc9c" class="card-label-cyan label-detail label-click"></span>
+										<span data-color="#16a085" class="card-label-cyan-two label-detail label-click"></span>
+										<span data-color="#27ae60" class="card-label-green label-detail label-click"></span>
+										<span data-color="#3498db" class="card-label-blue label-detail label-click"></span>
+										<span data-color="#2980b9" class="card-label-blue-two label-detail label-click"></span>
+										<span data-color="#9b59b6" class="card-label-purple label-detail label-click"></span>
+										<span data-color="#f1c40f" class="card-label-yellow label-detail label-click"></span>
+										<span data-color="#e67e22" class="card-label-orange label-detail label-click"></span>
+										<span data-color="#eb5a46" class="card-label-red label-detail label-click"></span>
+										<span data-color="#95a5a6" class="card-label-gray label-detail label-click"></span>
+										<span data-color="#4d4d4d" class="card-label-black label-detail label-click"></span>
+									</div>
+								</div>
 						</div>
 						<button class="popup btn btn-inverse waves-light"
 								style="font-size: 10px !important;cursor:pointer;" id="myPopup">

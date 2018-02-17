@@ -27,4 +27,9 @@ class Task extends Model
     {
         return $this->hasMany('App\TaskActivity');
     }
+
+    public function task_labels()
+    {
+        return $this->hasMany('App\TaskLabel');
+    }
 }

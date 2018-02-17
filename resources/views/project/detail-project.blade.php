@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
     <link rel="stylesheet" href="{{ asset('css/popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/colorPick.css') }}">
     <style>
         .img-customize{
             height: 23px !important;
@@ -263,7 +262,7 @@
     <script src="{{ asset('js/checklist.js') }}"></script>
     <script src="{{ asset('js/assets/attachment.js') }}"></script>
     <script src="{{ asset('js/assets/activity.js') }}"></script>
-    <script src="{{ asset('js/colorPick.js') }}"></script>
+    <script src="{{ asset('js/assets/label.js') }}"></script>
      <!--FooTable
      <script src="../plugins/footable/js/footable.all.min.js"></script>
 
@@ -359,10 +358,6 @@
         removeAll();
         saveComment();
 
-        /*function myFunction() {
-            var popup = document.getElementById("myPopup");
-            popup.classList.toggle("show");
-        }*/
         function deselect(e) {
             $('.pop').slideFadeToggle(function() {
                 e.removeClass('selected');
@@ -380,25 +375,18 @@
                 return false;
             });
 
-            $('.close').on('click', function() {
+            /*$('.close').on('click', function() {
                 deselect($('#contact'));
                 return false;
-            });
+            });*/
         });
 
         $.fn.slideFadeToggle = function(easing, callback) {
             return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
         };
 
-        $(".picker").colorPick({
-            'initialColor' : '#8e44ad',
-            'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1"],
-            'onColorSelected': function() {
-                alert("The user has selected the color: " + this.color);
-                this.element.css({'backgroundColor': this.color, 'color': this.color});
-            }
-        });
-
+        /*Labels*/
+        saveLabel();
 	</script>
 @stop
 

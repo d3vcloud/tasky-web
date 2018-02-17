@@ -64,4 +64,5 @@ Route::get('/attachment/download/{id}','TaskAttachmentController@download')
 
 Route::post('/comment/save','TaskActivityController@store')->name('app.store.comment');
 
+Route::post('/label/save','TaskLabelController@store')->name('app.store.label');
 //Route::get('/home', 'HomeController@index')->name('home');

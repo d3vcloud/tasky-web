@@ -24,24 +24,7 @@
         .task-detail{
             cursor: pointer;
         }
-        .card-label-red{
-            background-color: #eb5a46;
-        }
-        .card-label-blue{
-            background-color: #055a8c;
-        }
-        .card-label-green{
-            background-color: #81c868;
-        }
-        .card-label-orange{
-            background-color: #FFA500;
-        }
-        .card-label-yellow{
-            background-color: #d9b51c;
-        }
-        .card-label-black{
-            background-color: #4d4d4d;
-        }
+
 
         .img-task{
             height: 25px !important;
@@ -116,5 +99,38 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             cursor: pointer;
+        }
+        .card-label-cyan{
+            background-color: #1abc9c;
+        }
+        .card-label-cyan-two{
+            background-color: #16a085;
+        }
+        .card-label-green{
+            background-color: #27ae60;
+        }
+        .card-label-blue{
+            background-color: #3498db;
+        }
+        .card-label-blue-two{
+            background-color: #2980b9;
+        }
+        .card-label-purple{
+            background-color: #9b59b6;
+        }
+        .card-label-yellow{
+            background-color: #f1c40f;
+        }
+        .card-label-orange{
+            background-color: #e67e22;
+        }
+        .card-label-red{
+            background-color: #eb5a46;
+        }
+        .card-label-gray{
+            background-color: #95a5a6;
+        }
+        .card-label-black{
+            background-color: #4d4d4d;
         }
 
