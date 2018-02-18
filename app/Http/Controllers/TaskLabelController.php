@@ -20,7 +20,8 @@ class TaskLabelController extends Controller
             if($task->task_labels()->save($label))
                 return response()->json([
                     "status" => "Saved",
-                    "label" => $label
+                    "label" => $label,
+                    "taskid" => \Session::get('idCurrentTask')
                 ]);
         }
 
