@@ -53,7 +53,7 @@
                             <h4 class="text-dark header-title m-t-0">Upcoming</h4>
                             <br>
 
-                            <ul class="sortable-list taskList list-unstyled" id="upcoming">
+                            <ul class="sortable-list taskList list-unstyled main-container" id="upcoming">
                                 
                                 <!--TASKS-->
                                 @if(count($tupcoming))
@@ -125,53 +125,53 @@
                             <h4 class="text-dark header-title m-t-0">In Progress</h4>
                             <br>
 
-                            <ul class="sortable-list taskList list-unstyled" id="inprogress">
+                            <ul class="sortable-list taskList list-unstyled main-container" id="inprogress">
                                 <!--TASKS-->
                                 @if(count($tprogress))
-                                    @foreach($tprogress as $task)
+                                    @foreach($tprogress as $task1)
                                         <li class="task-detail task-main">
                                             <div class="pull-right">
-                                                <a onclick="remove({{ $task->id }},this);">
+                                                <a onclick="remove({{ $task1->id }},this);">
                                                     <i class="fa fa-trash" style="color: red;
                                                 cursor: pointer;"></i>
                                                 </a>
                                                 <label></label>
                                             </div>
-                                            @if(count($task->task_labels()->get()))
-                                                <div class="card-tags ct{{ $task->id }}" >
-                                                    @foreach($task->task_labels()->get() as $label)
+                                            @if(count($task1->task_labels()->get()))
+                                                <div class="card-tags ct{{ $task1->id }}" >
+                                                    @foreach($task1->task_labels()->get() as $label)
                                                         <span class="card-label" style="background-color: {{ $label->color }}"
                                                               title="{{ $label->name }}">{{ $label->name }}</span>
                                                     @endforeach
                                                 </div>
                                             @endif
-                                            <a class="task-title btn-task-detail" id="task{{ $task->id }}"
+                                            <a class="task-title btn-task-detail" id="task{{ $task1->id }}"
                                                data-toggle="modal" data-target="#modalDetail"
-                                               data-url="{{ route('app.details.task', $task->id ) }}">
-                                                {{ $task->name }}
+                                               data-url="{{ route('app.details.task', $task1->id ) }}">
+                                                {{ $task1->name }}
                                             </a>
                                             <div class="m-t-20" style="margin-top: 7px !important;">
                                                 <p class="pull-right m-b-0">
                                                     <i class="fa fa-comment-o"></i>
-                                                    <span id="comment{{ $task->id }}">
-                                                        {{ $task->task_activities()->where('type','message')->count() }}
+                                                    <span id="comment{{ $task1->id }}">
+                                                        {{ $task1->task_activities()->where('type','message')->count() }}
                                                     </span>
                                                 </p>
                                                 <p class="pull-right m-b-0" style="margin:0px 25px;">
                                                     <i class="fa fa-paperclip"></i>
-                                                    <span id="attachment{{ $task->id }}">
-                                                   {{ $task->task_attachments()->count() }}
+                                                    <span id="attachment{{ $task1->id }}">
+                                                   {{ $task1->task_attachments()->count() }}
                                                 </span>
                                                 </p>
                                                 <p class="pull-right m-b-0" style="margin:0px 25px;">
                                                     <?php
                                                     $result = 0;
-                                                    if($task->task_subtasks()->count() != 0){
-                                                        $result =  ($task->task_subtasks()->where('isComplete',1)->count() /
-                                                                $task->task_subtasks()->count()) * 100;
+                                                    if($task1->task_subtasks()->count() != 0){
+                                                        $result =  ($task1->task_subtasks()->where('isComplete',1)->count() /
+                                                                $task1->task_subtasks()->count()) * 100;
                                                     }
                                                     ?>
-                                                    <span id="percent{{ $task->id }}">{{ round($result) }}</span>
+                                                    <span id="percent{{ $task1->id }}">{{ round($result) }}</span>
                                                     <i class="fa fa-percent"></i>
 
                                                 </p>
@@ -194,7 +194,7 @@
                             <h4 class="text-dark header-title m-t-0">Completed</h4>
                            <br>
 
-                            <ul class="sortable-list taskList list-unstyled" id="completed">
+                            <ul class="sortable-list taskList list-unstyled main-container" id="completed">
                                 <!--TASKS-->
                                 @if(count($tcompleted))
                                     @foreach($tcompleted as $task)
@@ -260,6 +260,7 @@
                             </ul>
                         </div>
                     </div>
+
     <div id="modalDetail" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

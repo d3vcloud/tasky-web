@@ -112,9 +112,10 @@ function showInformation() {
     var html,status,can,result,url,tbody,date,activity,message,content,label;
     var table = $("#ListAttachments tbody");
 
-   $('#upcoming').on('click','.btn-task-detail',function(){
+   $('.main-container').on('click','.btn-task-detail',function(){
 
         url = $(this).data('url');
+        console.log(url);
         html = "";
         can = 0;
         table.html('');
