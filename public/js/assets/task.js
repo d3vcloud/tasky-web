@@ -109,7 +109,7 @@ function updateDate(datep) {
 function showInformation() {
     var description = "";
     var due_date = "";
-    var html,status,can,result,url,tbody,date,activity,message,content;
+    var html,status,can,result,url,tbody,date,activity,message,content,label;
     var table = $("#ListAttachments tbody");
 
    $('#upcoming').on('click','.btn-task-detail',function(){
@@ -120,6 +120,7 @@ function showInformation() {
         table.html('');
         tbody = "";
         activity = "";
+        label = "";
 
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);
@@ -214,6 +215,24 @@ function showInformation() {
 
             }
 
+            $("#labels").html('');
+            if(data.labels.length){
+
+                $("#listLabels").show();
+
+                label += '<div class="card-tags-detail">';
+                for (var i = 0; i < data.labels.length; i++) {
+                    label += '<span class="card-label-detail" ' +
+                        'style="background-color:'+data.labels[i].color+'" ' +
+                        'title="'+data.labels[i].name+'">'+data.labels[i].name+'</span>';
+                }
+                label += '</div>';
+
+                $("#labels").html(label);
+
+            }else{
+                $("#listLabels").hide();
+            }
         });
    });
 }

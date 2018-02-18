@@ -2,7 +2,12 @@
             border-radius: 9px !important;
             margin-bottom: 7px !important;
         }
-        .card-tag{
+        .card-tags{
+            margin: 2px 0;
+            overflow: auto;
+            position: relative;
+        }
+        .card-tags-detail{
             margin: 2px 0;
             overflow: auto;
             position: relative;
@@ -132,5 +137,19 @@
         }
         .card-label-black{
             background-color: #4d4d4d;
+        }
+        .card-label-detail{
+            height: 26px;
+            line-height: 25px;
+            padding: 0 8px;
+            max-width: 198px;
+            float: left;
+            font-size: 13px !important;
+            font-weight: 600;
+            margin: 0 3px 3px 0;
+            width: auto;
+            border-radius: 3px;
+            color: #fff;
+            display: block;
         }
 

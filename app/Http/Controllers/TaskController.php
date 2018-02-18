@@ -116,7 +116,8 @@ class TaskController extends Controller
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
                 "attachments" => $attachments,
-                "activities" => $activities
+                "activities" => $activities,
+                "labels" => $task->task_labels()->get()
             ]);
     }
 

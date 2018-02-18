@@ -29,14 +29,14 @@
 						Labels
 	                </label>
 	                <div class="add-labels">
-						<!--<div class="picker"></div>-->
-						<div class="messagepop pop">
-                            <h6>New Label</h6>
+						<div class="messagepop pop" style="display: none;">
+                            <h6 style="margin: 8px 0;">New Label</h6>
+							<button class="close-popup">x</button>
                             <hr style="width:260px;margin-top: initial;margin-bottom: 3%;">
 
 								<div class="form-group">
 									<label for="name">Name</label>
-									<input type="text" id="nameLabel"  autofocus class="form-control"
+									<input type="text" id="nameLabel" autofocus class="form-control"
 										   style="height: 35px !important;width: 240px !important;
 								   margin-left:18px; "/>
 								</div>
@@ -86,6 +86,18 @@
 	           	</div>
 	        </div>
 	    </div>
+		<div class="row" id="listLabels">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label">
+						Labels
+					</label>
+					<div id="labels">
+
+					</div>
+				</div>
+			</div>
+		</div>
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="form-group">

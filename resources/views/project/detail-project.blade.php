@@ -66,11 +66,15 @@
                                                 </a>
                                                 <label></label>
                                             </div>
-                                    <!--<div class="card-tag">
-                                        <span class="card-label card-label-red" title="Test">Test</span>
-                                        <span class="card-label card-label-blue" title="Diseño">Diseño</span>
-                                        <span class="card-label card-label-yellow" title="Mejoras de funcionalidades">Mejoras de funcionalidades</span>
-                                    </div>-->
+                                            @if(count($task->task_labels()->get()))
+                                                <div class="card-tags">
+                                                @foreach($task->task_labels()->get() as $label)
+                                                        <span class="card-label" style="background-color: {{ $label->color }}"
+                                                              title="{{ $label->name }}">{{ $label->name }}</span>
+                                                @endforeach
+                                                </div>
+                                            @endif
+
                                         <a class="task-title btn-task-detail" id="task{{ $task->id }}"
                                            data-toggle="modal" data-target="#modalDetail"
                                         data-url="{{ route('app.details.task', $task->id ) }}">
@@ -358,7 +362,12 @@
         removeAll();
         saveComment();
 
-        function deselect(e) {
+        $('.close-popup').on('click', function() {
+            deselect($('#contact'));
+            return false;
+        });
+
+        /*function deselect(e) {
             $('.pop').slideFadeToggle(function() {
                 e.removeClass('selected');
             });
@@ -375,15 +384,15 @@
                 return false;
             });
 
-            /*$('.close').on('click', function() {
+            $('.close-popup').on('click', function() {
                 deselect($('#contact'));
                 return false;
-            });*/
+            });
         });
 
         $.fn.slideFadeToggle = function(easing, callback) {
             return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
-        };
+        };*/
 
         /*Labels*/
         saveLabel();

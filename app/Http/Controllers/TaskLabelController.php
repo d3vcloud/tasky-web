@@ -18,7 +18,10 @@ class TaskLabelController extends Controller
             $label->color = $request->color;
             $task = Task::find(\Session::get('idCurrentTask'));
             if($task->task_labels()->save($label))
-                return "Saved";
+                return response()->json([
+                    "status" => "Saved",
+                    "label" => $label
+                ]);
         }
 
         return "Error";
