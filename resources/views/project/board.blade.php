@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}">
 	<style>
 		.my-project{
 			border-color: #4c5667 !important;
@@ -45,9 +46,13 @@
                     		@foreach($myprojects as $project)
                     			<div class="col-md-3 my-project grow">
 			                        <div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">
+
 			                            <a onclick="remove({{ $project->id }});">
                                             <i class="fa fa-trash pull-right inform" 
                                             style="color: red;"></i>         
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#modalInvitation">
+                                            <i class="fa fa-user-plus pull-right inform"></i>
                                         </a>
                                         <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>
 			                            <a class="text-dark" 
@@ -78,10 +83,18 @@
 	        </div>
 	    </div>
 	</div>
+    <div id="modalInvitation" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                @include('partials.send-invitation')
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('scripts')
     <script src="{{ asset('js/assets/project.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
     <script>
         save();
         list();
