@@ -94,6 +94,7 @@
 
 @section('scripts')
     <script src="{{ asset('js/assets/project.js') }}"></script>
+    <script src="{{ asset('js/assets/sinvitation.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
     <script>
         save();
