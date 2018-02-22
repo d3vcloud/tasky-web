@@ -13,12 +13,17 @@
                 <div class="form-group">
                     <label for="Tipo" class="control-label">Emails</label>
                     <div class="tags-default">
-                        <input type="text" data-role="tagsinput" placeholder="Add Emails" autofocus/>
+                        <input type="text" data-role="tagsinput" name="emails" id="emails" placeholder="Add Emails" autofocus/>
+
                     </div>
+                    <span class="help-block">Press "enter" after write a email for add other.</span>
                 </div>
             </div>
         </div>
         <button type="button" id="send" class="btn btn-info waves-effect waves-light">Send</button>
+        <div style="float:right;display: none;" id="loading">
+            <img src="{{ asset('img/loading2.gif') }}" alt="loading" width="50px" height="40px" />
+        </div>
     </form>
 </div>
 <div class="modal-footer">

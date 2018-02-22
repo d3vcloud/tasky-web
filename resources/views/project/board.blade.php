@@ -99,5 +99,6 @@
     <script>
         save();
         list();
+        send();
     </script>  
 @stop

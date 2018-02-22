@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 
 class InvitationController extends Controller
 {
-    public function send()
+    public function send(Request $request)
     {
-        Mail::to('neils.alfaro@gmail.com')->send(new SendInvitation());
-        return "Sent";
+        if($request->ajax())
+        {
+            if(is_array($request->emails)){
+                Mail::to($request->emails)->send(new SendInvitation());
+                return "Sent";
+            }
+        }
+        return "error";
     }
 }

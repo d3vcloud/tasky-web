@@ -66,5 +66,5 @@ Route::post('/comment/save','TaskActivityController@store')->name('app.store.com
 
 Route::post('/label/save','TaskLabelController@store')->name('app.store.label');
 
-Route::get('/send','InvitationController@send')->name('app.send.invitation');
+Route::post('/send','InvitationController@send')->name('app.send.invitation');
 //Route::get('/home', 'HomeController@index')->name('home');
