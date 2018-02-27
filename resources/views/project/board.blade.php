@@ -23,6 +23,9 @@
         .list-projects{
             margin-left:55px !important;
         }
+        .bootstrap-tagsinput{
+            width:720px !important;
+        }
 	</style>
 @stop
 
