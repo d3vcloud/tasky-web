@@ -7,18 +7,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+use App\Invite;
+
 class SendInvitation extends Mailable
 {
     use Queueable, SerializesModels;
+
+    protected $invite;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Invite $invite)
     {
-        //
+        $this->invite = $invite;
     }
 
     /**
@@ -29,6 +33,6 @@ class SendInvitation extends Mailable
     public function build()
     {
         return $this->from('demosweb.app@gmail.com')
-            ->markdown('emails.send.invitation');
+            ->markdown('emails.send.invitation',['url' => url('/').'/accept/'.$this->invite->token]);
     }
 }

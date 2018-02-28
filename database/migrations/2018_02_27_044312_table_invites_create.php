@@ -18,7 +18,7 @@ class TableInvitesCreate extends Migration
             $table->string('email');
             $table->string('token')->unique();
             $table->boolean('accepted')->default(0);
-            $table->dateTime('accepted_at');
+            $table->dateTime('accepted_at')->nullable();
             $table->timestamps();
         });
     }

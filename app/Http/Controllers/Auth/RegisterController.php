@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+
 use App\Http\Requests\RegisterUserRequest;
 class RegisterController extends Controller
 {
@@ -50,6 +50,6 @@ class RegisterController extends Controller
         $user->photo      = '/img/default-user.png';
         $user->save();
 
-        return redirect()->route('app.login');
+        return redirect()->route('app.login.form');
     }
 }

@@ -3,7 +3,7 @@
 
 The body of your message.
 
-@component('mail::button', ['url' => 'www.google.com.pe'])
+@component('mail::button', ['url' => $url])
 Button Text
 @endcomponent
 
