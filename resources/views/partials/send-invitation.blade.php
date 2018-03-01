@@ -7,7 +7,7 @@
 
 <div class="modal-body">
     <form id="FormInvitation" method="POST">
-        <!--<input type="hidden" name="Id" id="Id" value>-->
+        <input type="hidden" name="id" id="id"/>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">

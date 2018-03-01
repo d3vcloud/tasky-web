@@ -23,9 +23,9 @@ Route::bind('task',function($id){
 Route::get('/','BoardController@index')->name('app.board');
 Route::post('/timezone','BoardController@setTimeZone')->name('app.set.timezone');
 
-Route::get('login','Auth\AutenticacionController@showLoginForm')->name('app.login.form');
-Route::post('login','Auth\AutenticacionController@login')->name('app.login.submit');
-Route::post('logout','Auth\AutenticacionController@logout')->name('app.logout');
+Route::get('/login','Auth\AutenticacionController@showLoginForm')->name('app.login.form');
+Route::post('/login','Auth\AutenticacionController@login')->name('app.login.submit');
+Route::post('/logout','Auth\AutenticacionController@logout')->name('app.logout');
 
 //Route::get('/','DashboardController@index')->name('app.dashboard');
 
@@ -76,5 +76,6 @@ Route::post('/label/save','TaskLabelController@store')->name('app.store.label');
 
 Route::post('/send','InviteController@send')->name('app.send.invitation');
 
-Route::get('accept/{token}', 'InviteController@accept')->name('app.accept.invitation');
+Route::get('/accept/{token}', 'InviteController@accept')->name('app.accept.invitation');
+Route::post('/newuser','InviteController@newUser')->name('app.new.user');
 //Route::get('/home', 'HomeController@index')->name('home');

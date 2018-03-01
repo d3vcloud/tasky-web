@@ -30,7 +30,7 @@
 
         <div class="p-20">
             <form class="form-horizontal m-t-20"  method="POST"
-                  action="{{ route('app.register.submit') }}">
+                  action="{{ route('app.new.user') }}">
 
                 {{  csrf_field() }}
 

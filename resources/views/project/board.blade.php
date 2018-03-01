@@ -54,7 +54,8 @@
                                             <i class="fa fa-trash pull-right inform" 
                                             style="color: red;"></i>         
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#modalInvitation">
+                                        <a href="#" data-toggle="modal" data-idproject="{{ $project->id }}"
+                                           class="btn-send-invitation" data-target="#modalInvitation">
                                             <i class="fa fa-user-plus pull-right inform"></i>
                                         </a>
                                         <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>

@@ -2,7 +2,7 @@ function send()
 {
     $("#send").click(function () {
         $("#loading").show();
-        $.post('/send',{ emails:$("#emails").tagsinput('items') },function(data){
+        $.post('/send',{ emails:$("#emails").tagsinput('items'),id:$("#id").val() },function(data){
             if(data == "Sent")
             {
                 $("#loading").hide();
@@ -12,3 +12,7 @@ function send()
         });
     });
 }
+
+$(".btn-send-invitation").click(function(){
+    $("#id").val($(this).data('idproject'));
+})

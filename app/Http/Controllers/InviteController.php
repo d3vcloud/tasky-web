@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invite;
 use App\User;
+use App\Project;
 
 use App\Mail\SendInvitation;
 
@@ -16,6 +17,9 @@ class InviteController extends Controller
 {
     public function send(Request $request)
     {
+        //if(!\Session::has('idProjectSelected'))
+        //\Session::put('idProjectSelected',$request->id);
+
         if($request->ajax())
         {
             if(is_array($request->emails)){
@@ -52,7 +56,7 @@ class InviteController extends Controller
         $invite->email = $email;
         $invite->token = $token;
         $invite->accepted = 0;
-        //$invite->accepted_at = \Carbon\Carbon::now(\Session::get('timezone'))->toDateTimeString();
+
         if($invite->save())
             return $invite;
 
@@ -87,6 +91,9 @@ class InviteController extends Controller
         $user->photo      = '/img/default-user.png';
         $user->save();
 
-        //return redirect()->route('app.login');
+        $project = Project::find(8);
+        $project->users()->attach($user);
+
+        return redirect()->route('app.login.form');
     }
 }

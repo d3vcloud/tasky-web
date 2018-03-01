@@ -19,5 +19,10 @@ class Project extends Model
     	return $this->hasMany('App\Task');
     }
 
+    public function invites()
+    {
+        return $this->hasMany('App\Invite');
+    }
+
     
 }

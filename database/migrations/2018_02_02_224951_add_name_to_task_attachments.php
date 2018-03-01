@@ -26,7 +26,7 @@ class AddNameToTaskAttachments extends Migration
     public function down()
     {
         Schema::table('task_attachments', function (Blueprint $table) {
-            //
+            $table->dropColumn('name');
         });
     }
 }
