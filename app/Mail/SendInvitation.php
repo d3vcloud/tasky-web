@@ -36,6 +36,7 @@ class SendInvitation extends Mailable
         return $this->from('demosweb.app@gmail.com')
             ->markdown('emails.send.invitation',
                 ['url'  => url('/').'/accept/'.$this->invite->token,
-                 'user' => Auth::user()->first_name.' '.Auth::user()->last_name]);
+                 'user' => Auth::user()->first_name.' '.Auth::user()->last_name,
+                 'project' => \App\Project::find($this->invite->project_id)->name]);
     }
 }

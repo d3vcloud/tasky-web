@@ -3,10 +3,14 @@
 
 {{ $user }} invites you to join the project:
 
-@component('mail::button', ['url' => $url,'color' => 'blue'])
-Register
+@component('mail::project',['title' => $project ,'url' => $url,'color' => 'default'])
+    Join to Project
 @endcomponent
 
+{{--@component('mail::button', ['url' => $url,'color' => 'default'])
+Join to Project
+@endcomponent
+--}}
 Thanks,<br>
-{{ config('app.name') }}
+{{ $user }}
 @endcomponent

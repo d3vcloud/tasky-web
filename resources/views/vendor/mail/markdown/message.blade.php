@@ -1,7 +1,7 @@
 @component('mail::layout')
     {{-- Header --}}
     @slot('header')
-        @component('mail::header', ['url' => config('app.url')])
+        @component('mail::header')
             {{ config('app.name') }}
         @endcomponent
     @endslot
@@ -9,14 +9,14 @@
     {{-- Body --}}
     {{ $slot }}
 
-    {{-- Subcopy --}}
+    {{-- Subcopy
     @isset($subcopy)
         @slot('subcopy')
             @component('mail::subcopy')
                 {{ $subcopy }}
             @endcomponent
         @endslot
-    @endisset
+    @endisset--}}
 
     {{-- Footer --}}
     @slot('footer')
