@@ -31,7 +31,7 @@
 
                     <!-- Email Body -->
                     <tr>
-                        <td class="body" width="100%" cellpadding="0" cellspacing="0">
+                        <td class="body" width="100%" cellpadding="0" cellspacing="0" style="border-right: thin solid;border-left: thin solid;">
                             <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0">
                                 <!-- Body content -->
                                 <tr>
