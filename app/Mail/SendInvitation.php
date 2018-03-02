@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\Invite;
+use Auth;
 
 class SendInvitation extends Mailable
 {
@@ -33,6 +34,8 @@ class SendInvitation extends Mailable
     public function build()
     {
         return $this->from('demosweb.app@gmail.com')
-            ->markdown('emails.send.invitation',['url' => url('/').'/accept/'.$this->invite->token]);
+            ->markdown('emails.send.invitation',
+                ['url'  => url('/').'/accept/'.$this->invite->token,
+                 'user' => Auth::user()->first_name.' '.Auth::user()->last_name]);
     }
 }

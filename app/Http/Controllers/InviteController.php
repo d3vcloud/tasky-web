@@ -17,15 +17,12 @@ class InviteController extends Controller
 {
     public function send(Request $request)
     {
-        //if(!\Session::has('idProjectSelected'))
-        //\Session::put('idProjectSelected',$request->id);
-
         if($request->ajax())
         {
             if(is_array($request->emails)){
                 foreach ($request->emails as $email) {
                     if($this->isNotRegistred($email)){
-                        $invite = $this->process($email);
+                        $invite = $this->process($email,$request->id);
                         if(!is_null($invite))
                             Mail::to($email)->send(new SendInvitation($invite));
 
@@ -46,7 +43,7 @@ class InviteController extends Controller
         return false;
     }
 
-    public function process($email)
+    public function process($email,$idProject)
     {
         do {
             $token = str_random(15);
@@ -57,8 +54,10 @@ class InviteController extends Controller
         $invite->token = $token;
         $invite->accepted = 0;
 
-        if($invite->save())
-            return $invite;
+        $project = Project::find($idProject);
+        if(!is_null($project))
+            if($project->invites()->save($invite))
+                return $invite;
 
         return null;
     }
@@ -67,17 +66,17 @@ class InviteController extends Controller
     {
         $invite = Invite::where('token', $token)->first();
         if (is_null($invite) || $invite->accepted == 1){
-            //if the invite doesn't exist do something more graceful than this
             abort(404);
         }
 
         $email = $invite->email;
+        $myproject = $invite->project_id;
 
         $invite->accepted = 1;
-        $invite->accepted_at = \Carbon\Carbon::now(\Session::get('timezone'))->toDateTimeString();
+        $invite->accepted_at = \Carbon\Carbon::now()->toDateTimeString();
         $invite->save();
 
-        return view('register.userguest',compact('email'));
+        return view('register.userguest',compact('email','myproject'));
     }
 
     public function newUser(RegisterUserRequest $request)
@@ -89,11 +88,12 @@ class InviteController extends Controller
         $user->username   = $request->username;
         $user->password   = bcrypt($request->password);
         $user->photo      = '/img/default-user.png';
-        $user->save();
-
-        $project = Project::find(8);
-        $project->users()->attach($user);
-
+        if($user->save())
+        {
+            $project = Project::find($request->myproject);
+            if(!is_null($project))
+                $project->users()->attach($user);
+        }
         return redirect()->route('app.login.form');
     }
 }

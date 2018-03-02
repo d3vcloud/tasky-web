@@ -37,11 +37,9 @@ class AutenticacionController extends Controller
 
     public function logout(Request $request)
     {
-		//\Session::forget('idPeriodoSeleccionado');
         \Session::forget('idProject');
         \Session::forget('timezone');
         \Session::forget('idCurrentTask');
-        \Session::forget('idProjectSelected');
 
         Auth::logout();
 

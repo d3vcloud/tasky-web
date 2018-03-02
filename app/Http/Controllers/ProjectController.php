@@ -25,7 +25,6 @@ class ProjectController extends Controller
                 $project->description = $request->description;
 
                 //$user = \App\User::find(Auth::user()->id);
-
                 if($project->save()){
                     $project->users()->attach(Auth::user()->id);
                     return "Save";

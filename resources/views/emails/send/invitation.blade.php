@@ -1,10 +1,10 @@
 @component('mail::message')
-# Introduction
+# Let's collaborate!
 
-The body of your message.
+{{ $user }} invites you to join the project:
 
-@component('mail::button', ['url' => $url])
-Button Text
+@component('mail::button', ['url' => $url,'color' => 'blue'])
+Register
 @endcomponent
 
 Thanks,<br>

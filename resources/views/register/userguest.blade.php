@@ -34,6 +34,8 @@
 
                 {{  csrf_field() }}
 
+                <input type="hidden" name="myproject" id="myproject" value="{{ $myproject }}">
+
                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                     <div class="col-12">
                         <input class="form-control" type="text" name="first_name" placeholder="First Name" value="{{ old('first_name') }}" required autofocus>
