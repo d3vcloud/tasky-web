@@ -23,7 +23,7 @@ class BoardController extends Controller
         $timezone_offset_minutes = $request->timezone;
 
         $timezone_name = timezone_name_from_abbr("", $timezone_offset_minutes*60, false);
-;
+
         if(!(\Session::has('timezone'))){
             \Session::put('timezone',$timezone_name);
             return "Configured";

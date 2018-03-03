@@ -15,10 +15,20 @@
 	                	Members
 	                </label>
 	                <div class="add-members">
-	                	<button class="btn btn-inverse waves-light"
-	                	style="font-size: 10px !important;">
-	                		<i class="fa fa-plus"></i>
-	                	</button>
+						<div class="messagepop pop members-popup" style="display: none;">
+							<h6 style="margin: 8px 0;">Add Members</h6>
+							<button class="close-popup">x</button>
+							<hr style="width:260px;margin-top: initial;margin-bottom: 3%;">
+							<div class="form-group">
+								<div id="members" style="margin-top: 15px;margin-left: 16px;">
+								</div>
+							</div>
+
+						</div>
+						<button class="popup btn btn-inverse waves-light"
+								style="font-size: 10px !important;cursor:pointer;" id="myPopupMembers">
+							<i class="fa fa-plus"></i>
+						</button>
 	                </div>
 	           	</div>
 	        </div>
@@ -29,7 +39,7 @@
 						Labels
 	                </label>
 	                <div class="add-labels">
-						<div class="messagepop pop" style="display: none;">
+						<div class="messagepop pop labels-popup" style="display: none;">
                             <h6 style="margin: 8px 0;">New Label</h6>
 							<button class="close-popup">x</button>
                             <hr style="width:260px;margin-top: initial;margin-bottom: 3%;">

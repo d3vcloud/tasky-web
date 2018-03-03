@@ -82,8 +82,13 @@ class TaskController extends Controller
     public function getDetails(Task $task)
     {
         \Session::put('idCurrentTask',$task->id);
+
+        $project = Project::find(\Session::get('idProject'));
+
         $attachments = array();
         $activities = array();
+        $members = array();
+
         $fun = new Functions;
         foreach ($task->task_attachments()->get() as $key => $value) {
             $end = explode('.', $value->url);
@@ -111,13 +116,22 @@ class TaskController extends Controller
             );
         }
 
-        //config(['app.timezone' => 'America/Lima']);
+        foreach ($project->users()->orderBy('last_name','ASC')->get() as $key => $value) {
+            $members[] = array(
+                "id" => $value->id,
+                "name" => $value->first_name,
+                "last_name" => $value->last_name,
+                "photo" => $value->photo
+            );
+        }
+
         return response()->json([
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
                 "attachments" => $attachments,
                 "activities" => $activities,
-                "labels" => $task->task_labels()->get()
+                "labels" => $task->task_labels()->get(),
+                "members" => $members
             ]);
     }
 

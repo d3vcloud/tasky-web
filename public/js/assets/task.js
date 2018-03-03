@@ -106,22 +106,33 @@ function updateDate(datep) {
     });
 }
 
+function addMemberToTask()
+{
+    $(".btn-member").click(function(){
+        console.log('Added: ' + $(this).data('id'));
+        $(this).addClass('selected');
+    });
+}
+
+
+
 function showInformation() {
     var description = "";
     var due_date = "";
-    var html,status,can,result,url,tbody,date,activity,message,content,label;
+    var html,status,can,result,url,tbody,date,activity,message,content,label,members;
     var table = $("#ListAttachments tbody");
 
    $('.main-container').on('click','.btn-task-detail',function(){
 
         url = $(this).data('url');
-        console.log(url);
+        //console.log(url);
         html = "";
         can = 0;
         table.html('');
         tbody = "";
         activity = "";
         label = "";
+        members = "";
 
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);
@@ -233,6 +244,20 @@ function showInformation() {
 
             }else{
                 $("#listLabels").hide();
+            }
+
+            $("#members").html('');
+            if(data.members)
+            {
+                for (var i = 0; i < data.members.length; i++)
+                {
+                    members += '<div class="container-members">';
+                    members += '<img class="rounded-circle" height="29" width="29" src="'+data.members[i].photo+'" />';
+                    members += '<span style="margin-left:19px;font-size: 15px;vertical-align: middle;" data-id="'+data.members[i].id+'" ' +
+                        'class="btn-member">'+data.members[i].name+ ' ' +data.members[i].last_name+'</span>';
+                    members += '</div>';
+                }
+                $("#members").html(members);
             }
         });
    });

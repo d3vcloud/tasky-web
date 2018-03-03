@@ -32,6 +32,17 @@
         .picker:hover {
             transform: scale(1.1);
         }
+        .container-members {
+            cursor: pointer;
+            border-radius: 5px;
+            height: 34px;
+            width: 230px;
+        }
+        .container-members:hover {
+            background-color: #4c5667;
+            color: #fff;
+            font-weight: 500;
+        }
         /*.p-customize{
             margin-bottom: 5px !important;
         }*/
@@ -383,11 +394,16 @@
         });
 
         $("#myPopup").click(function(){
-            $(".messagepop").show();
-        })
+            $(".labels-popup").show();
+        });
+
+        $("#myPopupMembers").click(function(){
+            $(".members-popup").show();
+        });
 
         /*Labels*/
         saveLabel();
+        addMemberToTask();
 	</script>
 @stop
 
