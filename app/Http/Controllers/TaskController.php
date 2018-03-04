@@ -135,5 +135,20 @@ class TaskController extends Controller
             ]);
     }
 
+    public function addMember(Request $request)
+    {
+        $task = Task::find(\Session::get('idCurrentTask'));
+
+        if(!is_null($task))
+        {
+            if($request->selected)
+                $task->users()->attach($request->id);
+            else
+                $task->users()->detach($request->id);
+
+            return "Added";
+        }
+    }
+
     
 }

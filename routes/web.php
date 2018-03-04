@@ -47,6 +47,7 @@ Route::prefix('task')->group(function(){
     Route::post('/update','TaskController@update')->name('app.update.task');
     Route::get('/delete/{task}','TaskController@destroy')->name('app.delete.task');
     Route::get('/detail/{task}','TaskController@getDetails')->name('app.details.task');
+    Route::post('/addmember','TaskController@addMember')->name('app.addmember.task');
 });
 
 Route::prefix('subtask')->group(function(){
@@ -78,4 +79,5 @@ Route::post('/send','InviteController@send')->name('app.send.invitation');
 
 Route::get('/accept/{token}', 'InviteController@accept')->name('app.accept.invitation');
 Route::post('/newuser','InviteController@newUser')->name('app.new.user');
+
 //Route::get('/home', 'HomeController@index')->name('home');

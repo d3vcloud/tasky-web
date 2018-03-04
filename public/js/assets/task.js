@@ -108,9 +108,25 @@ function updateDate(datep) {
 
 function addMemberToTask()
 {
-    $(".btn-member").click(function(){
-        console.log('Added: ' + $(this).data('id'));
-        $(this).addClass('selected');
+    var id,isSelected,sel;
+    $("#members").on('click','.btn-member',function(){
+
+        sel = $(this);
+        id = sel.data('id');
+
+        if(sel.hasClass('selected')) {
+            sel.removeClass('selected').addClass('deselected'); isSelected = 0;
+        }else{
+            sel.removeClass('deselected').addClass('selected'); isSelected = 1;
+        }
+        console.log('Added: ' + sel.data('id') + ' Class:' + isSelected);
+
+        if(id != 0 || id > 0)
+        {
+            $.post('/task/addmember',{id:id,selected:isSelected},function(data){
+                console.log(data);
+            });
+        }
     });
 }
 
@@ -251,10 +267,10 @@ function showInformation() {
             {
                 for (var i = 0; i < data.members.length; i++)
                 {
-                    members += '<div class="container-members">';
+                    members += '<div class="container-members btn-member" data-id="'+data.members[i].id+'">';
                     members += '<img class="rounded-circle" height="29" width="29" src="'+data.members[i].photo+'" />';
-                    members += '<span style="margin-left:19px;font-size: 15px;vertical-align: middle;" data-id="'+data.members[i].id+'" ' +
-                        'class="btn-member">'+data.members[i].name+ ' ' +data.members[i].last_name+'</span>';
+                    members += '<span style="margin-left:19px;font-size: 15px;vertical-align: middle;"  ' +
+                        '>'+data.members[i].name+ ' ' +data.members[i].last_name+'</span>';
                     members += '</div>';
                 }
                 $("#members").html(members);

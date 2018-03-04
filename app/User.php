@@ -24,6 +24,12 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function tasks()
+    {
+        return $this->belongsToMany('App\Task','task_users')
+            ->withTimestamps();
+    }
+
     public function activities()
     {
         return $this->hasMany('App\Activity');

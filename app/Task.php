@@ -32,4 +32,10 @@ class Task extends Model
     {
         return $this->hasMany('App\TaskLabel');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User','task_users')
+            ->withTimestamps();
+    }
 }
