@@ -119,8 +119,7 @@ function addMemberToTask()
         }else{
             sel.removeClass('deselected').addClass('selected'); isSelected = 1;
         }
-        console.log('Added: ' + sel.data('id') + ' Class:' + isSelected);
-
+        //console.log('Added: ' + sel.data('id') + ' Class:' + isSelected);
         if(id != 0 || id > 0)
         {
             $.post('/task/addmember',{id:id,selected:isSelected},function(data){
@@ -130,12 +129,10 @@ function addMemberToTask()
     });
 }
 
-
-
 function showInformation() {
     var description = "";
     var due_date = "";
-    var html,status,can,result,url,tbody,date,activity,message,content,label,members;
+    var html,status,can,result,url,tbody,date,activity,message,content,label,members,isMember;
     var table = $("#ListAttachments tbody");
 
    $('.main-container').on('click','.btn-task-detail',function(){
@@ -267,11 +264,16 @@ function showInformation() {
             {
                 for (var i = 0; i < data.members.length; i++)
                 {
-                    members += '<div class="container-members btn-member" data-id="'+data.members[i].id+'">';
+                    if(data.members[i].isMember)
+                        isMember = "selected";
+
+                    members += '<div class="container-members btn-member '+isMember+'" data-id="'+data.members[i].id+'">';
                     members += '<img class="rounded-circle" height="29" width="29" src="'+data.members[i].photo+'" />';
                     members += '<span style="margin-left:19px;font-size: 15px;vertical-align: middle;"  ' +
                         '>'+data.members[i].name+ ' ' +data.members[i].last_name+'</span>';
                     members += '</div>';
+
+                    isMember = "deselected";
                 }
                 $("#members").html(members);
             }

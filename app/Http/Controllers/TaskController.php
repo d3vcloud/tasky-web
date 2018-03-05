@@ -78,6 +78,15 @@ class TaskController extends Controller
         return "Error";
     }
 
+    public function isMember($task,$idUser)
+    {
+        $isMember = $task->users()->where('id',$idUser)->first();
+        if(!is_null($isMember))
+            return true;
+
+        return false;
+    }
+
     
     public function getDetails(Task $task)
     {
@@ -88,6 +97,7 @@ class TaskController extends Controller
         $attachments = array();
         $activities = array();
         $members = array();
+        $isSelected = false;
 
         $fun = new Functions;
         foreach ($task->task_attachments()->get() as $key => $value) {
@@ -116,12 +126,14 @@ class TaskController extends Controller
             );
         }
 
-        foreach ($project->users()->orderBy('last_name','ASC')->get() as $key => $value) {
+        foreach ($project->users()->orderBy('last_name','ASC')->get() as $key => $value)
+        {
             $members[] = array(
                 "id" => $value->id,
                 "name" => $value->first_name,
                 "last_name" => $value->last_name,
-                "photo" => $value->photo
+                "photo" => $value->photo,
+                "isMember" => $this->isMember($task,$value->id)
             );
         }
 
@@ -132,7 +144,7 @@ class TaskController extends Controller
                 "activities" => $activities,
                 "labels" => $task->task_labels()->get(),
                 "members" => $members
-            ]);
+        ]);
     }
 
     public function addMember(Request $request)
@@ -146,7 +158,7 @@ class TaskController extends Controller
             else
                 $task->users()->detach($request->id);
 
-            return "Added";
+            return "Success";
         }
     }
 

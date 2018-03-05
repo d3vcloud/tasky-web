@@ -20,7 +20,7 @@
 							<button class="close-popup">x</button>
 							<hr style="width:260px;margin-top: initial;margin-bottom: 3%;">
 							<div class="form-group">
-								<div id="members" style="margin-top: 15px;margin-left: 16px;">
+								<div id="members" class="scrollbar" style="margin-top: 15px;margin-left: 16px;width: auto; height: 180px; overflow-y: auto;">
 								</div>
 							</div>
 

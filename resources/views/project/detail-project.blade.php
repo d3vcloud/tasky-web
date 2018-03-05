@@ -43,6 +43,13 @@
             color: #fff;
             font-weight: 500;
         }
+        .selected {
+            color:red;
+        }
+        .deselected {
+            color:#797979;
+        }
+
         /*.p-customize{
             margin-bottom: 5px !important;
         }*/
