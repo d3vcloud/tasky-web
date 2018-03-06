@@ -127,8 +127,8 @@
                                             <p class="m-b-0 text-muted mt{{ $task->id }}">
                                             @if(count($task->users()->get()))
                                                 @foreach($task->users()->get() as $user)
-                                                   <img id="memberTV{{ $user->id }}{{ $task->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
-                                                             class="thumb-sm rounded-circle img-task">
+                                                   <img id="memberTV{{ $user->id }}{{ $task->id }}" data-task-id="{{ $task->id }}" data-id="{{ $user->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
+                                                             class="thumb-sm rounded-circle img-task task-user">
                                                 @endforeach
                                             @endif
                                             </p>
@@ -198,8 +198,8 @@
                                                 <p class="m-b-0 text-muted mt{{ $task1->id }}">
                                                     @if(count($task1->users()->get()))
                                                         @foreach($task1->users()->get() as $user)
-                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
-                                                                 class="thumb-sm rounded-circle img-task">
+                                                            <img id="memberTV{{ $user->id }}{{ $task1->id }}" data-task-id="{{ $task1->id }}" data-id="{{ $user->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
+                                                                 class="thumb-sm rounded-circle img-task task-user">
                                                         @endforeach
                                                     @endif
                                                 </p>
@@ -271,8 +271,8 @@
                                                 <p class="m-b-0 text-muted mt{{ $task->id }}">
                                                     @if(count($task->users()->get()))
                                                         @foreach($task->users()->get() as $user)
-                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
-                                                                 class="thumb-sm rounded-circle img-task">
+                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}" data-task-id="{{ $task->id }}" data-id="{{ $user->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
+                                                                 class="thumb-sm rounded-circle img-task task-user">
                                                         @endforeach
                                                     @endif
                                                 </p>
@@ -418,6 +418,7 @@
         /*Labels*/
         saveLabel();
         addMemberToTask();
+        removeMember();
 	</script>
 @stop
 

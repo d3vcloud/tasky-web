@@ -178,4 +178,17 @@ class TaskController extends Controller
         }
         return "Error";
     }
+
+    public function removeMember(Request $request)
+    {
+        $task = Task::find($request->idTask);
+        if(!is_null($task))
+        {
+            $task->users()->detach($request->idUser);
+
+            return "Success";
+
+        }
+        return "Error";
+    }
 }

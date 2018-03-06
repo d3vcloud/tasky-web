@@ -17,7 +17,7 @@ function addMemberToTask()
             $.post('/task/addmember',{id:id,selected:isSelected},function(data){
                 if(data.status == "Success")
                     if(isSelected) concatMember(data.user.id,data.user.photo,data.user.last_name,data.taskid);
-                    else removeMember(data.user.id,data.taskid);
+                    else removeMemberHTML(data.user.id,data.taskid);
             });
         }
     });
@@ -28,10 +28,26 @@ function concatMember(id,img,alt,idTask)
     $("#membersTask").append('<img id="memberTD'+id+'" style="border-radius: 6px;border:1px solid #4c5667" alt="'+alt+'" ' +
         'height="35" width="35" src="'+img+'">');
 
-    $(".mt"+idTask).append('<img id="memberTV'+id+''+idTask+'" src="'+img+'" alt="'+alt+'" class="thumb-sm rounded-circle img-task">');
+    $(".mt"+idTask).append('<img id="memberTV'+id+''+idTask+'" data-task-id="'+idTask+'" data-id="'+id+'" src="'+img+'" alt="'+alt+'" ' +
+        'class="thumb-sm rounded-circle img-task task-user">');
 }
 
-function removeMember(idUser,idTask)
+function removeMemberHTML(idUser,idTask)
 {
     $("#memberTD"+idUser).remove(); $("#memberTV"+idUser+""+idTask).remove();
+}
+
+function removeMember()
+{
+    var user,idUser,idTask;
+    $(".text-muted").on('click','.task-user',function(){
+        user = $(this);
+        idUser = user.data('id');
+        idTask = user.data('task-id');
+
+        $.post('/task/rmvmember',{idUser:idUser,idTask:idTask},function(data){
+            if(data == "Success")
+                $("#memberTV"+idUser+""+idTask).remove();
+        });
+    });
 }
