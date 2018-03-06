@@ -106,33 +106,11 @@ function updateDate(datep) {
     });
 }
 
-function addMemberToTask()
-{
-    var id,isSelected,sel;
-    $("#members").on('click','.btn-member',function(){
-
-        sel = $(this);
-        id = sel.data('id');
-
-        if(sel.hasClass('selected')) {
-            sel.removeClass('selected').addClass('deselected'); isSelected = 0;
-        }else{
-            sel.removeClass('deselected').addClass('selected'); isSelected = 1;
-        }
-        //console.log('Added: ' + sel.data('id') + ' Class:' + isSelected);
-        if(id != 0 || id > 0)
-        {
-            $.post('/task/addmember',{id:id,selected:isSelected},function(data){
-                console.log(data);
-            });
-        }
-    });
-}
-
 function showInformation() {
     var description = "";
     var due_date = "";
-    var html,status,can,result,url,tbody,date,activity,message,content,label,members,isMember;
+    var html,status,can,result,url,tbody,date,activity,message,content,
+        label,members,isMember,membersTask;
     var table = $("#ListAttachments tbody");
 
    $('.main-container').on('click','.btn-task-detail',function(){
@@ -146,6 +124,7 @@ function showInformation() {
         activity = "";
         label = "";
         members = "";
+        membersTask = "";
 
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);
@@ -259,6 +238,7 @@ function showInformation() {
                 $("#listLabels").hide();
             }
 
+
             $("#members").html('');
             if(data.members)
             {
@@ -277,6 +257,25 @@ function showInformation() {
                 }
                 $("#members").html(members);
             }
+
+            $("#membersTask").html('');
+            if(data.membersTask)
+            {
+                $("#listMembers").show();
+
+                for (var i = 0; i < data.membersTask.length; i++)
+                {
+                    membersTask += '<img id="memberTD'+data.membersTask[i].id+'" style="border-radius:6px;border:1px solid #4c5667" ' +
+                        'alt="'+data.membersTask[i].lastname+'" height="35" ' +
+                        'width="35" src="'+data.membersTask[i].photo+'" /> ';
+                }
+
+                $("#membersTask").html(membersTask);
+
+            }else{
+                $("#listMembers").hide();
+            }
+
         });
    });
 }

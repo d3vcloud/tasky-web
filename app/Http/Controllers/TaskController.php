@@ -97,7 +97,7 @@ class TaskController extends Controller
         $attachments = array();
         $activities = array();
         $members = array();
-        $isSelected = false;
+        $membersTask = array();
 
         $fun = new Functions;
         foreach ($task->task_attachments()->get() as $key => $value) {
@@ -137,13 +137,23 @@ class TaskController extends Controller
             );
         }
 
+        foreach ($task->users()->orderBy('last_name','ASC')->get() as $key => $value)
+        {
+            $membersTask[] = array(
+                "id" => $value->id,
+                "photo" => $value->photo,
+                "lastname" => $value->last_name
+            );
+        }
+
         return response()->json([
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
                 "attachments" => $attachments,
                 "activities" => $activities,
                 "labels" => $task->task_labels()->get(),
-                "members" => $members
+                "members" => $members,
+                "membersTask" => $membersTask
         ]);
     }
 
@@ -158,9 +168,14 @@ class TaskController extends Controller
             else
                 $task->users()->detach($request->id);
 
-            return "Success";
-        }
-    }
+            return response()->json([
+                "status" => "Success",
+                "user" => \App\User::select('id','last_name','photo')
+                        ->where('id',$request->id)->first(),
+                "taskid" => \Session::get('idCurrentTask')
+            ]);
 
-    
+        }
+        return "Error";
+    }
 }

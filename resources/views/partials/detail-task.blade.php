@@ -96,6 +96,18 @@
 	           	</div>
 	        </div>
 	    </div>
+		<div class="row" id="listMembers">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label class="control-label">
+						Members
+					</label>
+					<div id="membersTask">
+
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row" id="listLabels">
 			<div class="col-md-12">
 				<div class="form-group">

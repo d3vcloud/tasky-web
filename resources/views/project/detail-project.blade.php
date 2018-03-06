@@ -124,11 +124,13 @@
                                                 <i class="fa fa-percent"></i>
 
                                             </p>
-                                            <p class="m-b-0">
-                                                <a href="#" class="text-muted">
-                                                    <img src="/img/default-user.png" alt="task-user"
-                                                         class="thumb-sm rounded-circle m-r-10 img-task">
-                                                </a>
+                                            <p class="m-b-0 text-muted mt{{ $task->id }}">
+                                            @if(count($task->users()->get()))
+                                                @foreach($task->users()->get() as $user)
+                                                   <img id="memberTV{{ $user->id }}{{ $task->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
+                                                             class="thumb-sm rounded-circle img-task">
+                                                @endforeach
+                                            @endif
                                             </p>
                                         </div>
                                         </li>
@@ -193,11 +195,13 @@
                                                     <i class="fa fa-percent"></i>
 
                                                 </p>
-                                                <p class="m-b-0">
-                                                    <a href="#" class="text-muted">
-                                                        <img src="/img/default-user.png" alt="task-user"
-                                                             class="thumb-sm rounded-circle m-r-10 img-task">
-                                                    </a>
+                                                <p class="m-b-0 text-muted mt{{ $task1->id }}">
+                                                    @if(count($task1->users()->get()))
+                                                        @foreach($task1->users()->get() as $user)
+                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
+                                                                 class="thumb-sm rounded-circle img-task">
+                                                        @endforeach
+                                                    @endif
                                                 </p>
                                             </div>
                                         </li>
@@ -264,11 +268,13 @@
                                                     <i class="fa fa-percent"></i>
 
                                                 </p>
-                                                <p class="m-b-0">
-                                                    <a href="#" class="text-muted">
-                                                        <img src="/img/default-user.png" alt="task-user"
-                                                             class="thumb-sm rounded-circle m-r-10 img-task">
-                                                    </a>
+                                                <p class="m-b-0 text-muted mt{{ $task->id }}">
+                                                    @if(count($task->users()->get()))
+                                                        @foreach($task->users()->get() as $user)
+                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
+                                                                 class="thumb-sm rounded-circle img-task">
+                                                        @endforeach
+                                                    @endif
                                                 </p>
                                             </div>
                                         </li>
@@ -301,6 +307,7 @@
     <script src="{{ asset('js/assets/attachment.js') }}"></script>
     <script src="{{ asset('js/assets/activity.js') }}"></script>
     <script src="{{ asset('js/assets/label.js') }}"></script>
+    <script src="{{ asset('js/assets/member.js') }}"></script>
      <!--FooTable
      <script src="../plugins/footable/js/footable.all.min.js"></script>
 

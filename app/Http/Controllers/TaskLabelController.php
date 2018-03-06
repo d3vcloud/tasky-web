@@ -28,14 +28,4 @@ class TaskLabelController extends Controller
         return "Error";
     }
 
-
-    public function update(Request $request, TaskLabel $taskLabel)
-    {
-        //
-    }
-
-    public function destroy(TaskLabel $taskLabel)
-    {
-        //
-    }
 }
