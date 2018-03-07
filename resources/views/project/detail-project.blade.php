@@ -97,20 +97,20 @@
                                         data-url="{{ route('app.details.task', $task->id ) }}">
                                             {{ $task->name }}
                                         </a>
-                                        <div class="m-t-20" style="margin-top: 7px !important;">
+                                        <div class="m-t-20" style="margin-top: 7px !important;height:20px;">
                                             <p class="pull-right m-b-0">
                                                 <i class="fa fa-comment-o"></i> 
                                                     <span id="comment{{ $task->id }}">
                                                         {{ $task->task_activities()->where('type','message')->count() }}
                                                     </span>
                                             </p>
-                                            <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                            <p class="pull-right m-b-0" style="margin:0px 28px;">
                                                 <i class="fa fa-paperclip"></i>
                                                 <span id="attachment{{ $task->id }}">
                                                    {{ $task->task_attachments()->count() }}
                                                 </span>
                                             </p>
-                                            <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                            <p class="pull-right m-b-0" style="margin:0px 12px;">
                                                 <?php
                                                     $result = 0;
                                                     if($task->task_subtasks()->count() != 0){
@@ -170,20 +170,20 @@
                                                data-url="{{ route('app.details.task', $task1->id ) }}">
                                                 {{ $task1->name }}
                                             </a>
-                                            <div class="m-t-20" style="margin-top: 7px !important;">
+                                            <div class="m-t-20" style="margin-top: 7px !important;height:20px;">
                                                 <p class="pull-right m-b-0">
                                                     <i class="fa fa-comment-o"></i>
                                                     <span id="comment{{ $task1->id }}">
                                                         {{ $task1->task_activities()->where('type','message')->count() }}
                                                     </span>
                                                 </p>
-                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                <p class="pull-right m-b-0" style="margin:0px 28px;">
                                                     <i class="fa fa-paperclip"></i>
                                                     <span id="attachment{{ $task1->id }}">
                                                    {{ $task1->task_attachments()->count() }}
                                                 </span>
                                                 </p>
-                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                <p class="pull-right m-b-0" style="margin:0px 12px;">
                                                     <?php
                                                     $result = 0;
                                                     if($task1->task_subtasks()->count() != 0){
@@ -241,20 +241,20 @@
                                                data-url="{{ route('app.details.task', $task->id ) }}">
                                                 {{ $task->name }}
                                             </a>
-                                            <div class="m-t-20" style="margin-top: 7px !important;">
+                                            <div class="m-t-20" style="margin-top: 7px !important;height:20px;">
                                                 <p class="pull-right m-b-0">
                                                     <i class="fa fa-comment-o"></i>
                                                     <span id="comment{{ $task->id }}">
                                                         {{ $task->task_activities()->where('type','message')->count() }}
                                                     </span>
                                                 </p>
-                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                <p class="pull-right m-b-0" style="margin:0px 28px;">
                                                     <i class="fa fa-paperclip"></i>
                                                     <span id="attachment{{ $task->id }}">
                                                    {{ $task->task_attachments()->count() }}
                                                 </span>
                                                 </p>
-                                                <p class="pull-right m-b-0" style="margin:0px 25px;">
+                                                <p class="pull-right m-b-0" style="margin:0px 12px;">
                                                     <?php
                                                     $result = 0;
                                                     if($task->task_subtasks()->count() != 0){

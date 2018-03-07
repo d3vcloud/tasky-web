@@ -1,9 +1,4 @@
-/*
-Template Name: UBold Dashboard
-Author: Coderthemes
-Email: coderthemes@gmail.com
-File: Main Css
-*/
+
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Source+Sans+Pro:400,600,700");
 /* =============
    Common
@@ -299,7 +294,8 @@ a:focus {
   border-radius: 5px;
   margin-bottom: 20px;
   background-clip: padding-box;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+}
 
 /* Grid page */
 .grid-structure .grid-container {
@@ -5532,13 +5528,13 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
 /* =============
   Task board
 ============= */
+/*border: 1px solid rgba(152, 166, 173, 0.2);*/
 .taskList li {
-  background-color: #fafafa;
-  border: 1px solid rgba(152, 166, 173, 0.2);
-  border-left-width: 3px;
-  border-radius: 3px;
+  background-color: #fff;
+  border: 1px solid #4c5667;
+  border-left-width: 2px;
   padding: 10px;
-  margin-bottom: 15px; }
+ }
 .taskList .task-success {
   border-left-color: #81c868; }
 .taskList .task-info {

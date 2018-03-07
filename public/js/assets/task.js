@@ -240,7 +240,7 @@ function showInformation() {
 
 
             $("#members").html('');
-            if(data.members)
+            if(data.members.length)
             {
                 for (var i = 0; i < data.members.length; i++)
                 {
@@ -259,8 +259,10 @@ function showInformation() {
             }
 
             $("#membersTask").html('');
-            if(data.membersTask)
+            if(data.membersTask.length)
             {
+                console.log("SI");
+                console.log(data.membersTask);
                 $("#listMembers").show();
 
                 for (var i = 0; i < data.membersTask.length; i++)
@@ -273,6 +275,8 @@ function showInformation() {
                 $("#membersTask").html(membersTask);
 
             }else{
+                console.log("NO");
+                console.log(data.membersTask);
                 $("#listMembers").hide();
             }
 
