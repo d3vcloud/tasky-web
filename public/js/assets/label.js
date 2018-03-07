@@ -6,6 +6,8 @@ function saveLabel()
                 concatLabel(rpta.label.name,rpta.label.color,rpta.taskid);
                 $("#nameLabel").val('');
                 $("#nameLabel").focus();
+
+                if($(".card-tags-detail > span").length) $("#listLabels").show();
             }
         });
     });

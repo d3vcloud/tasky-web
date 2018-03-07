@@ -16,8 +16,13 @@ function addMemberToTask()
         {
             $.post('/task/addmember',{id:id,selected:isSelected},function(data){
                 if(data.status == "Success")
+                    //$("#listMembers").show();
                     if(isSelected) concatMember(data.user.id,data.user.photo,data.user.last_name,data.taskid);
                     else removeMemberHTML(data.user.id,data.taskid);
+
+                    if($("#membersTask > img").length) $("#listMembers").show();
+                    else $("#listMembers").hide();
+
             });
         }
     });

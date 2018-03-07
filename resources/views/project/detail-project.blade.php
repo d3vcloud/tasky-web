@@ -84,14 +84,14 @@
                                                 </a>
                                                 <label></label>
                                             </div>
+                                            <div class="card-tags ct{{ $task->id }}" >
                                             @if(count($task->task_labels()->get()))
-                                                <div class="card-tags ct{{ $task->id }}" >
                                                 @foreach($task->task_labels()->get() as $label)
                                                         <span class="card-label" style="background-color: {{ $label->color }}"
                                                               title="{{ $label->name }}">{{ $label->name }}</span>
                                                 @endforeach
-                                                </div>
                                             @endif
+                                            </div>
                                         <a class="task-title btn-task-detail" id="task{{ $task->id }}"
                                            data-toggle="modal" data-target="#modalDetail"
                                         data-url="{{ route('app.details.task', $task->id ) }}">
@@ -157,14 +157,14 @@
                                                 </a>
                                                 <label></label>
                                             </div>
+                                            <div class="card-tags ct{{ $task1->id }}" >
                                             @if(count($task1->task_labels()->get()))
-                                                <div class="card-tags ct{{ $task1->id }}" >
                                                     @foreach($task1->task_labels()->get() as $label)
                                                         <span class="card-label" style="background-color: {{ $label->color }}"
                                                               title="{{ $label->name }}">{{ $label->name }}</span>
                                                     @endforeach
-                                                </div>
                                             @endif
+                                            </div>
                                             <a class="task-title btn-task-detail" id="task{{ $task1->id }}"
                                                data-toggle="modal" data-target="#modalDetail"
                                                data-url="{{ route('app.details.task', $task1->id ) }}">
@@ -228,14 +228,16 @@
                                                 </a>
                                                 <label></label>
                                             </div>
+                                            <div class="card-tags ct{{ $task->id }}" >
                                             @if(count($task->task_labels()->get()))
-                                                <div class="card-tags ct{{ $task->id }}" >
+
                                                     @foreach($task->task_labels()->get() as $label)
                                                         <span class="card-label" style="background-color: {{ $label->color }}"
                                                               title="{{ $label->name }}">{{ $label->name }}</span>
                                                     @endforeach
-                                                </div>
+
                                             @endif
+                                            </div>
                                             <a class="task-title btn-task-detail" id="task{{ $task->id }}"
                                                data-toggle="modal" data-target="#modalDetail"
                                                data-url="{{ route('app.details.task', $task->id ) }}">

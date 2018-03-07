@@ -114,7 +114,7 @@
 					<label class="control-label">
 						Labels
 					</label>
-					<div id="labels">
+					<div class="card-tags-detail">
 
 					</div>
 				</div>

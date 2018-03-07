@@ -26,6 +26,7 @@ function newTask() {
 
         $('#task-field').focus();
     });
+
 }
 
 function cancel (container) {
@@ -53,9 +54,27 @@ function save (form) {
             html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
             html += '</a>';
             html += '</div>';
-            html += '<a class="task-title btn-task-detail" data-url="/task/detail/'+data.id+'"' +
-                'data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a></li>';
-                                
+            html += '<div class="card-tags ct'+data.id+'">';
+            html += '</div>';
+            html += '<a class="task-title btn-task-detail" id="task'+data.id+'" data-url="/task/detail/'+data.id+'"' +
+                'data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a>';
+            html += '<div class="m-t-20" style="margin-top: 7px !important;height:20px;">';
+            html += '<p class="pull-right m-b-0">';
+            html += '<i class="fa fa-comment-o"></i> ';
+            html += '<span id="comment'+data.id+'">0</span>';
+            html += '</p>';
+            html += '<p class="pull-right m-b-0" style="margin:0px 28px;">';
+            html += '<i class="fa fa-paperclip"></i> ';
+            html += '<span id="attachment'+data.id+'">0</span>';
+            html += '</p>';
+            html += '<p class="pull-right m-b-0" style="margin:0px 12px;">';
+            html += '<span id="percent'+data.id+'">0</span> ';
+            html += '<i class="fa fa-percent"></i>';
+            html += '</p>';
+            html += '<p class="m-b-0 text-muted mt'+data.id+'">';
+            html += '</p>';
+            html += '</div></li>';
+
             $("#upcoming").append(html);
         }
 
@@ -219,20 +238,20 @@ function showInformation() {
 
             }
 
-            $("#labels").html('');
+            $(".card-tags-detail").html('');
             if(data.labels.length){
 
                 $("#listLabels").show();
 
-                label += '<div class="card-tags-detail">';
+                //label += '<div class="card-tags-detail">';
                 for (var i = 0; i < data.labels.length; i++) {
                     label += '<span class="card-label-detail" ' +
                         'style="background-color:'+data.labels[i].color+'" ' +
                         'title="'+data.labels[i].name+'">'+data.labels[i].name+'</span>';
                 }
-                label += '</div>';
+                //label += '</div>';
 
-                $("#labels").html(label);
+                $(".card-tags-detail").html(label);
 
             }else{
                 $("#listLabels").hide();
@@ -261,8 +280,6 @@ function showInformation() {
             $("#membersTask").html('');
             if(data.membersTask.length)
             {
-                console.log("SI");
-                console.log(data.membersTask);
                 $("#listMembers").show();
 
                 for (var i = 0; i < data.membersTask.length; i++)
@@ -275,8 +292,6 @@ function showInformation() {
                 $("#membersTask").html(membersTask);
 
             }else{
-                console.log("NO");
-                console.log(data.membersTask);
                 $("#listMembers").hide();
             }
 
