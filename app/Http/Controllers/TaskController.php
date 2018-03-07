@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\Project;
 use App\Functions;
+use App\User;
+
 use Auth;
+
+use App\Mail\SendNotification;
+
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -163,10 +169,15 @@ class TaskController extends Controller
 
         if(!is_null($task))
         {
-            if($request->selected)
+            $email = User::select('email')->where('id',$request->id)->first();
+            if($request->selected) {
                 $task->users()->attach($request->id);
-            else
+                Mail::to($email)->send(new SendNotification("te agrego a la tarea: ".$task->name));
+            }
+            else{
                 $task->users()->detach($request->id);
+                Mail::to($email)->send(new SendNotification("te ha eliminado de la tarea: ".$task->name));
+            }
 
             return response()->json([
                 "status" => "Success",
@@ -185,7 +196,8 @@ class TaskController extends Controller
         if(!is_null($task))
         {
             $task->users()->detach($request->idUser);
-
+            $email = User::select('email')->where('id',$request->idUser)->first();
+            Mail::to($email)->send(new SendNotification("te ha eliminado de la tarea: ".$task->name));
             return "Success";
 
         }

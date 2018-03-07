@@ -25,7 +25,6 @@ class InviteController extends Controller
                         $invite = $this->process($email,$request->id);
                         if(!is_null($invite))
                             Mail::to($email)->send(new SendInvitation($invite));
-
                     }
                 }
                 return "Sent";

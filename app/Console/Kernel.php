@@ -2,6 +2,11 @@
 
 namespace App\Console;
 
+use App\User;
+
+use App\Mail\SendTasksInformation;
+
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +29,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        foreach (User::select('id','last_name','first_name','email')->get() as $user) {
+            $schedule->call(function() use ($user) {
+                Mail::to($user->email)->send(new SendTasksInformation($user));
+            })->timezone('America/Lima')->everyMinute();
+        }
+
     }
 
     /**

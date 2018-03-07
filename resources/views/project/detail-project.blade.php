@@ -230,12 +230,10 @@
                                             </div>
                                             <div class="card-tags ct{{ $task->id }}" >
                                             @if(count($task->task_labels()->get()))
-
                                                     @foreach($task->task_labels()->get() as $label)
                                                         <span class="card-label" style="background-color: {{ $label->color }}"
                                                               title="{{ $label->name }}">{{ $label->name }}</span>
                                                     @endforeach
-
                                             @endif
                                             </div>
                                             <a class="task-title btn-task-detail" id="task{{ $task->id }}"
