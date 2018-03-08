@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Task;
+use App\User;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -32,8 +33,9 @@ class SendTasksInformation extends Mailable
     public function build()
     {
         $tasks = $this->user->tasks()->get();
-        return $this->markdown('emails.send.mytasksinformation',[
-                'tasks'  => $tasks
+        return $this->view('emails.send.mytasksinformation')
+            ->with([
+                'tasks' => $tasks
             ]);
     }
 }

@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         foreach (User::select('id','last_name','first_name','email')->get() as $user) {
             $schedule->call(function() use ($user) {
                 Mail::to($user->email)->send(new SendTasksInformation($user));
-            })->timezone('America/Lima')->everyMinute();
+            })->timezone('America/Lima')->everyFiveMinutes();
         }
 
     }

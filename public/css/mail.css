@@ -1,0 +1,16 @@
+/*button*/
+.button-default {
+    font-family:Avenir,Helvetica,sans-serif;
+    box-sizing:border-box;
+    border-radius:3px;
+    color:#fff;
+    display:inline-block;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:18px;
+    background-color:#3097d1;
+    border-top:10px solid #3097d1;
+    border-right:18px solid #3097d1;
+    border-bottom:10px solid #3097d1;
+    border-left:18px solid #3097d1
+}
