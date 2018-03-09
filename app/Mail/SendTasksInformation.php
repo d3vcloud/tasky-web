@@ -33,9 +33,11 @@ class SendTasksInformation extends Mailable
     public function build()
     {
         $tasks = $this->user->tasks()->get();
-        return $this->view('emails.send.mytasksinformation')
+        return $this->subject('Summary of your tasks')
+            ->view('emails.send.mytasksinformation')
             ->with([
-                'tasks' => $tasks
+                'tasks' => $tasks,
+                'user' => $this->user->first_name.' '.$this->user->last_name
             ]);
     }
 }

@@ -32,7 +32,8 @@ class SendNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.send.notification',[
+        return $this->subject('Information Task')
+            ->markdown('emails.send.notification',[
                      'message'  => $this->message,
                      'user'     => Auth::user()->first_name.' '.Auth::user()->last_name ]);
     }

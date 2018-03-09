@@ -1,7 +1,7 @@
 @component('mail::message')
 # Information
 
-{{ $user }} {{ message }}.
+{{ $user }} {{ $message }}.
 
 Thanks,<br>
 {{ config('app.name') }}

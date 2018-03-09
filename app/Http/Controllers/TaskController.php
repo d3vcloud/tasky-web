@@ -172,11 +172,11 @@ class TaskController extends Controller
             $email = User::select('email')->where('id',$request->id)->first();
             if($request->selected) {
                 $task->users()->attach($request->id);
-                Mail::to($email)->send(new SendNotification("te agrego a la tarea: ".$task->name));
+                Mail::to($email)->send(new SendNotification("has added you from the task: ".$task->name));
             }
             else{
                 $task->users()->detach($request->id);
-                Mail::to($email)->send(new SendNotification("te ha eliminado de la tarea: ".$task->name));
+                Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name));
             }
 
             return response()->json([
@@ -197,7 +197,7 @@ class TaskController extends Controller
         {
             $task->users()->detach($request->idUser);
             $email = User::select('email')->where('id',$request->idUser)->first();
-            Mail::to($email)->send(new SendNotification("te ha eliminado de la tarea: ".$task->name));
+            Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name));
             return "Success";
 
         }

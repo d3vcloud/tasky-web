@@ -20,8 +20,15 @@
                                         <tbody>
                                             <tr>
                                                 <td style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;padding:35px">
-                                                    <h1 style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#2f3133;font-size:20px;font-weight:bold;margin-top:0;text-align:left">Introduction</h1>
-                                                    <p style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;color:#74787e;font-size:15px;line-height:1.5em;margin-top:0;text-align:left">The body of your message.</p>
+                                                    <h1 style="font-family:Avenir,Helvetica,sans-serif;
+                                                    box-sizing:border-box;color:#2f3133;font-size:20px;
+                                                    font-weight:bold;margin-top:0;text-align:left">Hi {{ $user }},</h1>
+                                                    <p style="font-family:Avenir,Helvetica,
+                                                    sans-serif;box-sizing:border-box;
+                                                    color:#74787e;font-size:15px;
+                                                    line-height:1.5em;margin-top:0;text-align:left">
+                                                        These are your tasks that you have to date:
+                                                    </p>
                                                     <table align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:30px auto;padding:0;text-align:center;width:100%">
                                                         <tbody>
                                                             <tr>
@@ -36,7 +43,8 @@
 
                                                                                                 <table style="border-collapse: collapse;width: 100%;
                                                                                                 max-width: 100%;background-color: white;
-                                                                                                border-spacing: 2px;border-radius: 10px;
+                                                                                                border-spacing: 2px;border-top-right-radius: 10px;
+                                                                                                border-top-left-radius: 10px;
                                                                                                 display: table;border-spacing: 2px;overflow: hidden;">
                                                                                                     <thead style="vertical-align: middle;
                                                                                                     font-size:16px;vertical-align: bottom;
@@ -44,35 +52,40 @@
                                                                                                     border-top: 1px solid #ebeff2;line-height: 1.2;">
                                                                                                         <tr style="height: 60px;
                                                                                                         background: #4c5667;color: #fff;">
-                                                                                                            <th style="text-align: left;font-weight: bold;
-                                                                                                            display:table-cell;padding: .75rem;
-                                                                                                            padding-left: 40px;">Name</th>
-                                                                                                            <th style="padding: .75rem;
-                                                                                                            text-align:left;
-                                                                                                            font-weight: bold;
-                                                                                                            display: table-cell;">Due Date</th>
+                                                                                                            <th style="text-align: center;font-weight: bold;
+                                                                                                            display:table-cell;padding: 1rem;">Name</th>
+                                                                                                            <th style="padding: 1rem;
+                                                                                                            text-align:center;
+                                                                                                            font-weight: bold;">Due Date</th>
                                                                                                         </tr>
                                                                                                     </thead>
-                                                                                                    <tbody style="display: table-row-group;vertical-align: middle;
-                                                                                                    border-color: inherit;border-top: 1px solid #ebeff2;
-                                                                                                    font-size:14px">
+                                                                                                    <tbody style="vertical-align: middle;
+                                                                                                    border:2px solid #4c5667;
+                                                                                                    font-family: OpenSans-Regular;
+                                                                                                    font-size: 15px;">
                                                                                                         @foreach($tasks as $task)
                                                                                                             <?php
-
+                                                                                                                $class="e6e6e6";
                                                                                                                 if($task->due_date == NULL){
                                                                                                                     $task->due_date = "No defined";
                                                                                                                 }
                                                                                                             ?>
-                                                                                                            <tr style="display: table-row;
-                                                                                                            font-family: OpenSans-Regular;font-size: 15px;color: #808080;">
+                                                                                                            @if(($loop->index % 2) != 0)
+                                                                                                                <?php
+                                                                                                                    $class = "#fff";
+                                                                                                                ?>
+                                                                                                            @endif
+                                                                                                            <tr style="background-color: {{ $class }};
+                                                                                                            color: #808080;">
                                                                                                                 <td style="text-align: left;
-                                                                                                                padding: .75rem;
+                                                                                                                padding: 1rem;
                                                                                                                 vertical-align: top;">{{ $task->name }}</td>
                                                                                                                 <td style="text-align: left;
-                                                                                                                padding: .75rem;
+                                                                                                                padding: 1rem;
                                                                                                                 vertical-align: top;">{{ $task->due_date }}</td>
                                                                                                                 {{-- #f2f2f2 impar--}}
                                                                                                             </tr>
+
                                                                                                         @endforeach
                                                                                                     </tbody>
                                                                                                 </table>

@@ -63,14 +63,9 @@
 @section('container')
                   <div class="col-lg-4">
                         <div class="card-box">
-                            <!--data-toggle="modal" 
-                            data-target="#modalAdd"-->
-                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light btn-add-task">
-                                <i class="fa fa-plus"></i>
-                            </a>
+
                             <h4 class="text-dark header-title m-t-0">Upcoming</h4>
                             <br>
-
                             <ul class="sortable-list taskList list-unstyled main-container" id="upcoming">
                                 
                                 <!--TASKS-->
@@ -138,6 +133,10 @@
                                 @endif
                                <!--END TASKS-->
                             </ul>
+                            <button type="button" class="btn btn-block btn-sm btn-default waves-effect waves-light btn-add-task">
+                                <i class="fa fa-plus"></i>
+                            </button>
+
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -282,6 +281,7 @@
                                 @endif
                                 <!--END TASKS-->
                             </ul>
+
                         </div>
                     </div>
 
@@ -330,6 +330,7 @@
         }).disableSelection();
 
         newTask();
+        saveTask();
 
         //Dropzone configuration
         Dropzone.autoDiscover = false;

@@ -33,10 +33,13 @@ class SendInvitation extends Mailable
      */
     public function build()
     {
-        return $this->from('demosweb.app@gmail.com')
+        $project = \App\Project::find($this->invite->project_id)->name;
+
+        return $this->subject('Invitation to '.$project)
+            ->from('demosweb.app@gmail.com')
             ->markdown('emails.send.invitation',
                 ['url'  => url('/').'/accept/'.$this->invite->token,
                  'user' => Auth::user()->first_name.' '.Auth::user()->last_name,
-                 'project' => \App\Project::find($this->invite->project_id)->name]);
+                 'project' => $project]);
     }
 }

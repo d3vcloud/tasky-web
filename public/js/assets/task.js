@@ -6,20 +6,21 @@ $.fn.editableform.buttons =
 const upcoming = document.querySelector('#upcoming');
 
 function newTask() {
+
     $(".btn-add-task").click(function() {
         var html = '<li class="task-detail task-main">';
         html += '<div class="pull-right">';
-        html += '<a href="#" onclick="save(this);" class="btn-check"><i class="fa fa-check"' +
-            'style="color: green;cursor: pointer;"></i></a>  ';
+        //html += '<a href="#" onclick="save(this);" class="btn-check"><i class="fa fa-check"' +
+        //    'style="color: green;cursor: pointer;"></i></a>  ';
         html += '<a href="#" onclick="cancel(this);" class="btn-cancel"><i class="fa fa-times"' +
             'style="color: red;cursor: pointer;"></i></a>';
         html += '</div>';
-        html += '<form action="" method="POST" id="FormTask">';
+       // html += '<form action="" method="POST" id="FormTask">';
         html += '<span class="task-title">';
         html += '<input type="text" name="task" id="task-field" class="input-cus" required' +
             'autofocus/>';
         html += '</span>';
-        html += '</form>';
+        //html += '</form>';
         html += '</li>';
 
         $("#upcoming").append(html);
@@ -35,49 +36,55 @@ function cancel (container) {
     upcoming.removeChild(second);
 }
 
-function save (form) {
+function saveTask () {
     var html = "";
 
-    $.post('/task/save',$("#FormTask").serializeObject(),function(data){
-        if(data.status == "Saved"){
-            var nameTask = $("#task-field").val();
+    $("#upcoming").on('keyup',"#task-field",function(e) {
 
-            //Delete current container task "li"
-            const first = form.parentElement;
-            const second = first.parentElement;
-            upcoming.removeChild(second);
+        var code = e.keyCode ? e.keyCode : e.which;
+        if (code == 13) {
+            $.post('/task/save',{task:$("#task-field").val()},function(data){
+                if(data.status == "Saved"){
+                    var nameTask = $("#task-field").val();
+                    var btnCancel = document.querySelector('.btn-cancel');
+                    //Delete current container task "li"
+                    const first = btnCancel.parentElement;
+                    const second = first.parentElement;
+                    upcoming.removeChild(second);
 
-            //Add task with trash icon
-            html += '<li class="task-detail task-main ui-sortable-handle">';
-            html += '<div class="pull-right">';
-            html += '<a onclick="remove('+data.id+',this)">';
-            html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
-            html += '</a>';
-            html += '</div>';
-            html += '<div class="card-tags ct'+data.id+'">';
-            html += '</div>';
-            html += '<a class="task-title btn-task-detail" id="task'+data.id+'" data-url="/task/detail/'+data.id+'"' +
-                'data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a>';
-            html += '<div class="m-t-20" style="margin-top: 7px !important;height:20px;">';
-            html += '<p class="pull-right m-b-0">';
-            html += '<i class="fa fa-comment-o"></i> ';
-            html += '<span id="comment'+data.id+'">0</span>';
-            html += '</p>';
-            html += '<p class="pull-right m-b-0" style="margin:0px 28px;">';
-            html += '<i class="fa fa-paperclip"></i> ';
-            html += '<span id="attachment'+data.id+'">0</span>';
-            html += '</p>';
-            html += '<p class="pull-right m-b-0" style="margin:0px 12px;">';
-            html += '<span id="percent'+data.id+'">0</span> ';
-            html += '<i class="fa fa-percent"></i>';
-            html += '</p>';
-            html += '<p class="m-b-0 text-muted mt'+data.id+'">';
-            html += '</p>';
-            html += '</div></li>';
+                    //Add task with trash icon
+                    html += '<li class="task-detail task-main ui-sortable-handle">';
+                    html += '<div class="pull-right">';
+                    html += '<a onclick="remove('+data.id+',this)">';
+                    html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
+                    html += '</a>';
+                    html += '</div>';
+                    html += '<div class="card-tags ct'+data.id+'">';
+                    html += '</div>';
+                    html += '<a class="task-title btn-task-detail" id="task'+data.id+'" data-url="/task/detail/'+data.id+'"' +
+                        'data-toggle="modal" data-target="#modalDetail">' +nameTask+ '</a>';
+                    html += '<div class="m-t-20" style="margin-top: 7px !important;height:20px;">';
+                    html += '<p class="pull-right m-b-0">';
+                    html += '<i class="fa fa-comment-o"></i> ';
+                    html += '<span id="comment'+data.id+'">0</span>';
+                    html += '</p>';
+                    html += '<p class="pull-right m-b-0" style="margin:0px 28px;">';
+                    html += '<i class="fa fa-paperclip"></i> ';
+                    html += '<span id="attachment'+data.id+'">0</span>';
+                    html += '</p>';
+                    html += '<p class="pull-right m-b-0" style="margin:0px 12px;">';
+                    html += '<span id="percent'+data.id+'">0</span> ';
+                    html += '<i class="fa fa-percent"></i>';
+                    html += '</p>';
+                    html += '<p class="m-b-0 text-muted mt'+data.id+'">';
+                    html += '</p>';
+                    html += '</div></li>';
 
-            $("#upcoming").append(html);
+                    $("#upcoming").append(html);
+                }
+
+            });
         }
-
     });
 }
 
