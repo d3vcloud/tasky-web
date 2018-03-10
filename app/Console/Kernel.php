@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
             $schedule->call(function() use ($user) {
                 if($user->tasks()->count() > 0)
                     Mail::to($user->email)->send(new SendTasksInformation($user));
-            })->timezone('America/Lima')->everyFiveMinutes();
+            })->timezone('America/Lima')->everyMinute();
         }
 
     }

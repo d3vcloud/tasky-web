@@ -41,6 +41,11 @@
                                                                                         <tbody>
                                                                                             <tr>
 
+                                                                                                @foreach($projects as $project)
+
+                                                                                                     {{ $project->users->where('id',1)->pivot }}
+                                                                                                @endforeach
+
                                                                                                 <table style="border-collapse: collapse;width: 100%;
                                                                                                 max-width: 100%;background-color: white;
                                                                                                 border-spacing: 2px;border-top-right-radius: 10px;
@@ -51,12 +56,10 @@
                                                                                                     border-bottom: 2px solid #ebeff2;
                                                                                                     border-top: 1px solid #ebeff2;line-height: 1.2;">
                                                                                                         <tr style="height: 60px;
-                                                                                                        background: #4c5667;color: #fff;">
-                                                                                                            <th style="text-align: center;font-weight: bold;
-                                                                                                            display:table-cell;padding: 1rem;">Name</th>
-                                                                                                            <th style="padding: 1rem;
-                                                                                                            text-align:center;
-                                                                                                            font-weight: bold;">Due Date</th>
+                                                                                                        background: #4c5667;color: #fff;text-align:center;font-weight:bold;">
+                                                                                                            <th style="padding: 1rem;">Name</th>
+                                                                                                            <th style="padding: 1rem;">Due Date</th>
+                                                                                                            <th style="padding: 1rem;">Progress (%)</th>
                                                                                                         </tr>
                                                                                                     </thead>
                                                                                                     <tbody style="vertical-align: middle;
@@ -65,27 +68,25 @@
                                                                                                     font-size: 15px;">
                                                                                                         @foreach($tasks as $task)
                                                                                                             <?php
-                                                                                                                $class="e6e6e6";
-                                                                                                                if($task->due_date == NULL){
-                                                                                                                    $task->due_date = "No defined";
-                                                                                                                }
+                                                                                                                $class="#e6e6e6";
+                                                                                                                $result = 0;
+                                                                                                                    if($task->due_date == NULL){
+                                                                                                                        $task->due_date = "No defined";
+                                                                                                                    }
+                                                                                                                    if($loop->index % 2 == 0){
+                                                                                                                        $class = "#fff";
+                                                                                                                    }
+                                                                                                                    if($task->task_subtasks()->count() != 0){
+                                                                                                                        $result =  ($task->task_subtasks()->where('isComplete',1)->count() /
+                                                                                                                                $task->task_subtasks()->count()) * 100;
+                                                                                                                    }
                                                                                                             ?>
-                                                                                                            @if(($loop->index % 2) != 0)
-                                                                                                                <?php
-                                                                                                                    $class = "#fff";
-                                                                                                                ?>
-                                                                                                            @endif
                                                                                                             <tr style="background-color: {{ $class }};
-                                                                                                            color: #808080;">
-                                                                                                                <td style="text-align: left;
-                                                                                                                padding: 1rem;
-                                                                                                                vertical-align: top;">{{ $task->name }}</td>
-                                                                                                                <td style="text-align: left;
-                                                                                                                padding: 1rem;
-                                                                                                                vertical-align: top;">{{ $task->due_date }}</td>
-                                                                                                                {{-- #f2f2f2 impar--}}
+                                                                                                            color: #808080;vertical-align: top;">
+                                                                                                                <td style="padding: 1rem;text-align: left;">{{ $task->name }}</td>
+                                                                                                                <td style="padding: 1rem;text-align: center;">{{ date('Y-m-d H:i', strtotime($task->due_date)) }}</td>
+                                                                                                                <td style="padding: 1rem;text-align: right;">{{ $result }} %</td>
                                                                                                             </tr>
-
                                                                                                         @endforeach
                                                                                                     </tbody>
                                                                                                 </table>

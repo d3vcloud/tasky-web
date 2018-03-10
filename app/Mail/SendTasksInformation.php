@@ -32,12 +32,15 @@ class SendTasksInformation extends Mailable
      */
     public function build()
     {
-        $tasks = $this->user->tasks()->get();
+        $tasks = $this->user->tasks()->where('status','!=','completed')->get();
         return $this->subject('Summary of your tasks')
             ->view('emails.send.mytasksinformation')
             ->with([
                 'tasks' => $tasks,
-                'user' => $this->user->first_name.' '.$this->user->last_name
+                'user' => $this->user->first_name.' '.$this->user->last_name,
+                'projects' => \App\Project::select('id','name')->get(),
+                'idUser' => $this->user->id,
+
             ]);
     }
 }
