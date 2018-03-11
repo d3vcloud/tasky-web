@@ -42,8 +42,11 @@
                                                                                             <tr>
 
                                                                                                 @foreach($projects as $project)
-
-                                                                                                     {{ $project->users->where('id',1)->pivot }}
+                                                                                                    @if(count($project->tasks))
+                                                                                                        @foreach($project->users->where('id',1)->tasks as $x)
+                                                                                                            <span>{{ $x->name }}</span><br>
+                                                                                                        @endforeach
+                                                                                                    @endif
                                                                                                 @endforeach
 
                                                                                                 <table style="border-collapse: collapse;width: 100%;
