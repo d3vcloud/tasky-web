@@ -81,4 +81,6 @@ Route::post('/send','InviteController@send')->name('app.send.invitation');
 Route::get('/accept/{token}', 'InviteController@accept')->name('app.accept.invitation');
 Route::post('/newuser','InviteController@newUser')->name('app.new.user');
 
+Route::post('/photo','UserController@uploadPhoto')->name('app.upload.photo.user');
+
 //Route::get('/home', 'HomeController@index')->name('home');

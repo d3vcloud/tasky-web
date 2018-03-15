@@ -3,7 +3,7 @@
 @section('css')
 	<link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}">
     <link type="text/css"  href="{{ asset('plugins/x-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+
     <link rel="stylesheet" href="{{ asset('css/detailProject.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/checklist.css') }}">
@@ -299,7 +299,7 @@
 	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('plugins/x-editable/js/bootstrap-editable.min.js') }}"></script>
     <script src="{{ asset('js/assets/task.js') }}"></script>
-    <script src="{{ asset('js/dropzone.js') }}"></script>
+
     <script src="{{ asset('js/moment.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/assets/subtask.js') }}"></script>

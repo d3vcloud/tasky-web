@@ -37,10 +37,10 @@ function cancel (container) {
 }
 
 function saveTask () {
-    var html;
+    var html,btnCancel,code;
     $(".main-upcoming").on('keyup',"#task-field",function(e) {
-        var btnCancel = document.querySelector('.btn-cancel');
-        var code = e.keyCode ? e.keyCode : e.which;
+        btnCancel = document.querySelector('.btn-cancel');
+        code = e.keyCode ? e.keyCode : e.which;
         html = "";
         if (code == 13) {
             $.post('/task/save',{task:$("#task-field").val()},function(data){

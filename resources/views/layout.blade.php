@@ -12,6 +12,7 @@
 
         @yield('css')
         <!-- App css -->
+        <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
         type="text/css" />
         <link rel="stylesheet" href="{{ asset('css/bootstrapValidator.css') }}">
@@ -69,15 +70,16 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="{{ Auth::user()->photo }}"
-                                    alt="user" class="rounded-circle">
+                                    <img class="img-user-main rounded-circle" src="{{ Auth::user()->photo }}" alt="user">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview" style="width:280px;text-align: center;">
 
-                                    <img src="{{ Auth::user()->photo }}"
-                                    style="z-index:5;
+                                    <a href="#" data-toggle="modal" data-target="#uploadPhoto" >
+                                        <img class="img-user-main" src="{{ Auth::user()->photo }}"
+                                             style="z-index:5;
                                     height: 90px;width: 90px;
                                     border: 2px solid;border-radius: 50%;">
+                                    </a>
                                     <p style="font-size: 17px;">
                                         {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                         <br>
@@ -137,6 +139,14 @@
         </footer>
         <!-- End Footer -->
 
+        <!--Modal upload photo-->
+        <div id="uploadPhoto" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    @include('partials.upload-photo')
+                </div>
+            </div>
+        </div>
 
         <!-- jQuery  -->
         <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -163,12 +173,35 @@
                 }
             });
         </script>
+        <script src="{{ asset('js/dropzone.js') }}"></script>
         <script src="{{ asset('js/index.js') }}"></script>
         <script>
             setTimeZone();
             $(".btn-logout").click(function(){
                 localStorage.removeItem('timezone');
                 //console.log("Deleted");
+            });
+
+            //Dropzone configuration
+            Dropzone.autoDiscover = false;
+            $("#mydropzonephoto").dropzone({
+                //paramName: "file",
+                url: "/photo",
+                addRemoveLinks : true,
+                //acceptedFiles: 'image/*',
+                maxFilesize: 5.5,
+                maxFiles:1,
+                dictResponseError: 'Error al subir foto!',
+                success:function(file,data){
+                    if(data.status == "Uploaded")
+                    {
+                        notification('Upload','Photo Uploaded Successfully', 'success',3000);
+                        $(".img-user-main").attr('src',data.photo);
+                    }
+                    else notification('Error','An error occurred, try again','error',3000);
+
+                    Dropzone.forElement("#mydropzonephoto").removeAllFiles(true);
+                }
             });
         </script>
         @yield('scripts')
