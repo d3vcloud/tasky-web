@@ -37,16 +37,16 @@ function cancel (container) {
 }
 
 function saveTask () {
-    var html = "";
-
-    $("#upcoming").on('keyup',"#task-field",function(e) {
-
+    var html;
+    $(".main-upcoming").on('keyup',"#task-field",function(e) {
+        var btnCancel = document.querySelector('.btn-cancel');
         var code = e.keyCode ? e.keyCode : e.which;
+        html = "";
         if (code == 13) {
             $.post('/task/save',{task:$("#task-field").val()},function(data){
                 if(data.status == "Saved"){
                     var nameTask = $("#task-field").val();
-                    var btnCancel = document.querySelector('.btn-cancel');
+
                     //Delete current container task "li"
                     const first = btnCancel.parentElement;
                     const second = first.parentElement;
@@ -82,7 +82,6 @@ function saveTask () {
 
                     $("#upcoming").append(html);
                 }
-
             });
         }
     });

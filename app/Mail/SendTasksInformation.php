@@ -37,9 +37,9 @@ class SendTasksInformation extends Mailable
             ->view('emails.send.mytasksinformation')
             ->with([
                 'tasks' => $tasks,
-                'user' => $this->user->first_name.' '.$this->user->last_name,
-                'projects' => $this->user->projects()->get(),
-                'idUser' => $this->user->id,
+                'user' => $this->user->first_name.' '.$this->user->last_name
+                //'projects' => $this->user->projects()->get(),
+                //'idUser' => $this->user->id,
 
             ]);
     }

@@ -41,13 +41,13 @@
                                                                                         <tbody>
                                                                                             <tr>
 
-                                                                                                @foreach($projects as $project)
+                                                                                                {{--@foreach($projects as $project)
                                                                                                     @if(count($project->tasks))
                                                                                                         @foreach($project->users->where('id',1)->tasks as $x)
                                                                                                             <span>{{ $x->name }}</span><br>
                                                                                                         @endforeach
                                                                                                     @endif
-                                                                                                @endforeach
+                                                                                                @endforeach--}}
 
                                                                                                 <table style="border-collapse: collapse;width: 100%;
                                                                                                 max-width: 100%;background-color: white;

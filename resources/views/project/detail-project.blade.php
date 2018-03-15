@@ -66,7 +66,7 @@
 
                             <h4 class="text-dark header-title m-t-0">Upcoming</h4>
                             <br>
-                            <ul class="sortable-list taskList list-unstyled main-container" id="upcoming">
+                            <ul class="sortable-list taskList list-unstyled main-container main-upcoming" id="upcoming">
                                 
                                 <!--TASKS-->
                                 @if(count($tupcoming))
