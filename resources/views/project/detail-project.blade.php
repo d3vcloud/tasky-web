@@ -89,7 +89,7 @@
                                             </div>
                                         <a class="task-title btn-task-detail" id="task{{ $task->id }}"
                                            data-toggle="modal" data-target="#modalDetail"
-                                        data-url="{{ route('app.details.task', $task->id ) }}">
+                                        data-url="{{ route('app.details.task', Hashids::encode($task->id) ) }}">
                                             {{ $task->name }}
                                         </a>
                                         <div class="m-t-20" style="margin-top: 7px !important;height:20px;">
@@ -166,7 +166,7 @@
                                             </div>
                                             <a class="task-title btn-task-detail" id="task{{ $task1->id }}"
                                                data-toggle="modal" data-target="#modalDetail"
-                                               data-url="{{ route('app.details.task', $task1->id ) }}">
+                                               data-url="{{ route('app.details.task', Hashids::encode($task1->id) ) }}">
                                                 {{ $task1->name }}
                                             </a>
                                             <div class="m-t-20" style="margin-top: 7px !important;height:20px;">
@@ -237,7 +237,7 @@
                                             </div>
                                             <a class="task-title btn-task-detail" id="task{{ $task->id }}"
                                                data-toggle="modal" data-target="#modalDetail"
-                                               data-url="{{ route('app.details.task', $task->id ) }}">
+                                               data-url="{{ route('app.details.task', Hashids::encode($task->id) ) }}">
                                                 {{ $task->name }}
                                             </a>
                                             <div class="m-t-20" style="margin-top: 7px !important;height:20px;">

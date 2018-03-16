@@ -13,12 +13,27 @@
 
 
 Route::bind('project',function($id){
-    $idArray = Hashids::decode($id);
-	return App\Project::where('id',$idArray[0])->first();
+
+    try{
+        $idArray = Hashids::decode($id);
+        $idArray = $idArray[0];
+    }catch(ErrorException $ex)
+    {
+        $idArray = 0;
+    }
+    return App\Project::find($idArray);
 });
 
 Route::bind('task',function($id){
-	return App\Task::where('id',$id)->first();
+
+    try{
+        $idArray = Hashids::decode($id);
+        $idArray = $idArray[0];
+    }catch(ErrorException $ex)
+    {
+        $idArray = 0;
+    }
+    return App\Task::find($idArray);
 });
 
 /*Route::get('test',function(){
