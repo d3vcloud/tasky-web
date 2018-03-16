@@ -60,7 +60,7 @@
                                         </a>
                                         <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>
 			                            <a class="text-dark" 
-                                        href="{{ route('app.project.detail',$project->id) }}" style="font-size: 15px;">
+                                        href="{{ route('app.project.detail',Hashids::encode($project->id)) }}" style="font-size: 15px;">
 			                            	{{ $project->name }}
 			                            </a>
 			                        </div>

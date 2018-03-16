@@ -11,14 +11,20 @@
 |
 */
 
+
 Route::bind('project',function($id){
-	return App\Project::where('id',$id)->first();
+    $idArray = Hashids::decode($id);
+	return App\Project::where('id',$idArray[0])->first();
 });
 
 Route::bind('task',function($id){
 	return App\Task::where('id',$id)->first();
 });
 
+/*Route::get('test',function(){
+   $hash =  Hashids::encode(7);
+   return Hashids::decode($hash)[0];//id
+});*/
 
 Route::get('/','BoardController@index')->name('app.board');
 Route::post('/timezone','BoardController@setTimeZone')->name('app.set.timezone');
