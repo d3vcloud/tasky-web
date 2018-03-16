@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::bind('project',function($id){
 
     try{
@@ -25,21 +24,8 @@ Route::bind('project',function($id){
 });
 
 Route::bind('task',function($id){
-
-    try{
-        $idArray = Hashids::decode($id);
-        $idArray = $idArray[0];
-    }catch(ErrorException $ex)
-    {
-        $idArray = 0;
-    }
-    return App\Task::find($idArray);
+    return App\Task::find($id);
 });
-
-/*Route::get('test',function(){
-   $hash =  Hashids::encode(7);
-   return Hashids::decode($hash)[0];//id
-});*/
 
 Route::get('/','BoardController@index')->name('app.board');
 Route::post('/timezone','BoardController@setTimeZone')->name('app.set.timezone');
