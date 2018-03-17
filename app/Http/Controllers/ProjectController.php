@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\User;
+
 use Illuminate\Http\Request;
+
 use Auth;
 class ProjectController extends Controller
 {
@@ -52,7 +54,30 @@ class ProjectController extends Controller
 
     public function addUser(Request $request)
     {
+        $project = Project::find($request->id);
+        if(isset($request->members))
+        {
+            /*if($request->ajax())
+            {
+                if(!is_null($project))
+                {
+                    if(is_array($request->members))
+                    {
+                        foreach ($request->members as $member)
+                        {
+                            $project->users()->attach($member);
+                        }
+                    }else
+                    {
+                        $project->users()->attach($request->members);
+                    }
+                    return "Added";
+                }
+            }*/
+            return "OK :D";
+        }
 
+        return $request->all();
     }
 
     public function getFilterMembers($id)

@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="control-label">Add User</label>
-                    <select class="selectpicker" id="listMembers" multiple data-style="btn-white">
+                    <select id="listMembers" name="members" multiple data-style="btn-white">
 
                     </select>
                 </div>
