@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 class ProjectController extends Controller
@@ -47,6 +48,28 @@ class ProjectController extends Controller
         }
 
         return "Error";
+    }
+
+    public function addUser(Request $request)
+    {
+
+    }
+
+    public function getFilterMembers($id)
+    {
+        $projects = Auth::user()->projects->where('id','!=',$id);
+        $users = array();
+        foreach ($projects as $project)
+        {
+            foreach ($project->users->where('id','!=',Auth::user()->id) as $user)
+            {
+                $users[] = array(
+                    "id" => $user->id,
+                    "user" => $user->first_name.' '.$user->last_name
+                );
+            }
+        }
+        return $users;
     }
         
 }

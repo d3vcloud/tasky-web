@@ -47,6 +47,8 @@ Route::prefix('project')->group(function(){
         ->name('app.delete.project');
     Route::get('/detail/{project}','ProjectDetailController@index')
         ->name('app.project.detail');
+    Route::post('/adduser','ProjectController@addUser')->name('app.adduser.project');
+    Route::get('/getmembers/{id}','ProjectController@getFilterMembers')->name('app.getmembers.project');
 });
 
 Route::prefix('task')->group(function(){

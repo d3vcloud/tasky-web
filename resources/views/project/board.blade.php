@@ -2,7 +2,8 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}">
-	<style>
+    <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
+    <style>
 		.my-project{
 			border-color: #4c5667 !important;
 			border-radius: .25rem;
@@ -68,9 +69,9 @@
                     		@endforeach
                     	@else
                     		<div class="alert alert-danger col-md-12">
-                                <center>
-                                	<strong>You don't have any projects.</strong>
-                                </center>	
+
+                                	<strong style="text-align: center;">You don't have any projects.</strong>
+
                             </div>
                     	@endif
                     	
@@ -100,9 +101,13 @@
     <script src="{{ asset('js/assets/project.js') }}"></script>
     <script src="{{ asset('js/assets/sinvitation.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-select/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
     <script>
         save();
         list();
         send();
-    </script>  
+        addUser();
+        $('.selectpicker').selectpicker();
+    </script>
+
 @stop
