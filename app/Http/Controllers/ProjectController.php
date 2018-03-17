@@ -57,7 +57,7 @@ class ProjectController extends Controller
         $project = Project::find($request->id);
         if(isset($request->members))
         {
-            /*if($request->ajax())
+            if($request->ajax())
             {
                 if(!is_null($project))
                 {
@@ -73,11 +73,20 @@ class ProjectController extends Controller
                     }
                     return "Added";
                 }
-            }*/
-            return "OK :D";
+            }
+            //return "OK :D";
         }
 
         return $request->all();
+    }
+
+    public function isMemberProject($idUser,$idProject)
+    {
+        $project = Project::find($idProject);
+        if(is_null($project->users->where('id',$idUser)))
+            return false;
+
+        return true;
     }
 
     public function getFilterMembers($id)
@@ -88,10 +97,13 @@ class ProjectController extends Controller
         {
             foreach ($project->users->where('id','!=',Auth::user()->id) as $user)
             {
-                $users[] = array(
-                    "id" => $user->id,
-                    "user" => $user->first_name.' '.$user->last_name
-                );
+                if(!$this->isMemberProject($user->id,$id))
+                {
+                    $users[] = array(
+                        "id" => $user->id,
+                        "user" => $user->first_name . ' ' . $user->last_name
+                    );
+                }
             }
         }
         return $users;

@@ -58,15 +58,18 @@ function remove(id) {
 }
 
 function addviewproject(id,title,description) {
+	var html;
 
-	$html  = '<div class="col-md-3 my-project grow">'; 
-	$html += '<div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">';
-	$html += '<a onclick="remove('+id+');"><i class="fa fa-trash pull-right inform" style="color: red;"></i></a>';
-	$html += '<i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="'+description+'"></i>';
-	$html += '<a  href="/project/detail/'+id+'" class="text-dark" style="font-size: 15px;">' + title;
-	$html += '</a></div></div>';
+	html  = '<div class="col-md-3 my-project grow">';
+	html += '<div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">';
+	html += '<a onclick="remove('+id+');"><i class="fa fa-trash pull-right inform" style="color: red;"></i></a>';
+    html += '<a href="#" data-toggle="modal" data-idproject="'+id+'" class="btn-send-invitation" data-target="#modalInvitation"><i class="fa fa-user-plus pull-right inform"></i></a>';
+	html += '<i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="'+description+'"></i>';
+	html += '<a  href="/project/detail/'+id+'" class="text-dark" style="font-size: 15px;">' + title;
+	html += '</a></div></div>';
 
-	$(".list-projects").append($html);
+	$(".list-projects").append(html);
 
 	$("[data-toggle=tooltip]").tooltip();
+
 }
