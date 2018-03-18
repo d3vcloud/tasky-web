@@ -17,13 +17,13 @@ function addUser()
 {
     $("#addUser").click(function () {
         $.post('/project/adduser',$("#FormAddUser").serializeObject(),function(data){
-            /*if(data == "Added")
+            if(data == "Added")
             {
                 notification("Add User","User Added Successfully","success",3000);
-            }*/
+                $("li").removeClass("selected");
+                $(".filter-option").text('Nothing selected');
+            }
             console.log(data);
-            $("li").removeClass("selected");
-            $(".filter-option").text('Nothing selected');
         });
     });
 }
@@ -36,12 +36,11 @@ $(".btn-send-invitation").click(function(){
     $(".id").val($(this).data('idproject'));
 
     $.get('/project/getmembers/'+$(this).data('idproject'),function(data){
-        $("#listMembers").append("<option value='1'>XXXXXX2</option>" +
+        /*$("#listMembers").append("<option value='1'>XXXXXX2</option>" +
             "<option value='2'>XXXXXX2</option>" +
             "<option value='3'>XXXXXX3</option>" +
             "<option value='4'>XXXXXX4</option>" +
-            "<option value='5'>XXXXXX5</option>");
-
+            "<option value='5'>XXXXXX5</option>");*/
         if(data.length)
         {
             for(var i=0; i<data.length; i++)
