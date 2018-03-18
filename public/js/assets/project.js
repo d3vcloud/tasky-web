@@ -59,7 +59,6 @@ function remove(id) {
 
 function addviewproject(id,title,description) {
 	var html;
-
 	html  = '<div class="col-md-3 my-project grow">';
 	html += '<div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">';
 	html += '<a onclick="remove('+id+');"><i class="fa fa-trash pull-right inform" style="color: red;"></i></a>';

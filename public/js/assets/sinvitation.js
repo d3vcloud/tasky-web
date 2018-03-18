@@ -23,6 +23,7 @@ function addUser()
             }*/
             console.log(data);
             $("li").removeClass("selected");
+            $(".filter-option").text('Nothing selected');
         });
     });
 }
@@ -49,7 +50,7 @@ $(".btn-send-invitation").click(function(){
             }
         }
 
-        console.log(data);
+        //console.log(data);
 
         $("#listMembers").addClass('selectpicker');
         $('.selectpicker').selectpicker();

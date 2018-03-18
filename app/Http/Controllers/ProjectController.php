@@ -55,7 +55,7 @@ class ProjectController extends Controller
     public function addUser(Request $request)
     {
         $project = Project::find($request->id);
-        if(isset($request->members))
+        /*if(isset($request->members))
         {
             if($request->ajax())
             {
@@ -74,8 +74,7 @@ class ProjectController extends Controller
                     return "Added";
                 }
             }
-            //return "OK :D";
-        }
+        }*/
 
         return $request->all();
     }
