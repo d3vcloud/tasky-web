@@ -5534,7 +5534,7 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
   border: 1px solid #4c5667;
   border-left-width: 2px;
   padding: 10px;
-  list-style-type: none;
+  /*list-style-type: none;*/
  }
 .taskList .task-success {
   border-left-color: #81c868; }

@@ -63,7 +63,7 @@
                             <br>
                             <ul class="sortable-list taskList list-unstyled
                             main-container main-upcoming" id="upcoming">
-                                
+                                <li class="deleteLi" style="visibility: hidden;"></li>
                                 <!--TASKS-->
                                 @if(count($tupcoming))
                                     @foreach($tupcoming as $task)
@@ -139,10 +139,9 @@
                         <div class="card-box">
                             <h4 class="text-dark header-title m-t-0">In Progress</h4>
                             <br>
-
-                            <ul class="sortable-list list-unstyled
-                            main-container" id="inprogress">
+                            <ul class="sortable-list list-unstyled taskList main-container" id="inprogress">
                                 <!--TASKS-->
+                                <li class="deleteLi" style="visibility: hidden;"></li>
                                 @if(count($tprogress))
                                     @foreach($tprogress as $task1)
                                         <li class="task-detail task-main" id="{{ $task1->id }}">
@@ -208,16 +207,15 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card-box taskList" id="completed">
+                        <div class="card-box">
                             <h4 class="text-dark header-title m-t-0">Completed</h4>
-                           <br>
-
-                            <ul class="sortable-list list-unstyled main-container" >
-
+                            <br>
+                            <ul class="sortable-list taskList list-unstyled main-container" id="completed">
+                                <li class="deleteLi" style="visibility: hidden;"></li>
                                 <!--TASKS-->
                                 @if(count($tcompleted))
                                     @foreach($tcompleted as $task)
-                                        <li class="task-detail task-main">
+                                        <li class="task-detail task-main" id="{{ $task->id }}">
                                             <div class="pull-right">
                                                <a onclick="remove({{ $task->id }},this);">
                                                     <i class="fa fa-trash" style="color: red;
