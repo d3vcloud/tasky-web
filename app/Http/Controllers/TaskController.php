@@ -185,7 +185,6 @@ class TaskController extends Controller
                 $task->users()->detach($request->id);
                 Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name));
             }
-            return "Added";
 
             return response()->json([
                 "status" => "Success",
