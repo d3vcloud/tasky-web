@@ -272,8 +272,9 @@ function showInformation() {
             {
                 for (var i = 0; i < data.members.length; i++)
                 {
-                    if(data.members[i].isMember)
+                    if(data.members[i].isMember) {
                         isMember = "selected";
+                    }
 
                     members += '<div class="container-members btn-member '+isMember+'" data-id="'+data.members[i].id+'">';
                     members += '<img class="rounded-circle" height="29" width="29" src="'+data.members[i].photo+'" />';

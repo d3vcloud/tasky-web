@@ -36,7 +36,8 @@
             cursor: pointer;
             border-radius: 5px;
             height: 34px;
-            width: 230px;
+            float:left;
+            /*width: 230px;*/
         }
         .container-members:hover {
             background-color: #4c5667;
@@ -118,8 +119,14 @@
                                             <p class="m-b-0 text-muted mt{{ $task->id }}">
                                             @if(count($task->users()->get()))
                                                 @foreach($task->users()->get() as $user)
-                                                   <img id="memberTV{{ $user->id }}{{ $task->id }}" data-task-id="{{ $task->id }}" data-id="{{ $user->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
-                                                             class="thumb-sm rounded-circle img-task task-user img-user-main">
+                                                   <img id="memberTV{{ $user->id }}{{ $task->id }}"
+                                                        data-task-id="{{ $task->id }}"
+                                                        data-id="{{ $user->id }}"
+                                                        src="{{ $user->photo }}"
+                                                        alt="{{ $user->last_name }}"
+                                                        class="thumb-sm rounded-circle img-task task-user img-user-main"
+                                                        data-toggle="tooltip" data-placement="bottom"
+                                                        data-original-title="{{ $user->first_name }} {{ $user->last_name }}">
                                                 @endforeach
                                             @endif
                                             </p>
@@ -193,8 +200,15 @@
                                                 <p class="m-b-0 text-muted mt{{ $task1->id }}">
                                                     @if(count($task1->users()->get()))
                                                         @foreach($task1->users()->get() as $user)
-                                                            <img id="memberTV{{ $user->id }}{{ $task1->id }}" data-task-id="{{ $task1->id }}" data-id="{{ $user->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
-                                                                 class="thumb-sm rounded-circle img-task task-user img-user-main">
+                                                            <img id="memberTV{{ $user->id }}{{ $task1->id }}"
+                                                                 data-task-id="{{ $task1->id }}"
+                                                                 data-id="{{ $user->id }}"
+                                                                 src="{{ $user->photo }}"
+                                                                 alt="{{ $user->last_name }}"
+                                                                 class="thumb-sm rounded-circle img-task task-user img-user-main"
+                                                                 data-toggle="tooltip"
+                                                                 data-placement="bottom"
+                                                                 data-original-title="{{ $user->first_name }} {{ $user->last_name }}">
                                                         @endforeach
                                                     @endif
                                                 </p>
@@ -266,8 +280,15 @@
                                                 <p class="m-b-0 text-muted mt{{ $task->id }}">
                                                     @if(count($task->users()->get()))
                                                         @foreach($task->users()->get() as $user)
-                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}" data-task-id="{{ $task->id }}" data-id="{{ $user->id }}" src="{{ $user->photo }}" alt="{{ $user->last_name }}"
-                                                                 class="thumb-sm rounded-circle img-task task-user img-user-main">
+                                                            <img id="memberTV{{ $user->id }}{{ $task->id }}"
+                                                                 data-task-id="{{ $task->id }}"
+                                                                 data-id="{{ $user->id }}"
+                                                                 src="{{ $user->photo }}"
+                                                                 alt="{{ $user->last_name }}"
+                                                                 class="thumb-sm rounded-circle img-task task-user img-user-main"
+                                                                 data-toggle="tooltip"
+                                                                 data-placement="bottom"
+                                                                 data-original-title="{{ $user->first_name }} {{ $user->last_name }}">
                                                         @endforeach
                                                     @endif
                                                 </p>

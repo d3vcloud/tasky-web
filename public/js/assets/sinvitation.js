@@ -48,8 +48,7 @@ $(".btn-send-invitation").click(function(){
                 $("#listMembers").append("<option value='"+data[i].id+"'>"+data[i].user+"</option>");
             }
         }
-
-        //console.log(data);
+        console.log(data);
 
         $("#listMembers").addClass('selectpicker');
         $('.selectpicker').selectpicker();

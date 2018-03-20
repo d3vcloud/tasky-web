@@ -34,7 +34,7 @@ function concatMember(id,img,alt,idTask)
         'height="35" width="35" src="'+img+'">');
 
     $(".mt"+idTask).append('<img id="memberTV'+id+''+idTask+'" data-task-id="'+idTask+'" data-id="'+id+'" src="'+img+'" alt="'+alt+'" ' +
-        'class="thumb-sm rounded-circle img-task task-user img-user-main">');
+        'class="thumb-sm rounded-circle img-task task-user img-user-main" data-toggle="tooltip" data-placement="bottom" data-original-title="Holaaaaaa">');
 }
 
 function removeMemberHTML(idUser,idTask)
