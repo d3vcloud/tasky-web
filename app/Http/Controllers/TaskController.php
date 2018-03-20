@@ -60,7 +60,7 @@ class TaskController extends Controller
             $task->due_date = $request->value;
             $type = "due date";
         }
-        /*if($task->save())
+        if($task->save())
         {
             $activity = $fun->saveActivity("edited",
                 'changed the '.$type.' of this task');
@@ -76,7 +76,7 @@ class TaskController extends Controller
             ]);
         }
         else
-            return "Error";*/
+            return "Error";
     }
 
 
