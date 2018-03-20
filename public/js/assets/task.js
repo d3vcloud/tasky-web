@@ -49,7 +49,7 @@ function saveTask () {
                     upcoming.removeChild(second);
 
                     //Add task with trash icon
-                    html += '<li class="task-detail task-main ui-sortable-handle">';
+                    html += '<li class="task-detail task-main ui-sortable-handle" id="'+data.id+'">';
                     html += '<div class="pull-right">';
                     html += '<a onclick="remove('+data.id+',this)">';
                     html += '<i class="fa fa-trash" style="color: red;cursor: pointer;"></i>';
@@ -124,6 +124,13 @@ function updateDate(datep) {
             concatActivity(response.activity.date_time, response.photo, response.username,
                 response.user, response.activity.message);
         }
+    });
+}
+
+function updateStatus(value,id)
+{
+    $.post('/task/update',{id:id,value:value,name:"status"},function(data){
+        console.log(data);
     });
 }
 

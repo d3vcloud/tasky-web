@@ -50,13 +50,8 @@
             color:#797979;
         }
 
-        /*.p-customize{
-            margin-bottom: 5px !important;
-        }*/
     </style>
-    <!--Footable
-    <link href="../plugins/footable/css/footable.core.css" rel="stylesheet">
-    <link href="../plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />-->
+
     
 @stop
 
@@ -66,12 +61,13 @@
 
                             <h4 class="text-dark header-title m-t-0">Upcoming</h4>
                             <br>
-                            <ul class="sortable-list taskList list-unstyled main-container main-upcoming" id="upcoming">
+                            <ul class="sortable-list taskList list-unstyled
+                            main-container main-upcoming" id="upcoming">
                                 
                                 <!--TASKS-->
                                 @if(count($tupcoming))
                                     @foreach($tupcoming as $task)
-                                        <li class="task-detail task-main">
+                                        <li class="task-detail task-main" id="{{ $task->id }}">
                                             <div class="pull-right">
                                                 <a onclick="remove({{ $task->id }},this);">
                                                     <i class="fa fa-trash" style="color: red;
@@ -144,11 +140,12 @@
                             <h4 class="text-dark header-title m-t-0">In Progress</h4>
                             <br>
 
-                            <ul class="sortable-list taskList list-unstyled main-container" id="inprogress">
+                            <ul class="sortable-list list-unstyled
+                            main-container" id="inprogress">
                                 <!--TASKS-->
                                 @if(count($tprogress))
                                     @foreach($tprogress as $task1)
-                                        <li class="task-detail task-main">
+                                        <li class="task-detail task-main" id="{{ $task1->id }}">
                                             <div class="pull-right">
                                                 <a onclick="remove({{ $task1->id }},this);">
                                                     <i class="fa fa-trash" style="color: red;
@@ -211,11 +208,12 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="card-box">
+                        <div class="card-box taskList" id="completed">
                             <h4 class="text-dark header-title m-t-0">Completed</h4>
                            <br>
 
-                            <ul class="sortable-list taskList list-unstyled main-container" id="completed">
+                            <ul class="sortable-list list-unstyled main-container" >
+
                                 <!--TASKS-->
                                 @if(count($tcompleted))
                                     @foreach($tcompleted as $task)
@@ -308,13 +306,6 @@
     <script src="{{ asset('js/assets/activity.js') }}"></script>
     <script src="{{ asset('js/assets/label.js') }}"></script>
     <script src="{{ asset('js/assets/member.js') }}"></script>
-     <!--FooTable
-     <script src="../plugins/footable/js/footable.all.min.js"></script>
-
-     <script src="../plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>-->
-
-     <!--FooTable Example
-     <script src="assets/pages/jquery.footable.js"></script>-->
 
 	<script>
 
@@ -322,12 +313,10 @@
                     connectWith: ".taskList",
                     placeholder: 'task-placeholder',
                     forcePlaceholderSize: true,
-                    update: function (event, ui) {
-                        var todo = $("#todo").sortable("toArray");
-                        var inprogress = $("#inprogress").sortable("toArray");
-                        var completed = $("#completed").sortable("toArray");
+                    stop: function (event, ui) {
+                        updateStatus(ui.item[0].parentNode.id,ui.item[0].id);
                     }
-        }).disableSelection();
+        });
 
         newTask();
         saveTask();

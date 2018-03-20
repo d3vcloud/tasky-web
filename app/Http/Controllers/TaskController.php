@@ -48,12 +48,19 @@ class TaskController extends Controller
         else if($request->name == "descriptionTask") {
             $task->description = $request->value;
             $type = "description";
+        }else if($request->name == "status")
+        {
+            $taskDrop = Task::find($request->id);
+            $taskDrop->status = $request->value;
+            if($taskDrop->save()) {
+                return "Updated";
+            }
         }
         else {
             $task->due_date = $request->value;
             $type = "due date";
         }
-        if($task->save())
+        /*if($task->save())
         {
             $activity = $fun->saveActivity("edited",
                 'changed the '.$type.' of this task');
@@ -69,7 +76,7 @@ class TaskController extends Controller
             ]);
         }
         else
-            return "Error";
+            return "Error";*/
     }
 
 
