@@ -163,6 +163,10 @@
 
         <script src="{{asset('plugins/pnotify/pnotify.custom.min.js')}}"></script>
 
+        <!--Timezone-->
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js">
+        </script>
         <!-- App js -->
         <script src="{{ asset('js/jquery.core.js') }}"></script>
         <script src="{{ asset('js/jquery.app.js') }}"></script>
@@ -179,7 +183,6 @@
             setTimeZone();
             $(".btn-logout").click(function(){
                 localStorage.removeItem('timezone');
-                //console.log("Deleted");
             });
 
             //Dropzone configuration

@@ -88,16 +88,6 @@ class ProjectController extends Controller
         return false;
     }
 
-    public function removeRepetidos($array)
-    {
-        $filter = array();
-        foreach ($array as $item)
-        {
-            //if()
-            $filter[] = $item['id'];
-        }
-        //return array($filter);
-    }
 
     public function getFilterMembers($id)
     {

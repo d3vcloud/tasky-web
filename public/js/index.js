@@ -26,9 +26,10 @@ function setTimeZone()
 
         localStorage.setItem('timezone','defined');
 
-        var timezone_offset_minutes = new Date().getTimezoneOffset();
-        timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
-        $.post('/timezone',{timezone:timezone_offset_minutes},function(data){
+        var tz = jstz.determine(); // Determines the time zone of the browser client
+        var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
+        
+        $.post('/timezone',{timezone:timezone},function(data){
             console.log(data);
         });
     }

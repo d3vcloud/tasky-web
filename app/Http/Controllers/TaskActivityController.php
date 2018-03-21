@@ -18,7 +18,7 @@ class TaskActivityController extends Controller
         $activity->date_time = \Carbon\Carbon::now(\Session::get('timezone'));
         $activity->task_id = \Session::get('idCurrentTask');
         $activity->user_id = Auth::user()->id;
-        //$task->task_activities()->where('type','message')->count()
+
         if($activity->save())
         {
             return response()->json([
