@@ -82,11 +82,21 @@ class ProjectController extends Controller
     public function isMemberProject($idUser,$idProject)
     {
         $project = Project::find($idProject);
-        //return $project->users()->where('id',$idUser)->get();
         if(count($project->users()->where('id',$idUser)->get()))
-            return true;//no esta
+            return true;
 
-        return false;// si esta
+        return false;
+    }
+
+    public function removeRepetidos($array)
+    {
+        $filter = array();
+        foreach ($array as $item)
+        {
+            //if()
+            $filter[] = $item['id'];
+        }
+        //return array($filter);
     }
 
     public function getFilterMembers($id)
@@ -106,7 +116,7 @@ class ProjectController extends Controller
                 }
             }
         }
-        return $users;
+        return array_unique($users, SORT_REGULAR);
     }
         
 }

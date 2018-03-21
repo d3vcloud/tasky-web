@@ -20,11 +20,8 @@ function addUser()
             if(data == "Added")
             {
                 notification("Add User","User Added Successfully","success",3000);
-                $('.selectpicker').selectpicker('deselectAll');
-                //$("li").removeClass("selected");
-                //$(".filter-option").text('Nothing selected');
+                $('#listMembers').selectpicker('deselectAll');
             }
-            console.log(data);
         });
     });
 }
@@ -47,8 +44,8 @@ $(".btn-send-invitation").click(function(){
                     .attr("value", data[i].id)
                     .text(data[i].user));
             }
-            console.log(data);
         }
+        //console.log(data);
         $('#listMembers').selectpicker();
     });
 });
