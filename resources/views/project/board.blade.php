@@ -101,12 +101,13 @@
     <script src="{{ asset('js/assets/project.js') }}"></script>
     <script src="{{ asset('js/assets/sinvitation.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js') }}"></script>
-    <script src="{{ asset('plugins/bootstrap-select/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
     <script>
         save();
         list();
         send();
         addUser();
+        //$('.selectpicker').selectpicker();
     </script>
 
 @stop

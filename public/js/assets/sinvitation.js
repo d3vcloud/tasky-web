@@ -20,8 +20,9 @@ function addUser()
             if(data == "Added")
             {
                 notification("Add User","User Added Successfully","success",3000);
-                $("li").removeClass("selected");
-                $(".filter-option").text('Nothing selected');
+                $('.selectpicker').selectpicker('deselectAll');
+                //$("li").removeClass("selected");
+                //$(".filter-option").text('Nothing selected');
             }
             console.log(data);
         });
@@ -31,26 +32,23 @@ function addUser()
 
 
 $(".btn-send-invitation").click(function(){
+
     $("#listMembers").empty();
+    $('#listMembers').selectpicker('destroy');
 
     $(".id").val($(this).data('idproject'));
 
     $.get('/project/getmembers/'+$(this).data('idproject'),function(data){
-        /*$("#listMembers").append("<option value='1'>XXXXXX2</option>" +
-            "<option value='2'>XXXXXX2</option>" +
-            "<option value='3'>XXXXXX3</option>" +
-            "<option value='4'>XXXXXX4</option>" +
-            "<option value='5'>XXXXXX5</option>");*/
         if(data.length)
         {
             for(var i=0; i<data.length; i++)
             {
-                $("#listMembers").append("<option value='"+data[i].id+"'>"+data[i].user+"</option>");
+                $('#listMembers').append($("<option></option>")
+                    .attr("value", data[i].id)
+                    .text(data[i].user));
             }
+            console.log(data);
         }
-        console.log(data);
-
-        $("#listMembers").addClass('selectpicker');
-        $('.selectpicker').selectpicker();
+        $('#listMembers').selectpicker();
     });
 });

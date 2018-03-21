@@ -82,10 +82,11 @@ class ProjectController extends Controller
     public function isMemberProject($idUser,$idProject)
     {
         $project = Project::find($idProject);
-        if(is_null($project->users->where('id',$idUser)))
-            return false;
+        //return $project->users()->where('id',$idUser)->get();
+        if(count($project->users()->where('id',$idUser)->get()))
+            return true;//no esta
 
-        return true;
+        return false;// si esta
     }
 
     public function getFilterMembers($id)
