@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
         <meta charset="utf-8" />
-        <title>Admin Projects</title>
+        <title>Laravel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -43,7 +43,7 @@
                         <!--</a>-->
                         <!-- Image Logo -->
                         <a href="{{ route('app.board') }}" class="logo">
-                            <img src="{{ asset('img/logo_dark.png') }}" alt="" height="20" class="logo-lg">
+                            <img src="{{ asset('img/logo_sm.png') }}" alt="" height="20" class="logo-lg">
                             {{--<img src="{{ asset('img/logo_sm.png') }}" alt="" height="24" class="logo-sm">--}}
                         </a>
 

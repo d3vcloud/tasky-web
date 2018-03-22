@@ -7,7 +7,7 @@
 
         <link rel="shortcut icon" href="">
 
-        <title>Admin Projects</title>
+        <title>Login</title>
 
         <!-- App css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
@@ -25,7 +25,7 @@
         <div class="wrapper-page">
             <div class="card-box">
                 <div class="panel-heading">
-                    <h4 class="text-center"> Sign In to <strong class="text-custom">UBold</strong></h4>
+                    <h4 class="text-center">Login</h4>
                 </div>
 
 

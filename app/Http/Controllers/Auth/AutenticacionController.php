@@ -26,8 +26,9 @@ class AutenticacionController extends Controller
 
     	if (Auth::attempt(['email'=>$request->email,'password'=>$request->password],
             $request->remember)) {
-            //date_default_timezone_set("America/Lima");
+            //->cookie('test', 'testValue', 3600);
     		return redirect()->intended(route('app.board'));
+
     	}
 
     	return redirect()->back()
@@ -38,7 +39,7 @@ class AutenticacionController extends Controller
     public function logout(Request $request)
     {
         \Session::forget('idProject');
-        \Session::forget('timezone');
+        //\Session::forget('timezone');
         \Session::forget('idCurrentTask');
 
         Auth::logout();

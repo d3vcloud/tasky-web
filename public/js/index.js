@@ -22,13 +22,13 @@ function deleteComma(string){
 
 function setTimeZone()
 {
-    if(localStorage.getItem('timezone') === null){
-
+    if(localStorage.getItem('timezone') === null)
+    {
         localStorage.setItem('timezone','defined');
 
         var tz = jstz.determine(); // Determines the time zone of the browser client
         var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
-        
+
         $.post('/timezone',{timezone:timezone},function(data){
             console.log(data);
         });

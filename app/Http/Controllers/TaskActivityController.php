@@ -15,7 +15,7 @@ class TaskActivityController extends Controller
         $activity = new TaskActivity;
         $activity->type = "message";
         $activity->message = 'commented: '.$request->comment;
-        $activity->date_time = \Carbon\Carbon::now(\Session::get('timezone'));
+        $activity->date_time = \Carbon\Carbon::now(\Cookie::get('timezone'));
         $activity->task_id = \Session::get('idCurrentTask');
         $activity->user_id = Auth::user()->id;
 

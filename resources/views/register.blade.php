@@ -7,7 +7,7 @@
 
 		<link rel="shortcut icon" href="">
 
-		<title>Admin Projects</title>
+		<title>Register</title>
 
 		<!-- App css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"

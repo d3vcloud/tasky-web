@@ -21,10 +21,12 @@ class BoardController extends Controller
 
     public function setTimeZone(Request $request){
 
-        if(!(\Session::has('timezone')))
+        if(\Cookie::get('timezone') == null)
         {
-            \Session::put('timezone',$request->timezone);
+            \Cookie::queue('timezone',$request->timezone,60);
             return "Configured";
+            /*return response('Configured')
+                ->cookie('test', 'testValue', 3600);*/
         }
     }
 }
