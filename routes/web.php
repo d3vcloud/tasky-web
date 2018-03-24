@@ -94,10 +94,10 @@ Route::post('/photo','UserController@uploadPhoto')->name('app.upload.photo.user'
 
 //Reset passwords
 Route::get('/password/reset/{token?}','Auth\ResetPasswordController@showResetForm')
-    ->name('app.reset.form');
+    ->name('password.reset');
 Route::post('/password/reset','Auth\ResetPasswordController@reset')
     ->name('app.reset.submit');
 Route::post('/password/email','Auth\ForgotPasswordController@sendResetLinkEmail')
-    ->name('app.email.link');
+    ->name('password.email');
 Route::get('/password/email','Auth\ForgotPasswordController@showLinkRequestForm')
-    ->name('app.email.form');
+    ->name('password.request');

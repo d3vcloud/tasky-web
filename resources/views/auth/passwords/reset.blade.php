@@ -71,11 +71,10 @@
 							</div>
 						</div>
 
-						<div class="form-group m-b-0">
-							<div class="input-group">
-								<input type="email" class="form-control" placeholder="Enter Email" required="">
+						<div class="form-group">
+							<div class="col-12">
 								<span class="input-group-btn">
-									<button type="submit" class="btn btn-pink w-sm waves-effect waves-light">
+									<button type="submit" class="btn btn-default w-sm waves-effect waves-light btn-block">
 										Reset
 									</button> 
 								</span>

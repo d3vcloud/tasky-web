@@ -36,7 +36,7 @@
                 @endif
 
 				<div class="p-20">
-					<form method="post" action="{{ route('app.email.link') }}" role="form" class="text-center">
+					<form method="post" action="{{ route('password.email') }}" role="form" class="text-center">
 						{{ csrf_field() }}
 					
 						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <div class="col-12">
                                 <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-pink w-sm waves-effect waves-light btn-block">
+                                    <button type="submit" class="btn btn-default w-sm waves-effect waves-light btn-block">
                                         Send Password Reset Link
                                     </button> 
                                 </span>
