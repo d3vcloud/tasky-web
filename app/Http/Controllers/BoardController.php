@@ -23,10 +23,8 @@ class BoardController extends Controller
 
         if(\Cookie::get('timezone') == null)
         {
-            \Cookie::queue('timezone',$request->timezone,60);
+            \Cookie::queue('timezone',$request->timezone,60*24*30*12);
             return "Configured";
-            /*return response('Configured')
-                ->cookie('test', 'testValue', 3600);*/
         }
     }
 }

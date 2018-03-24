@@ -38,7 +38,7 @@ Route::post('/logout','Auth\AutenticacionController@logout')->name('app.logout')
 
 Route::get('/register','Auth\RegisterController@registerForm')->name('app.register');
 Route::post('/register','Auth\RegisterController@create')->name('app.register.submit');
-Route::get('/forgotpwd','Auth\ForgotPasswordController@forgotForm')->name('app.forgotpwd');
+
 
 Route::prefix('project')->group(function(){
     Route::post('/save','ProjectController@store')->name('app.store.project');
@@ -92,4 +92,12 @@ Route::post('/newuser','InviteController@newUser')->name('app.new.user');
 
 Route::post('/photo','UserController@uploadPhoto')->name('app.upload.photo.user');
 
-//Route::get('/home', 'HomeController@index')->name('home');
+//Reset passwords
+Route::get('/password/reset/{token?}','Auth\ResetPasswordController@showResetForm')
+    ->name('app.reset.form');
+Route::post('/password/reset','Auth\ResetPasswordController@reset')
+    ->name('app.reset.submit');
+Route::post('/password/email','Auth\ForgotPasswordController@sendResetLinkEmail')
+    ->name('app.email.link');
+Route::get('/password/email','Auth\ForgotPasswordController@showLinkRequestForm')
+    ->name('app.email.form');

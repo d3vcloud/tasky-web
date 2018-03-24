@@ -1,47 +1,82 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+	
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+		<link rel="shortcut icon" href="">
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+		<title>Laravel</title>
 
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
+		<!-- App css -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
+        type="text/css" />
+        <link href="{{ asset('css/icons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+        <script src="{{ asset('js/modernizr.min.js') }}"></script>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+	</head>
+	<body>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+		<div class="account-pages"></div>
+		<div class="clearfix"></div>
+		<div class="wrapper-page">
+			<div class=" card-box">
+				<div class="panel-heading">
+					<h4 class="text-center"> Reset Password </h4>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+				<div class="p-20">
+					<form method="post" action="{{ route('app.email.link') }}" role="form" class="text-center">
+						{{ csrf_field() }}
+					
+						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+							<div class="col-12">
+								<input class="form-control" type="text" required 
+								autofocus placeholder="Email" name="email" 
+								value="{{ $email or old('email') }}">
+									@if ($errors->has('email'))
+										<span class="help-block">
+											<strong>{{ $errors->first('email') }}</strong>
+										</span>
+                                    @endif
+                                    
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-12">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-pink w-sm waves-effect waves-light btn-block">
+                                        Send Password Reset Link
+                                    </button> 
+                                </span>
+                            </div>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery  -->
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script><!-- Popper for Bootstrap -->
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/waves.js') }}"></script>
+        <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
+
+		<!-- App js -->
+        <script src="{{ asset('js/jquery.core.js') }}"></script>
+        <script src="{{ asset('js/jquery.app.js') }}"></script>
+
+	</body>
+</html>
