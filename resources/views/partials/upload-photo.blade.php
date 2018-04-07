@@ -9,7 +9,6 @@
             <form method="POST" class="dropzone" id="mydropzonephoto">
                 {{ csrf_field() }}
             </form>
-
         </div>
     </div>
 

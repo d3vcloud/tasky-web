@@ -19,12 +19,11 @@ class BoardController extends Controller
     	return view('project.board',compact('myprojects'));
     }
 
-    public function setTimeZone(Request $request){
-
-        if(\Cookie::get('timezone') == null)
-        {
-            \Cookie::queue('timezone',$request->timezone,60*24*30*12);
-            return "Configured";
-        }
+    public function setTimeZone(Request $request)
+    {
+        $contents = \File::get(config_path('app.php'));
+        $contents = str_replace('UTC',$request->timezone, $contents);
+        \File::put(config_path('app.php'), $contents);
+        return "Configured";
     }
 }

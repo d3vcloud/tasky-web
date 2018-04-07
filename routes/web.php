@@ -34,8 +34,7 @@ Route::get('/login','Auth\AutenticacionController@showLoginForm')->name('app.log
 Route::post('/login','Auth\AutenticacionController@login')->name('app.login.submit');
 Route::post('/logout','Auth\AutenticacionController@logout')->name('app.logout');
 
-//Route::get('/','DashboardController@index')->name('app.dashboard');
-
+//register user
 Route::get('/register','Auth\RegisterController@registerForm')->name('app.register');
 Route::post('/register','Auth\RegisterController@create')->name('app.register.submit');
 

@@ -181,9 +181,9 @@
         <script src="{{ asset('js/index.js') }}"></script>
         <script>
             setTimeZone();
-            $(".btn-logout").click(function(){
+            /*$(".btn-logout").click(function(){
                 localStorage.removeItem('timezone');
-            });
+            });*/
 
             //Dropzone configuration
             Dropzone.autoDiscover = false;
@@ -194,7 +194,7 @@
                 //acceptedFiles: 'image/*',
                 maxFilesize: 5.5,
                 maxFiles:1,
-                dictResponseError: 'Error al subir foto!',
+                dictResponseError: 'Error upload photo!',
                 success:function(file,data){
                     if(data.status == "Uploaded")
                     {

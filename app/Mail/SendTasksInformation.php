@@ -38,9 +38,6 @@ class SendTasksInformation extends Mailable
             ->with([
                 'tasks' => $tasks,
                 'user' => $this->user->first_name.' '.$this->user->last_name
-                //'projects' => $this->user->projects()->get(),
-                //'idUser' => $this->user->id,
-
             ]);
     }
 }

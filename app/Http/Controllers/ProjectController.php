@@ -106,7 +106,7 @@ class ProjectController extends Controller
                 }
             }
         }
-        return array_unique($users, SORT_REGULAR);
+        return array_values(array_unique($users, SORT_REGULAR));
     }
         
 }
