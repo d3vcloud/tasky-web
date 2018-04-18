@@ -27,7 +27,7 @@
                                                     sans-serif;box-sizing:border-box;
                                                     color:#74787e;font-size:15px;
                                                     line-height:1.5em;margin-top:0;text-align:left">
-                                                        These are your tasks that you have to date:
+                                                        These are your tasks that you have to date and are not completed:
                                                     </p>
                                                     <table align="center" width="100%" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box;margin:30px auto;padding:0;text-align:center;width:100%">
                                                         <tbody>
@@ -40,16 +40,8 @@
                                                                                     <table border="0" cellpadding="0" cellspacing="0" style="font-family:Avenir,Helvetica,sans-serif;box-sizing:border-box">
                                                                                         <tbody>
                                                                                             <tr>
-
-                                                                                                {{--@foreach($projects as $project)
-                                                                                                    @if(count($project->tasks))
-                                                                                                        @foreach($project->users->where('id',1)->tasks as $x)
-                                                                                                            <span>{{ $x->name }}</span><br>
-                                                                                                        @endforeach
-                                                                                                    @endif
-                                                                                                @endforeach--}}
-
-                                                                                                <table style="border-collapse: collapse;width: 100%;
+                                                                                                
+                                                                                              <table style="border-collapse: collapse;width: 100%;
                                                                                                 max-width: 100%;background-color: white;
                                                                                                 border-spacing: 2px;border-top-right-radius: 10px;
                                                                                                 border-top-left-radius: 10px;
@@ -73,8 +65,11 @@
                                                                                                             <?php
                                                                                                                 $class="#e6e6e6";
                                                                                                                 $result = 0;
+                                                                                                                $date;
                                                                                                                     if($task->due_date == NULL){
-                                                                                                                        $task->due_date = "No defined";
+                                                                                                                        $date = "No defined";
+                                                                                                                    }else{
+                                                                                                                        $date = date('Y-m-d H:i', strtotime($task->due_date));
                                                                                                                     }
                                                                                                                     if($loop->index % 2 == 0){
                                                                                                                         $class = "#fff";
@@ -87,7 +82,7 @@
                                                                                                             <tr style="background-color: {{ $class }};
                                                                                                             color: #808080;vertical-align: top;">
                                                                                                                 <td style="padding: 1rem;text-align: left;">{{ $task->name }}</td>
-                                                                                                                <td style="padding: 1rem;text-align: center;">{{ date('Y-m-d H:i', strtotime($task->due_date)) }}</td>
+                                                                                                                <td style="padding: 1rem;text-align: center;">{{ $date }}</td>
                                                                                                                 <td style="padding: 1rem;text-align: right;">{{ $result }} %</td>
                                                                                                             </tr>
                                                                                                         @endforeach
