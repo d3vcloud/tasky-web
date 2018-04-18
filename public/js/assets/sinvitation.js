@@ -28,7 +28,7 @@ function addUser()
 
 
 
-$(".btn-send-invitation").click(function(){
+$(".list-projects").on('click','.btn-send-invitation',function(){
 
     $("#listMembers").empty();
     $('#listMembers').selectpicker('destroy');
@@ -45,7 +45,6 @@ $(".btn-send-invitation").click(function(){
                     .text(data[i].user));
             }
         }
-        //console.log(data);
         $('#listMembers').selectpicker();
     });
 });
