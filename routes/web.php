@@ -13,13 +13,6 @@
 
 Route::bind('project',function($id){
 
-    /*try{
-        $idArray = Hashids::decode($id);
-        $idArray = $idArray[0];
-    }catch(ErrorException $ex)
-    {
-        $idArray = 0;
-    }*/
     return App\Project::find($id);
 });
 

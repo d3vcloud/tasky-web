@@ -30,16 +30,19 @@ function addMemberToTask()
 
 function concatMember(id,img,alt,idTask)
 {
-    $("#membersTask").append('<img id="memberTD'+id+'" style="border-radius: 6px;border:1px solid #4c5667" alt="'+alt+'" ' +
-        'height="35" width="35" src="'+img+'">');
+    var memberTask = document.getElementById('membersTask');
+    memberTask.innerHTML = '<img id="memberTD'+id+'" style="border-radius: 6px;border:1px solid #4c5667" alt="'+alt+'" ' +
+        'height="35" width="35" src="'+img+'">';
 
     $(".mt"+idTask).append('<img id="memberTV'+id+''+idTask+'" data-task-id="'+idTask+'" data-id="'+id+'" src="'+img+'" alt="'+alt+'" ' +
-        'class="thumb-sm rounded-circle img-task task-user img-user-main" data-toggle="tooltip" data-placement="bottom" data-original-title="Holaaaaaa">');
+        'class="thumb-sm rounded-circle img-task task-user img-user-main" data-placement="bottom">');
+
 }
 
 function removeMemberHTML(idUser,idTask)
 {
-    $("#memberTD"+idUser).remove(); $("#memberTV"+idUser+""+idTask).remove();
+    $("#memberTD"+idUser).remove();
+    $("#memberTV"+idUser+""+idTask).remove();
 }
 
 function removeMember()
@@ -52,7 +55,11 @@ function removeMember()
 
         $.post('/task/rmvmember',{idUser:idUser,idTask:idTask},function(data){
             if(data == "Success")
-                $("#memberTV"+idUser+""+idTask).remove();
+            {
+                var elem = document.getElementById('memberTV'+idUser+""+idTask);
+                elem.parentNode.removeChild(elem);
+            }
+                //$("#memberTV"+idUser+""+idTask).remove();
         });
     });
 }
