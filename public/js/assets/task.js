@@ -144,7 +144,7 @@ function showInformation() {
    $('.main-container').on('click','.btn-task-detail',function(){
 
         url = $(this).data('url');
-        //console.log(url);
+
         html = "";
         can = 0;
         table.html('');
@@ -153,6 +153,7 @@ function showInformation() {
         label = "";
         members = "";
         membersTask = "";
+        isMember = "";
 
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);

@@ -17,9 +17,9 @@ function save(){
 function list(){
 	$(".btn-refresh").click(function(){
 		$.get('/project/list',function(projects){
+			$(".list-projects").html("");
 			if(projects.length > 0)
 			{
-				$(".list-projects").html("");
 				for (var i = 0; i < projects.length; i++) {
 					addviewproject(projects[i].id,projects[i].name,projects[i].description);
 				}

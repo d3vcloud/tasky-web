@@ -107,7 +107,6 @@
         list();
         send();
         addUser();
-        //$('.selectpicker').selectpicker();
     </script>
 
 @stop
