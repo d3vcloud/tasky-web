@@ -15,8 +15,9 @@ class ProjectDetailController extends Controller
         if(!is_null($project))
         {
             //validar si es del usuario
-            $isMyProject = Auth::user()->projects()->where('id',$project->id)->first();
-            if(is_null($isMyProject))
+            $isProject = Auth::user()->projects()->where('id',$project->id)->first();
+            $isMyProject = Auth::user()->myprojects()->where('id',$project->id)->first();
+            if(is_null($isProject) && is_null($isMyProject))
                 abort('403');
             else{
                 \Session::put('idProject',$project->id);

@@ -29,7 +29,7 @@
                 <h3>This site is getting a tune-up.</h3><br>
                 <p class="text-muted">Why don't you come back in a little while and see if our expert are finished tinkering.</p>
                 <br>
-                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Retornar</a>
+                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Board</a>
                 
             </div>
         </div>

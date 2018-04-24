@@ -16,12 +16,18 @@ function save(){
 
 function list(){
 	$(".btn-refresh").click(function(){
-		$.get('/project/list',function(projects){
+		$.get('/project/list',function(data){
 			$(".list-projects").html("");
-			if(projects.length > 0)
+			if(data.myprojects.length > 0)
 			{
-				for (var i = 0; i < projects.length; i++) {
-					addviewproject(projects[i].id,projects[i].name,projects[i].description);
+				for (var i = 0; i < data.myprojects.length; i++) {
+					addviewmyprojects(data.myprojects[i].id,data.myprojects[i].name,data.myprojects[i].description);
+				}
+			}
+			if(data.projects.length > 0)
+			{
+				for (var i = 0; i < data.projects.length; i++) {
+					addviewproject(data.projects[i].id,data.projects[i].name,data.projects[i].description);
 				}
 			}
 		});
@@ -57,7 +63,21 @@ function remove(id) {
 	}
 }
 
-function addviewproject(id,title,description) {
+function addviewproject(id,title,description)
+{
+	var html;
+	html  = '<div class="col-md-3 my-project grow">';
+	html += '<div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">';
+	html += '<i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="'+description+'"></i>';
+	html += '<a  href="/project/detail/'+id+'" class="text-dark" style="font-size: 15px;">' + title;
+	html += '</a></div></div>';
+
+	$(".list-projects").append(html);
+
+	$("[data-toggle=tooltip]").tooltip();
+}
+
+function addviewmyprojects(id,title,description) {
 	var html;
 	html  = '<div class="col-md-3 my-project grow">';
 	html += '<div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">';

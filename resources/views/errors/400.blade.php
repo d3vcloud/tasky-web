@@ -28,7 +28,7 @@
                 <h2>Bad Request</h2><br>
                 <p class="text-muted">Your browser sent an invalid request</p>
                 <br>
-                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Retornar</a>
+                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Board</a>
                 
             </div>
         </div>

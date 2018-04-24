@@ -166,6 +166,7 @@ class TaskController extends Controller
                 "activities" => $activities,
                 "labels" => $task->task_labels()->get(),
                 "members" => $members,
+                "owner"=>$project->owner->first_name,
                 "membersTask" => $membersTask
         ]);
     }

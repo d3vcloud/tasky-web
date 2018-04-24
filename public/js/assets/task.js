@@ -288,6 +288,8 @@ function showInformation() {
                 $("#members").html(members);
             }
 
+            console.log(data.owner);
+
             $("#membersTask").html('');
             if(data.membersTask.length)
             {

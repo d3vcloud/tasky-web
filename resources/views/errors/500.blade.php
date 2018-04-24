@@ -30,7 +30,7 @@
                 <h2>Internal Server Error.</h2><br>
                 <p class="text-muted">Why not try refreshing your page? or you can contact <a href="#">support</a></p>
                 <br>
-                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Retornar</a>
+                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Board</a>
             </div>
         </div>
 

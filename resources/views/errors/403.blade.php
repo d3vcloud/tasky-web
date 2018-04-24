@@ -30,7 +30,7 @@
                 <h2>Forbidden</h2><br>
                 <p class="text-muted">You don't have permission to access on this server.</p>
                 <br>
-                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Retornar</a>
+                <a class="btn btn-default waves-effect waves-light" href="{{ route('app.board') }}"> Board</a>
             </div>
         </div>
 

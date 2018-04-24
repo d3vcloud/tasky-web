@@ -50,7 +50,6 @@
                     		@foreach($myprojects as $project)
                     			<div class="col-md-3 my-project grow">
 			                        <div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">
-
 			                            <a onclick="remove({{ $project->id }});">
                                             <i class="fa fa-trash pull-right inform" 
                                             style="color: red;"></i>         
@@ -67,12 +66,29 @@
 			                        </div>
                     			</div>
                     		@endforeach
-                    	@else
+                    	{{--@else
                     		<div class="alert alert-danger col-md-12">
-
                                 	<strong style="text-align: center;">You don't have any projects.</strong>
-
-                            </div>
+                            </div>--}}
+                        @endif
+                        
+                        @if(count($projects))
+                    		@foreach($projects as $project)
+                    			<div class="col-md-3 my-project grow">
+			                        <div class="card-box widget-box-1" style="border: none;margin-bottom: 0px !important;">
+			                            {{--
+                                        <a href="#" data-toggle="modal" data-idproject="{{ $project->id }}"
+                                           class="btn-send-invitation" data-target="#modalInvitation">
+                                            <i class="fa fa-user-plus pull-right inform"></i>
+                                        </a>--}}
+                                        <i class="fa fa-info-circle text-muted pull-right inform" data-toggle="tooltip" data-placement="bottom" data-original-title="{{ $project->description }}"></i>
+			                            <a class="text-dark" 
+                                        href="{{ route('app.project.detail',$project->id) }}" style="font-size: 15px;">
+			                            	{{ $project->name }}
+			                            </a>
+			                        </div>
+                    			</div>
+                    		@endforeach
                     	@endif
                     	
                     </div>

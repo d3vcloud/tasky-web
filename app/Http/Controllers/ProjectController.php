@@ -18,10 +18,13 @@ class ProjectController extends Controller
 
         $myprojects = Project::where('user_id',Auth::user()->id)->get();    
         
-        if(is_array($projects) && is_array($myprojects))
-            $myprojects = array_merge( $projects, $myprojects );
+        /*if(is_array($projects) && is_array($myprojects))
+            $myprojects = array_merge( $projects, $myprojects );*/
 
-        return $myprojects;
+        return response()->json([
+            "myprojects" => $myprojects,
+            "projects" => $projects
+        ]);
     }
 
     public function store(Request $request)
@@ -36,6 +39,7 @@ class ProjectController extends Controller
 
                 //lo guarda como propietario del proyecto
                 if($user->myprojects()->save($project)){
+                    //lo guarda como miembro
                     //$project->members()->attach(Auth::user()->id);
                     return "Save";
                 }
@@ -83,7 +87,6 @@ class ProjectController extends Controller
             }
         }
 
-        //return $request->all();
     }
 
     public function isMemberProject($idUser,$idProject)
@@ -98,12 +101,15 @@ class ProjectController extends Controller
 
     public function getFilterMembers($id)
     {
-        $projects = Auth::user()->projects->where('id','!=',$id);
+        //devuelve todos los proyectos del usuario actual a excepcion del seleccionado
+        $projects = Auth::user()->myprojects->where('id','!=',$id);
         $users = array();
         foreach ($projects as $project)
         {
-            foreach ($project->users->where('id','!=',Auth::user()->id) as $user)
+            //obtiene y recorre los miembros de los proyectos del usuario actual
+            foreach ($project->members()->get() as $user)
             {
+                //verifica si el usuario de un proyecto esta en el proyecto seleccionado
                 if(!$this->isMemberProject($user->id,$id))
                 {
                     $users[] = array(
