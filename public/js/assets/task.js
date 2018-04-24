@@ -278,8 +278,8 @@ function showInformation() {
                     }
 
                     members += '<div class="container-members btn-member '+isMember+'" data-id="'+data.members[i].id+'">';
-                    members += '<img class="rounded-circle" height="29" width="29" src="'+data.members[i].photo+'" />';
-                    members += '<span style="margin-left:19px;font-size: 15px;vertical-align: middle;"  ' +
+                    members += '<img class="rounded-circle img-position" height="29" width="29" src="'+data.members[i].photo+'" />';
+                    members += '<span style="float:left;font-size: 15px;vertical-align: middle;"  ' +
                         '>'+data.members[i].name+ ' ' +data.members[i].last_name+'</span>';
                     members += '</div>';
 

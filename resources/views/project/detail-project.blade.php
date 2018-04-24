@@ -36,8 +36,8 @@
             cursor: pointer;
             border-radius: 5px;
             height: 34px;
-            float:left;
-            /*width: 230px;*/
+            /*float:left;
+            width: 230px;*/
         }
         .container-members:hover {
             background-color: #4c5667;
@@ -49,6 +49,9 @@
         }
         .deselected {
             color:#797979;
+        }
+        .img-position{
+            float:left;
         }
 
     </style>
