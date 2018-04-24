@@ -8,7 +8,7 @@ class Project extends Model
 {
     protected $fillable = ['name','description'];
 
-    public function users()
+    public function members()
     {
     	return $this->belongsToMany('App\User','project_users')
             ->withTimestamps();
@@ -22,6 +22,11 @@ class Project extends Model
     public function invites()
     {
         return $this->hasMany('App\Invite');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo('App\User');
     }
 
     

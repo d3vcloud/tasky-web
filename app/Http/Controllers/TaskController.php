@@ -139,7 +139,7 @@ class TaskController extends Controller
             );
         }
 
-        foreach ($project->users()->orderBy('last_name','ASC')->get() as $key => $value)
+        foreach ($project->members()->orderBy('last_name','ASC')->get() as $key => $value)
         {
             $members[] = array(
                 "id" => $value->id,

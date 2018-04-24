@@ -14,9 +14,15 @@ class BoardController extends Controller
 
     public function index()
     {
-    	$myprojects = Project::join('project_users as pu','projects.id','=','pu.project_id')
-            ->where('user_id',Auth::user()->id)->get();
-    	return view('project.board',compact('myprojects'));
+    	$projects = Project::join('project_users as pu','projects.id','=','pu.project_id')
+            ->where('pu.user_id',Auth::user()->id)->get();
+
+        $myprojects = Project::where('user_id',Auth::user()->id)->get();
+
+        if(is_array($projects) && is_array($myprojects))
+            $myprojects = array_merge( $projects, $myprojects );
+        
+        return view('project.board',compact('myprojects'));
     }
 
     public function setTimeZone(Request $request)

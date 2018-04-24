@@ -14,9 +14,14 @@ class ProjectController extends Controller
     public function getAll()
     {
         $projects = Project::join('project_users as pu','projects.id','=','pu.project_id')
-            ->where('user_id',Auth::user()->id)->get();
-                
-        return $projects;
+            ->where('pu.user_id',Auth::user()->id)->get();
+
+        $myprojects = Project::where('user_id',Auth::user()->id)->get();    
+        
+        if(is_array($projects) && is_array($myprojects))
+            $myprojects = array_merge( $projects, $myprojects );
+
+        return $myprojects;
     }
 
     public function store(Request $request)
@@ -27,9 +32,11 @@ class ProjectController extends Controller
                 $project->name        = $request->name;
                 $project->description = $request->description;
 
-                //$user = \App\User::find(Auth::user()->id);
-                if($project->save()){
-                    $project->users()->attach(Auth::user()->id);
+                $user = User::find(Auth::user()->id);
+
+                //lo guarda como propietario del proyecto
+                if($user->myprojects()->save($project)){
+                    //$project->members()->attach(Auth::user()->id);
                     return "Save";
                 }
                 else
@@ -65,11 +72,11 @@ class ProjectController extends Controller
                     {
                         foreach ($request->members as $member)
                         {
-                            $project->users()->attach($member);
+                            $project->members()->attach($member);
                         }
                     }else
                     {
-                        $project->users()->attach($request->members);
+                        $project->members()->attach($request->members);
                     }
                     return "Added";
                 }
@@ -82,7 +89,7 @@ class ProjectController extends Controller
     public function isMemberProject($idUser,$idProject)
     {
         $project = Project::find($idProject);
-        if(count($project->users()->where('id',$idUser)->get()))
+        if(count($project->members()->where('id',$idUser)->get()))
             return true;
 
         return false;

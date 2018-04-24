@@ -91,7 +91,7 @@ class InviteController extends Controller
         {
             $project = Project::find($request->myproject);
             if(!is_null($project))
-                $project->users()->attach($user);
+                $project->members()->attach($user);
         }
         return redirect()->route('app.login.form');
     }
