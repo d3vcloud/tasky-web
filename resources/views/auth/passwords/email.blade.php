@@ -8,7 +8,7 @@
 
 		<link rel="shortcut icon" href="">
 
-		<title>Laravel</title>
+		<title>Taskux</title>
 
 		<!-- App css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
@@ -41,7 +41,7 @@
 					
 						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 							<div class="col-12">
-								<input class="form-control" type="text" required 
+								<input class="form-control" type="email" required 
 								autofocus placeholder="Email" name="email" 
 								value="{{ $email or old('email') }}">
 									@if ($errors->has('email'))

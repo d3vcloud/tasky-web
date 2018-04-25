@@ -7,7 +7,7 @@
 
         <link rel="shortcut icon" href="">
 
-        <title>Login</title>
+        <title>Taskux</title>
 
         <!-- App css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
