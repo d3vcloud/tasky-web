@@ -24,7 +24,7 @@ class Project extends Model
         return $this->hasMany('App\Invite');
     }
 
-    public function owner()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }

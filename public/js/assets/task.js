@@ -138,7 +138,7 @@ function showInformation() {
     var description = "";
     var due_date = "";
     var html,status,can,result,url,tbody,date,activity,message,content,
-        label,members,isMember,membersTask;
+        label,members,isMember,membersTask,owner;
     var table = $("#ListAttachments tbody");
 
    $('.main-container').on('click','.btn-task-detail',function(){
@@ -154,6 +154,7 @@ function showInformation() {
         members = "";
         membersTask = "";
         isMember = "";
+        //owner = "";
 
         $.get(url,function(data){
             $('#titleTask').editable('setValue', data.task.name);
@@ -174,6 +175,7 @@ function showInformation() {
                 "\t\role=\"progressbar\" data-value=\"0\" id=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\"\n" +
                 "\taria-valuemax=\"100\" style=\"width:0%;font-size:12.8px;\">0%</div>");
 
+            //Lista el checklist o subtareas de la tarea seleccionada
             if(data.subtasks.length){
 
                 result = 100 / data.subtasks.length;
@@ -208,6 +210,7 @@ function showInformation() {
                     ''+ result.toFixed(0) +'%</div>');
             }
             
+            //Lista los archivos adjuntos de la tarea seleccionada
             if(data.attachments.length){
                 for (var j = 0; j < data.attachments.length; j++) {
                     date = moment(data.attachments[j].date.date).format('YYYY-MM-DD - HH:mm');
@@ -226,6 +229,7 @@ function showInformation() {
                 table.html(tbody);
             }
 
+            //Lista las actividades de la tarea seleccionada
             $(".timeline-2").html("");
             if(data.activities.length){
                 for (var i = 0; i < data.activities.length; i++) {
@@ -248,48 +252,52 @@ function showInformation() {
 
             }
 
+            //Lista las etiquetas de la tarea seleccionada
             $(".card-tags-detail").html('');
             if(data.labels.length){
 
                 $("#listLabels").show();
 
-                //label += '<div class="card-tags-detail">';
                 for (var i = 0; i < data.labels.length; i++) {
                     label += '<span class="card-label-detail" ' +
                         'style="background-color:'+data.labels[i].color+'" ' +
                         'title="'+data.labels[i].name+'">'+data.labels[i].name+'</span>';
                 }
-                //label += '</div>';
-
                 $(".card-tags-detail").html(label);
 
             }else{
                 $("#listLabels").hide();
             }
 
+            //Lista los miembros del proyecto incluido el propietario en el popup miembros
+            if(data.owner.isMember) isMember = "selected";
+            else isMember = "deselected";
 
-            $("#members").html('');
+            owner = '<div class="container-members btn-member '+isMember+'" data-id="'+data.owner.id+'">';
+            owner += '<img class="rounded-circle img-position" height="29" width="29" src="'+data.owner.photo+'" />';
+            owner += '<span style="float:left;font-size: 15px;vertical-align: middle;"  ' +
+                        '>'+data.owner.first_name+ ' ' +data.owner.last_name+'</span>';
+            owner += '</div>';
+
+            $("#members").html(owner);
+            
             if(data.members.length)
             {
                 for (var i = 0; i < data.members.length; i++)
                 {
-                    if(data.members[i].isMember) {
-                        isMember = "selected";
-                    }
-
+                    if(data.members[i].isMember) isMember = "selected";
+                    else isMember = "deselected";
+                    
                     members += '<div class="container-members btn-member '+isMember+'" data-id="'+data.members[i].id+'">';
                     members += '<img class="rounded-circle img-position" height="29" width="29" src="'+data.members[i].photo+'" />';
                     members += '<span style="float:left;font-size: 15px;vertical-align: middle;"  ' +
                         '>'+data.members[i].name+ ' ' +data.members[i].last_name+'</span>';
                     members += '</div>';
-
-                    isMember = "deselected";
                 }
-                $("#members").html(members);
+                $("#members").append(members);
             }
 
-            console.log(data.owner);
-
+            //Lista los usuarios que son responsables de la tarea
             $("#membersTask").html('');
             if(data.membersTask.length)
             {

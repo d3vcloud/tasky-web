@@ -159,6 +159,10 @@ class TaskController extends Controller
             );
         }
 
+        //obtiene el propietario del proyecto y le agrega un atributo llamado isMember
+        $owner = $project->user()->first();
+        $owner['isMember'] = $this->isMember($task,$owner->id);
+
         return response()->json([
                 "task" => $task,
                 "subtasks" => $task->task_subtasks()->get(),
@@ -166,7 +170,7 @@ class TaskController extends Controller
                 "activities" => $activities,
                 "labels" => $task->task_labels()->get(),
                 "members" => $members,
-                "owner"=>$project->owner->first_name,
+                "owner"=>$owner,
                 "membersTask" => $membersTask
         ]);
     }
@@ -180,11 +184,11 @@ class TaskController extends Controller
             $email = User::select('email')->where('id',$request->id)->first();
             if($request->selected) {
                 $task->users()->attach($request->id);
-                Mail::to($email)->send(new SendNotification("has added you from the task: ".$task->name));
+                Mail::to($email)->send(new SendNotification("has added you to the task: ".$task->name." from project: ".$task->project->name));
             }
             else{
                 $task->users()->detach($request->id);
-                Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name));
+                Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name." from project: ".$task->project->name));
             }
 
             return response()->json([
@@ -205,7 +209,7 @@ class TaskController extends Controller
         {
             $task->users()->detach($request->idUser);
             $email = User::select('email')->where('id',$request->idUser)->first();
-            Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name));
+            Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name." from project: ".$task->project->name));
             return "Success";
 
         }
