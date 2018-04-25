@@ -181,15 +181,10 @@ class TaskController extends Controller
 
         if(!is_null($task))
         {
-            $email = User::select('email')->where('id',$request->id)->first();
-            if($request->selected) {
+            if($request->selected) 
                 $task->users()->attach($request->id);
-                Mail::to($email)->send(new SendNotification("has added you to the task: ".$task->name." from project: ".$task->project->name));
-            }
-            else{
+            else
                 $task->users()->detach($request->id);
-                Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name." from project: ".$task->project->name));
-            }
 
             return response()->json([
                 "status" => "Success",
@@ -197,7 +192,6 @@ class TaskController extends Controller
                         ->where('id',$request->id)->first(),
                 "taskid" => \Session::get('idCurrentTask')
             ]);
-
         }
         return "Error";
     }
@@ -208,10 +202,22 @@ class TaskController extends Controller
         if(!is_null($task))
         {
             $task->users()->detach($request->idUser);
-            $email = User::select('email')->where('id',$request->idUser)->first();
-            Mail::to($email)->send(new SendNotification("has eliminated you from the task: ".$task->name." from project: ".$task->project->name));
             return "Success";
+        }
+        return "Error";
+    }
 
+    //Envia mail despues de agregar o eliminar un usuario de una tarea
+    public function sendMail(Request $request)
+    {
+        $task = Task::find($request->idTask);
+        $user = User::find($request->idUser);
+        if(!is_null($task) && !is_null($user))
+        {
+            Mail::to($user->email)
+                ->send(new SendNotification($request->msj." ".$task->name." from project: ".$task->project->name));
+            
+            return "Success";    
         }
         return "Error";
     }

@@ -50,6 +50,7 @@ Route::prefix('task')->group(function(){
     Route::get('/detail/{task}','TaskController@getDetails')->name('app.details.task');
     Route::post('/addmember','TaskController@addMember')->name('app.addmember.task');
     Route::post('/rmvmember','TaskController@removeMember')->name('app.rmvmember.task');
+    Route::post('/sendemail','TaskController@sendMail')->name('app.send.mail.task');
 });
 
 Route::prefix('subtask')->group(function(){
