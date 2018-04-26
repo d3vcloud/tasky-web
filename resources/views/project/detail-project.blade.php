@@ -67,7 +67,7 @@
                             <br>
                             <ul class="sortable-list taskList list-unstyled
                             main-container main-upcoming" id="upcoming">
-                                <li class="deleteLi" style="visibility: hidden;padding:1px;"></li>
+                                <li class="deleteLi" style="visibility: hidden;padding:3px;"></li>
                                 <!--TASKS-->
                                 @if(count($tupcoming))
                                     @foreach($tupcoming as $task)
@@ -151,7 +151,7 @@
                             <br>
                             <ul class="sortable-list list-unstyled taskList main-container" id="inprogress">
                                 <!--TASKS-->
-                                <li class="deleteLi" style="visibility: hidden;padding:1px;"></li>
+                                <li class="deleteLi" style="visibility: hidden;padding:3px;"></li>
                                 @if(count($tprogress))
                                     @foreach($tprogress as $task1)
                                         <li class="task-detail task-main" id="{{ $task1->id }}">
@@ -228,7 +228,7 @@
                             <h4 class="text-dark header-title m-t-0">Completed</h4>
                             <br>
                             <ul class="sortable-list taskList list-unstyled main-container" id="completed">
-                                <li class="deleteLi" style="visibility: hidden;padding:1px;"></li>
+                                <li class="deleteLi" style="visibility: hidden;padding:3px;"></li>
                                 <!--TASKS-->
                                 @if(count($tcompleted))
                                     @foreach($tcompleted as $task)

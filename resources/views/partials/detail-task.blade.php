@@ -160,10 +160,7 @@
                                     <i class="fa fa-list-ul"></i>  
                                     Checklist
                                 </h3>
-                                
-                                <div class="portlet-widgets">
-                                    <a data-toggle="collapse" data-parent="#accordion1" href="#bg-purple"><i class="ion-minus-round"></i></a>
-                                </div>
+
                                 <div class="clearfix"></div>
                             </div>
                             <div id="bg-purple" class="panel-collapse collapse show">
@@ -186,11 +183,6 @@
                                 	<i class="fa fa-comments-o"></i>  
                                     Activity
                                 </h3>
-                                <div class="portlet-widgets">
-                                    <a data-toggle="collapse" data-parent="#accordion2" href="#bg-purple">
-										<i class="ion-minus-round"></i>
-									</a>
-                                </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div id="bg-purple" class="panel-collapse collapse show">
