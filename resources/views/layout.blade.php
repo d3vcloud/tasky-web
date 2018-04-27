@@ -37,20 +37,12 @@
 
                     <!-- Logo container-->
                     <div class="logo">
-                        <!-- Text Logo -->
-                        <!--<a href="index.html" class="logo">-->
-                        <!--UBold-->
-                        <!--</a>-->
                         <!-- Image Logo -->
                         <a href="{{ route('app.board') }}" class="logo">
-                            <img src="{{ asset('img/logo_sm.png') }}" alt="" height="20" class="logo-lg">
-                            {{--<img src="{{ asset('img/logo_sm.png') }}" alt="" height="24" class="logo-sm">--}}
+                            <img src="/favicon.ico" alt="" height="22" class="logo-lg">
                         </a>
-
                     </div>
                     <!-- End Logo container-->
-
-
                     <div class="menu-extras topbar-custom">
 
                         <ul class="list-inline float-right mb-0">

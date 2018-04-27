@@ -21,11 +21,12 @@ class InviteController extends Controller
         {
             if(is_array($request->emails)){
                 foreach ($request->emails as $email) {
-                    if($this->isNotRegistred($email)){
-                        $invite = $this->process($email,$request->id);
-                        if(!is_null($invite))
-                            Mail::to($email)->send(new SendInvitation($invite));
-                    }
+                    //se quito la validacion
+                    //if($this->isNotRegistred($email)){
+                    $invite = $this->process($email,$request->id);
+                    if(!is_null($invite))
+                        Mail::to($email)->send(new SendInvitation($invite));
+                    //}
                 }
                 return "Sent";
             }
@@ -33,6 +34,7 @@ class InviteController extends Controller
         return "error";
     }
 
+    //Valida si el email al cual enviaremos la invitacion es o no usuario de la aplicacion
     public function isNotRegistred($email)
     {
         $user = User::select('id')->where('email',$email)->first();
