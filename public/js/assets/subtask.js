@@ -14,7 +14,7 @@ function newSubTask(name,data,newId){
 
            setValueProgress(res.toFixed(0),rpta.task);
 
-           //assign event to new checbox of input
+            //Asignar evento al nuevo checkbox
            var checkbox = document.getElementById(newId);
            checkbox.addEventListener('change',function(){
                updateSubTask(rpta.id,checkbox);

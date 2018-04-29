@@ -7,10 +7,6 @@
     Join to Project
 @endcomponent
 
-{{--@component('mail::button', ['url' => $url,'color' => 'default'])
-Join to Project
-@endcomponent
---}}
 Thanks,<br>
 {{ $user }}
 @endcomponent

@@ -173,9 +173,6 @@
         <script src="{{ asset('js/index.js') }}"></script>
         <script>
             setTimeZone();
-            /*$(".btn-logout").click(function(){
-                localStorage.removeItem('timezone');
-            });*/
 
             //Dropzone configuration
             Dropzone.autoDiscover = false;

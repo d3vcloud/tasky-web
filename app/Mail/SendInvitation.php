@@ -36,7 +36,7 @@ class SendInvitation extends Mailable
         $project = \App\Project::find($this->invite->project_id)->name;
 
         return $this->subject('Invitation to '.$project)
-            ->from('demosweb.app@gmail.com')
+            ->from('tuemail')//personalizable
             ->markdown('emails.send.invitation',
                 ['url'  => url('/').'/accept/'.$this->invite->token,
                  'user' => Auth::user()->first_name.' '.Auth::user()->last_name,

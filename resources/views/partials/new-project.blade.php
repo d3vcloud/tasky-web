@@ -8,7 +8,6 @@
 <div class="modal-body">
 	<form id="FormProject" method="POST">
 		<input type="hidden" name="Action" id="Action" value="Register">
-		<!--<input type="hidden" name="Id" id="Id" value>-->
 		<div class="row">
 	        <div class="col-md-12">
 	            <div class="form-group">

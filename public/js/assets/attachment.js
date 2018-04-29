@@ -4,7 +4,6 @@ function getAll(){
     var tbody;
     table.html('');
     $.get('/attachment/getall',function(data){
-        //console.log(data);
         if(data.length){
 
             for (var j = 0; j < data.length; j++) {

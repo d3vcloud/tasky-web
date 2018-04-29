@@ -17,9 +17,6 @@ class ProjectController extends Controller
             ->where('pu.user_id',Auth::user()->id)->get();
 
         $myprojects = Project::where('user_id',Auth::user()->id)->get();    
-        
-        /*if(is_array($projects) && is_array($myprojects))
-            $myprojects = array_merge( $projects, $myprojects );*/
 
         return response()->json([
             "myprojects" => $myprojects,

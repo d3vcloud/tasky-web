@@ -10,7 +10,6 @@
 			border: 1px solid;
 			cursor:pointer;
 			margin: 6px 10px 7px 30px;
-			/*padding-right: 15px !important;*/
 		}
 		.grow{
 			transition: 1s ease;
