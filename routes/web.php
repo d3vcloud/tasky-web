@@ -12,7 +12,6 @@
 */
 
 Route::bind('project',function($id){
-
     return App\Project::find($id);
 });
 

@@ -26,7 +26,6 @@ class AutenticacionController extends Controller
 
     	if (Auth::attempt(['email'=>$request->email,'password'=>$request->password],
             $request->remember)) {
-            //->cookie('test', 'testValue', 3600);
     		return redirect()->intended(route('app.board'));
 
     	}
@@ -39,7 +38,6 @@ class AutenticacionController extends Controller
     public function logout(Request $request)
     {
         \Session::forget('idProject');
-        //\Session::forget('timezone');
         \Session::forget('idCurrentTask');
 
         Auth::logout();

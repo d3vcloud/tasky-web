@@ -10,7 +10,7 @@
 
         <link rel="shortcut icon" href="/favicon.ico">
 
-        <title>Juntas</title>
+        <title>Taskux</title>
 
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/icons.css') }}" rel="stylesheet" type="text/css" />
