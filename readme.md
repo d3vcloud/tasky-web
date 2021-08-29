@@ -1,6 +1,6 @@
 # tasky-web
 
-Aplicación web para gestionar proyectos y tareas.
+Aplicación web para gestionar proyectos y tareas de forma sencilla.
 
 [![Alt text](https://img.youtube.com/vi/Kk2b4PATMRg/0.jpg)](https://www.youtube.com/watch?v=Kk2b4PATMRg)
 
